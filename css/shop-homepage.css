@@ -5,7 +5,12 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.articuloImagen {
+    width: 320px;
+    height:150px !important;
 }
 
 .slide-image {
@@ -51,4 +56,22 @@ body {
 
 footer {
     margin: 50px 0;
+  }
+  
+#toggle-categories {
+  display: none;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 17px;
+    background: #036918;
+    padding: 8px 10px 8px 10px;
+    text-decoration: none;
+}
+
+@media all and (max-width: 771px) {
+  #toggle-categories {
+    display:block !important;
+  }
 }
