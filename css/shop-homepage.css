@@ -57,9 +57,11 @@ body {
 footer {
     margin: 50px 0;
   }
-  
+
 #toggle-categories {
-  display: none;
+    display: none;
+    margin-bottom: 5px;
+    /*- Para que parezca un botón -*/
     -webkit-border-radius: 4;
     -moz-border-radius: 4;
     border-radius: 4px;
