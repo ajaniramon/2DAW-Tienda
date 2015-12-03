@@ -9,6 +9,7 @@ Integrantes del grupo:
 * Juan Cazalilla
 * Vicente Javier Ibáñez
 * Criso Renovell
+* Jaime Manzanero Ortiz
 
 
 
