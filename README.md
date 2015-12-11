@@ -1,6 +1,6 @@
 # [Tienda 2-DAW](http://startbootstrap.com/) - [Proyecto](http://startbootstrap.com/template-overviews/shop-homepage/)
 
-[
+
 
 ## Tienda 2-DAW
 
