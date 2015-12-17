@@ -1,12 +1,26 @@
 <?php
-$categorias[0]=array('nombre' => 'Panaderia y reposteria','id' => '1');
-$categorias[1]=array('nombre' => 'Pastas y arroces','id' => '2');
-$categorias[2]=array('nombre' => 'Legumbres', 'id' => '3');
-$categorias[3]=array('nombre' => 'Entrantes','id' => '4');
-$categorias[4]=array('nombre' => 'Sopas y cremas','id' => '5');
-$categorias[5]=array('nombre' => 'Ensaladas','id' =>'6');
-$categorias[6]=array('nombre' => 'Bebidas','id' => '7');
-$categorias[7]=array('nombre' => 'Setas, champiñones y tofu', 'id' => '8');
+
+header("Content-Type: text/html;charset=utf-8");//no tocar
+
+$link = mysql_connect("localhost", "root", "")  or die('No se pudo conectar' . mysql_error());
+
+mysql_query("SET NAMES 'utf8'");//no tocar
+
+mysql_select_db('shop') or die('No se pudo seleccionar la base de datos');
+
+$SQL = 'SELECT * FROM categorias';
+$result = mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
+
+$i=0;
+while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+        $categorias[$i]=array('nombre'=>$line["nombre"], 'id'=>$line["idCategorias"]);
+        $i++;
+}
+
 echo json_encode($categorias);
+
+mysql_free_result($result);
+
+mysql_close($link);
 
 ?>
