@@ -18,6 +18,9 @@
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
 
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
     <!-- RAMON: Añado clases de JavaScript -->
     <script src="./js/clases.js"></script>
     <script src="./js/tienda.js"></script> <!-- NO BORRES ESTA LINEA -->
@@ -26,11 +29,18 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-top" role="navigation">
+    <nav class="navbar navbar-top sombreado" role="navigation">
+      <div id="capaCarrito">
+        <button id="verCarritoBT" type="button" class="btn btn-default btn-lg button-wrapper">
+          <a>
+            <i class="fa fa-shopping-cart fa-1x"> </i><!--glyphicon glyphicon-shopping-cart-->
+          </a>
+        </button>
+      </div>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <img src="img/logo.png">
+              <img src="img/logo.png">
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -52,59 +62,101 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-3">
-              <!-- Preguntar a luis por qué ocupa todo -->
-                <span type="button" class="toggle text-center" data-toggle="collapse" data-target="#categorias" id="toggle-categories">
-                  Categorías
-                </span>
-
-                <div id="categorias" class="list-group collapse navbar-collapse">
-                </div>
-            </div>
-
-            <div class="col-md-9">
-
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="row carrusel carousel-holder">
+                      <div class="col-md-12">
+                          <div id="carousel-example-generic" class="carousel slide sombreado" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                  <div class="item active">
+                                      <img class="slide-image" src="img/carrusel1.jpg" alt="">
+                                  </div>
+                                  <div class="item">
+                                      <img class="slide-image" src="img/carrusel2.jpg" alt="">
+                                  </div>
+                                  <div class="item">
+                                      <img class="slide-image" src="img/carrusel3.jpg" alt="">
+                                  </div>
+                              </div>
+                              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                              </a>
+                              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
+                              </a>
+                          </div>
+                      </div>
 
-                </div>
+                  </div>
+              </div>
+            <!--</div>-->
+              <div class="col-md-3">
+                  <span type="button" class="toggle text-center" data-toggle="collapse" data-target="#categorias" id="toggle-categories">
+                    Categorías
+                  </span>
 
-                <div id="productos" class="row">
+                  <div id="categorias" class="list-group collapse navbar-collapse">
+                  </div>
+              </div>
 
-                </div>
+              <div id="productos" class="col-md-9 sombreado">
+
+              </div>
+          </div>
+      </div>
+
+      <!-- MODAL -->
+      <!-- CONTINUAR AQUI -->
+      <div id="modalArticulo" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">¿Añadir al carrito?</h4>
             </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="anyadir btn btn-success" data-dismiss="modal">Añadir articulo</button>
+            </div>
+          </div>
+
         </div>
-    </div>
+      </div>
+
+
+
+        <div id="modalCarrito" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title"><strong>Mi Carrito</strong></h3>
+            </div>
+            <div class="modal-body" id="cuerpoCarrito">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Seguir comprando</button>
+              <button type="button" class="anyadir btn btn-success" data-dismiss="modal">Comprar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.MODAL -->
     <!-- /.container -->
 
     <div class="container">
@@ -114,8 +166,21 @@
         <!-- Footer -->
         <footer>
             <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                <div class="col-lg-6">
+                  <p><strong>2015 &copy; EcoRecipes.</strong> Todos los derechos reservados</p>
+                </div>
+                <div class="col-lg-6">
+                  <a href="#" class="social"><strong>¿Sobre nosotros?</strong></a>
+                  <p><strong>Siguenos en:</strong></p>
+                  <a href="#" class="social">
+                    <i class="fa fa-twitter-square fa-4x"></i>
+                  </a>
+                  <a href="#" class="social">
+                    <i class="fa fa-youtube-play fa-4x"></i>
+                  </a>
+                  <a href="#" class="social">
+                    <i class="fa fa-pinterest-square fa-4x"></i>
+                  </a>
                 </div>
             </div>
         </footer>

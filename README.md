@@ -12,14 +12,6 @@ Integrantes del grupo:
 * Jaime Manzanero Ortiz
 
 
-## TODO
-
-* Añadir margen a los artículos para separarlos cuando es responsivo (10px).
-* Cuando se redimensionan las imágenes se deforman.
-* Hacerlo más vistoso.
-
-
-
 
 ## Copyright
 
