@@ -132,6 +132,7 @@ function mostrarArticulos(){
 
    function procesarCarrito() {
      // aquí hay que recoger los contenidos del carrito y guardarlos en un variable carrito (pasar a json en algun momento)
+     // guardar la id del producto en algún lado, cuando se le da a añadir al carrito
      $.ajax({
        url:'carrito.php',
        type: 'POST',
