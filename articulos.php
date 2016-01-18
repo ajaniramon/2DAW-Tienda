@@ -10,12 +10,12 @@ mysql_select_db('shop') or die('No se pudo seleccionar la base de datos');
 
 $id = $_POST['categoria'];
 
-$SQL = 'SELECT * FROM articulos WHERE categoria = '.$id;
+$SQL = 'SELECT * FROM articulo WHERE categoria = '.$id;
 $result = mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
 
 $i=0;
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-        $articulo[$i]=array('id'=>$line["idArticulos"], 'nombre'=>$line["nombre"], 'descripcion'=>$line["descripcion"], 'precio'=>$line["precio"], 'imagen'=>$line["imagen"], 'categoria'=>$line["categoria"], 'cantidad'=>$line["cantidad"] );
+        $articulo[$i]=array('id'=>$line["idArticulo"], 'nombre'=>$line["nombre"], 'descripcion'=>$line["descripcion"], 'precio'=>$line["precio"], 'imagen'=>$line["imagen"], 'stock'=>$line["stock"], 'categoria'=>$line["categoria"] );
         $i++;
 }
 

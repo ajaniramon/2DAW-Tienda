@@ -37,6 +37,9 @@ function mostrarArticulos(){
                 $('#modalArticulo').modal('show');
                 $('.modal-body').html(texto);
               });
+            },
+            error:function(data){
+              console.log(data.responseText);
             }
           });
    }
