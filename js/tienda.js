@@ -141,7 +141,7 @@ function mostrarArticulos(){
        url:'carrito.php',
        type: 'POST',
        dataType: 'json',
-       data: carritoJson,
+       data: {'carrito':carritoJson},
        success: function(data) {
          alert("Bieeen");
        },
