@@ -5,14 +5,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 USE `shop`;
-DROP TABLE IF EXISTS `articulo`;
-DROP TABLE IF EXISTS `categoria`;
+DROP TABLE IF EXISTS `linea_pedido`, `pedido`, `cliente`, `articulo`,`categoria` ;
 
 CREATE TABLE IF NOT EXISTS `categoria` (
   `idCategoria` int(3) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nombre` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+);
 
 INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES
 (1, 'Panaderia y reposteria'),
@@ -26,16 +25,16 @@ INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES
 
 CREATE TABLE IF NOT EXISTS `articulo` (
   `idArticulo` int(4) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` text COLLATE utf8_spanish_ci,
+  `nombre` varchar(40) DEFAULT NULL,
+  `descripcion` text,
   `precio` double(7,2) DEFAULT NULL,
-  `imagen` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `imagen` varchar(40) DEFAULT NULL,
   `stock` int(3),
   `categoria` int(4) DEFAULT NULL,
   INDEX `fk_categoria` (`categoria`),
   CONSTRAINT `fk_categoria` FOREIGN KEY (`categoria`) REFERENCES `categoria`(`idCategoria`),
   PRIMARY KEY (`idArticulo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=20 ;
+);
 
 INSERT INTO `articulo` (`idArticulo`, `nombre`, `descripcion`, `precio`, `imagen`, `stock`, `categoria`) VALUES
 (1, 'Hot cakes esponjosos', 'Gruesos y esponjosos. Estos hot cakes salen simplemente deliciosos. Cubiertos con fresas y crema batida son imposibles de resistir. También son deliciosos con mantequilla, miel de maple y rebanadas de plátano.', 3.00, 'articulos/hot-cakes.jpg', 10, 1),
@@ -57,6 +56,56 @@ INSERT INTO `articulo` (`idArticulo`, `nombre`, `descripcion`, `precio`, `imagen
 (17, 'Smoothie de sandia y kiwi', 'Si quieres probar una receta de smoothie refrescante para este verano, no puedes perderte este smoothie de sandía que tenemos preparado hoy para que lo puedas hacer rápido en casa. Además es una forma perfecta de usar las sobras de sandía para que no se ponga mala.', 3.00, 'articulos/smoothie-sandia.jpg', 10, 7),
 (18, 'Champiñones en salsa', 'Una de las recetas más ricas y completas que os mostramos es esta con la que preparar unos riquísimos champiñones en salsa. Además es una receta sencilla de hacer y que siempre quedan bien.', 3.00, 'articulos/champinyones.jpg', 10, 8),
 (19, 'Crepes de setas y berenjena', '¿Estás buscando una nueva opción para comer verduras?,¿quieres recetas más saludables para evitar la comida chatarra o preparada? Entonces mira esta receta para preparar unos deliciosos crepes de setas con berenjena.', 3.00, 'articulos/crepes-setas.jpg', 10, 8);
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `idCliente` int(4) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(40) NOT NULL,
+  `apellido` varchar(40) NOT NULL,
+  `dni` varchar(9) NOT NULL UNIQUE,
+  `direccion` varchar(40) NOT NULL,
+  `telefono` int(9) DEFAULT NULL,
+  `correo` varchar(40) NOT NULL,
+  `contrasenya` varchar(40) NOT NULL,
+  PRIMARY KEY (`idCliente`)
+);
+
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`) VALUES
+(1, 'asd', 'aaaaaaa', '12345678a', 'CALLE FALSTA', 961323666, 'correo@a.es', 'asdfdfksdfnkl'),
+(2, 'bsd', 'bbbbbb', '22222222b', 'CALLE FALSTA', 852369852, 'b@a.es', 'asdfdfksdfnkl'),
+(3, 'csd', 'ccccc', '52365874f', 'CALLE FALSTA', 145236987, 'c@a.es', 'asdfdfksdfnkl');
+
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `idPedido` int(4) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime DEFAULT NULL,
+  `total` double(7,2) NOT NULL,
+  `dni` varchar(9) NOT NULL,
+  INDEX `fk_dni` (`dni`),
+  CONSTRAINT `fk_dni` FOREIGN KEY (`dni`) REFERENCES `cliente`(`dni`),
+  PRIMARY KEY (`idPedido`)
+);
+
+INSERT INTO `pedido` (`idPedido`, `fecha`, `total`, `dni`) VALUES
+(1, '2016-01-08 00:00:00', 200.00, '52365874f'),
+(2, '2015-11-08 00:00:00', 100.00, '12345678a');
+
+
+CREATE TABLE IF NOT EXISTS `linea_pedido` (
+  `idPedido` int(4) NOT NULL,
+  `idArticulo` int(4) NOT NULL,
+  `unidad` int(4) NOT NULL,
+  `precio` double(7,2) NOT NULL,
+  `precioTotal` double(7,2) NOT NULL,
+  INDEX `fk_idPedido` (`idPedido`),
+  CONSTRAINT `fk_idPedido` FOREIGN KEY (`idPedido`) REFERENCES `pedido`(`idPedido`),
+  INDEX `fk_idArticulo` (`idArticulo`),
+  CONSTRAINT `idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo`(`idArticulo`),
+  PRIMARY KEY(`idPedido`, `idArticulo`)
+);
+
+INSERT INTO `linea_pedido` (`idPedido`, `idArticulo`, `unidad`, `precio`, `precioTotal`) VALUES
+  (1, 1, 1, 10, 10),
+  (1, 2, 3, 30, 90),
+  (2, 4, 3, 10, 30);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
