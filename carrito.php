@@ -1,6 +1,9 @@
 <?php
-  $carrito = $_POST["datos"];
+  session_start();
+  $carrito = $_POST["carrito"];
 
-  $ocarrito = new stdClass();
-  $ocarrito = json_decode($carrito);
+  $obj_carrito = new stdClass();
+  $obj_carrito = json_decode($carrito);
+
+  var_dump($obj_carrito);
 ?>

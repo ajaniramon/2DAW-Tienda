@@ -1,3 +1,5 @@
+var articulos, carrito;
+
 function mostrarArticulos(){
        var contador = 0;
        var categoria = $(this).attr('id');
@@ -134,15 +136,18 @@ function mostrarArticulos(){
    }
 
    function procesarCarrito() {
-     // aquí hay que recoger los contenidos del carrito y guardarlos en un variable carrito (pasar a json en algun momento)
-     // guardar la id del producto en algún lado, cuando se le da a añadir al carrito
+     var carritoJson = JSON.stringify(carrito);
      $.ajax({
        url:'carrito.php',
        type: 'POST',
        dataType: 'json',
-       data: {carrito},
+       data: carritoJson,
        success: function(data) {
-
+         alert("Bieeen");
+       },
+       error: function(data) {
+         console.log(carritoJson);
+         $('body').html(data.responseText);
        }
      });
    }
