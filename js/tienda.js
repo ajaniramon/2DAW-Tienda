@@ -1,4 +1,4 @@
-var articulos, carrito;
+var articulos, carrito, total;
 
 function mostrarArticulos(){
        var contador = 0;
@@ -51,7 +51,7 @@ function mostrarArticulos(){
     carritoHTML += "<table class='table table-hover'>";
     carritoHTML += "<thead><tr><th>Producto</th><th>Cantidad</th><th class='text-center'>Precio</th><th class='text-center'>Total</th><th></th></tr></thead>";
     carritoHTML += "<tbody>"
-   	var total = 0;
+   	total = 0;
    	$.each(carrito.articulos,function(){
       /*    --------->>>  MEJORANDO ASPECTO DEL CARRITO*/
       //<div class='container'><div class='row'><div class='col-sm-12 col-md-10 col-md-offset-1'></div></div></div><div class='media-body'></div>
@@ -136,18 +136,16 @@ function mostrarArticulos(){
    }
 
    function procesarCarrito() {
+     // Añadimos el precio total y pasamos el carrito al servidor.
+     carrito.total = total;
      var carritoJson = JSON.stringify(carrito);
+     console.log(carrito);
      $.ajax({
        url:'carrito.php',
        type: 'POST',
-       dataType: 'json',
        data: {'carrito':carritoJson},
        success: function(data) {
-         alert("Bieeen");
-       },
-       error: function(data) {
-         console.log(carritoJson);
-         $('body').html(data.responseText);
+         alert(data);
        }
      });
    }
