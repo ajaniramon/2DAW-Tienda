@@ -1,7 +1,8 @@
 function Carrito(id){
 this.id = id;
-this.fecha = new Date();
+this.fecha = (new Date()).getTime();
 this.articulos = new Array();
+this.total = total;
 }
 Carrito.prototype.addArticulo = function(articulo){
 	this.articulos.push(articulo);
