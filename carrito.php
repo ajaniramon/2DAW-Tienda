@@ -2,22 +2,42 @@
   session_start();
   $carrito = $_POST["carrito"];
 
-  $obj_carrito = new stdClass(); //Construyes obj
+  $obj_carrito = new stdClass(); // Construyes obj
   $obj_carrito = json_decode($carrito);
 
- /*meter el carrito a la bd*/
- header("Content-Type: text/html; charset=utf-8");
- $link = mysql_connect("localhost", "root", "") or die ("No se pudo conectar a la BD" . mysql_error());
+  date_default_timezone_set("Europe/Madrid");
+  $fecha_pedido = date("Y/m/d h:i:s", time());
+  echo $fecha_pedido;
+  /*meter el carrito a la bd*/
+  header("Content-Type: text/html; charset=utf-8");
+  $link = mysql_connect("localhost", "root", "") or die ("No se pudo conectar a la BD" . mysql_error());
 
- mysql_query("SET NAMES utf8");
- mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
+  mysql_query("SET NAMES utf8");
+  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
- //Cuando haya un sistema de usuarios funcional, hay que pasar el DNI del usuario en el carrito para ponerle el pedido a su nombre.
- $SQL = 'INSERT INTO pedido(fecha,total,dni) VALUES (' . $obj_carrito->fecha . ',' . $obj_carrito->total . ',"52365874f")';
- /*
- for each de cada articulo en el carrito
- "INSERT INTO linea_pedido(idPedido, idArticulo, unidad, precio, precioTotal) VALUES ()";*/
- mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
- mysql_close($link);
- echo "as";
+  // Cuando haya un sistema de usuarios funcional, hay que pasar el DNI del usuario en el carrito para ponerle el pedido a su nombre.
+  $SQL = 'INSERT INTO pedido(fecha,total,dni) VALUES ("' . $fecha_pedido . '",' . $obj_carrito->total . ',"52365874f");';
+
+  mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
+
+  // Cuando tengamos un sistema  de gestión de clientes, cambiar el dni por el del usuario.
+  $SQL_idPedido = "SELECT p.idPedido FROM pedido p, cliente c WHERE c.dni = p.dni AND c.dni = '52365874f' ORDER BY p.fecha DESC";
+  $result_idPedido = mysql_query($SQL_idPedido) or die('Consulta fallida: ' . mysql_error());
+  $idPedido = mysql_fetch_array($result_idPedido); // Array de un dato (primera fila tiene la idPedido --> $row[0]
+
+  $SQL_linea_pedido = "INSERT INTO linea_pedido(idPedido, idArticulo, unidad, precio, precioTotal) VALUES ";
+  $articulos = $obj_carrito->articulos;
+  $num_articulos = count($obj_carrito->articulos);
+
+  for ($i = 0; $i < $num_articulos;$i++) {
+    $SQL_linea_pedido .= "(" . $idPedido[0] . "," . $articulos[$i]->id . "," . $articulos[$i]->cantidad . "," . $articulos[$i]->precio . "
+    ," . ($articulos[$i]->cantidad * $articulos[$i]->precio) . ")";
+    if($i != $num_articulos - 1){
+      $SQL_linea_pedido .= ","; // Si no es la última línea, le ponemos una coma al final del values
+    }
+  }
+  $SQL_linea_pedido .= ";";// Cerramos la consulta
+
+  mysql_query($SQL_linea_pedido) or die('Consulta fallida: ' . mysql_error());
+  mysql_close($link);
 ?>

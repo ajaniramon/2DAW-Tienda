@@ -139,15 +139,21 @@ function mostrarArticulos(){
      // Añadimos el precio total y pasamos el carrito al servidor.
      carrito.total = total;
      var carritoJson = JSON.stringify(carrito);
-     console.log(carrito);
-     $.ajax({
+     if (carrito.articulos.length < 1) {
+       alert("Por favor, seleccione algún producto para comprar.");
+     }
+     else {
+       $.ajax({
        url:'carrito.php',
        type: 'POST',
        data: {'carrito':carritoJson},
        success: function(data) {
-         alert(data);
+         alert("Compra realizada satisfactoriamente.");
+       }, error: function(data) {
+         $("body").html(data.responseText);
        }
-     });
+     });}
+     carrito = new Carrito(1);
    }
 
    $(document).ready(function(){

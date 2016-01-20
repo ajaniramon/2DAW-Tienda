@@ -84,11 +84,6 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   PRIMARY KEY (`idPedido`)
 );
 
-INSERT INTO `pedido` (`idPedido`, `fecha`, `total`, `dni`) VALUES
-(1, '2016-01-08 00:00:00', 200.00, '52365874f'),
-(2, '2015-11-08 00:00:00', 100.00, '12345678a');
-
-
 CREATE TABLE IF NOT EXISTS `linea_pedido` (
   `idPedido` int(4) NOT NULL,
   `idArticulo` int(4) NOT NULL,
@@ -101,11 +96,6 @@ CREATE TABLE IF NOT EXISTS `linea_pedido` (
   CONSTRAINT `idArticulo` FOREIGN KEY (`idArticulo`) REFERENCES `articulo`(`idArticulo`),
   PRIMARY KEY(`idPedido`, `idArticulo`)
 );
-
-INSERT INTO `linea_pedido` (`idPedido`, `idArticulo`, `unidad`, `precio`, `precioTotal`) VALUES
-  (1, 1, 1, 10, 10),
-  (1, 2, 3, 30, 90),
-  (2, 4, 3, 10, 30);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

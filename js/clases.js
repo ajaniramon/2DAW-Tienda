@@ -1,6 +1,5 @@
 function Carrito(id){
 this.id = id;
-this.fecha = (new Date()).getTime();
 this.articulos = new Array();
 this.total = total;
 }
