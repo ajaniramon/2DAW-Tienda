@@ -1,6 +1,8 @@
 var articulos, carrito, total;
 
 function mostrarArticulos(){
+       $("#productos").fadeIn(1000);
+       $(".carousel").fadeOut(500);
        var contador = 0;
        var categoria = $(this).attr('id');
        var nombreCategoria = $(this).text();
