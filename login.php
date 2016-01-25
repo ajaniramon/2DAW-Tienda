@@ -19,12 +19,13 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
   $resultSet = mysql_fetch_array($result);
 
   if (mysql_num_rows($result) == 1) {
-  	  
+  	  $_SESSION['logged'] = true;
   	  $_SESSION['idUsuario'] = $resultSet[0];
       $_SESSION['nombre'] = $resultSet[1];
       $_SESSION['apellido'] = $resultSet[2];
   	  $_SESSION['dni'] = $resultSet[3];
   	  $_SESSION['correo'] = $resultSet[6];
+      $_SESSION['empleado'] = $resultSet[8];
   	  
 	  http_response_code(200);
   }else if(mysql_num_rows($result) == 0){

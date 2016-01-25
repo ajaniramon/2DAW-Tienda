@@ -1,3 +1,5 @@
+﻿CREATE SCHEMA IF NOT EXISTS SHOP;
+USE SHOP;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -57,22 +59,25 @@ INSERT INTO `articulo` (`idArticulo`, `nombre`, `descripcion`, `precio`, `imagen
 (18, 'Champiñones en salsa', 'Una de las recetas más ricas y completas que os mostramos es esta con la que preparar unos riquísimos champiñones en salsa. Además es una receta sencilla de hacer y que siempre quedan bien.', 3.00, 'articulos/champinyones.jpg', 10, 8),
 (19, 'Crepes de setas y berenjena', '¿Estás buscando una nueva opción para comer verduras?,¿quieres recetas más saludables para evitar la comida chatarra o preparada? Entonces mira esta receta para preparar unos deliciosos crepes de setas con berenjena.', 3.00, 'articulos/crepes-setas.jpg', 10, 8);
 
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `idCliente` int(4) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(40) NOT NULL,
-  `apellido` varchar(40) NOT NULL,
-  `dni` varchar(9) NOT NULL UNIQUE,
-  `direccion` varchar(40) NOT NULL,
-  `telefono` int(9) DEFAULT NULL,
-  `correo` varchar(40) NOT NULL,
-  `contrasenya` varchar(40) NOT NULL,
-  PRIMARY KEY (`idCliente`)
+CREATE TABLE `cliente` (
+	`idCliente` INT(4) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(40) NOT NULL,
+	`apellido` VARCHAR(40) NOT NULL,
+	`dni` VARCHAR(9) NOT NULL,
+	`direccion` VARCHAR(40) NOT NULL,
+	`telefono` INT(9) NULL DEFAULT NULL,
+	`correo` VARCHAR(40) NOT NULL,
+	`contrasenya` VARCHAR(40) NOT NULL,
+	`empleado` VARCHAR(50) NULL DEFAULT 'false',
+	PRIMARY KEY (`idCliente`),
+	UNIQUE INDEX `dni` (`dni`)
 );
 
-INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`) VALUES
-(1, 'asd', 'aaaaaaa', '12345678a', 'CALLE FALSTA', 961323666, 'correo@a.es', 'asdfdfksdfnkl'),
-(2, 'bsd', 'bbbbbb', '22222222b', 'CALLE FALSTA', 852369852, 'b@a.es', 'asdfdfksdfnkl'),
-(3, 'csd', 'ccccc', '52365874f', 'CALLE FALSTA', 145236987, 'c@a.es', 'asdfdfksdfnkl');
+
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`,`empleado`) VALUES
+(1, 'asd', 'aaaaaaa', '12345678a', 'CALLE FALSTA', 961323666, 'admin@domain.com', 'admin','true'),
+(2, 'bsd', 'bbbbbb', '22222222b', 'CALLE FALSTA', 852369852, 'b@a.es', 'asdfdfksdfnkl','false'),
+(3, 'csd', 'ccccc', '52365874f', 'CALLE FALSTA', 145236987, 'cliente@domain.es', 'cliente','false');
 
 CREATE TABLE IF NOT EXISTS `pedido` (
   `idPedido` int(4) NOT NULL AUTO_INCREMENT,

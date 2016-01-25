@@ -174,6 +174,7 @@ function login(){
        data: {'credencial':credencialJson},
        success: function(data){
           alert("Login OK" + data);
+          actualizarModalLogin();
 
        },
        error: function(data){
@@ -181,6 +182,53 @@ function login(){
        }
      });
   
+}
+
+function actualizarModalLogin(){
+  $.ajax({
+       url: 'session.php',
+       type: 'GET',
+       success: function(data){
+          var sesion = JSON.parse(data);
+          $('.login-modal').html("<p> Has iniciado sesión como "+sesion.email);
+          $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
+          $('#logoutBT').on('click',logout);
+       },
+       error: function(data){
+          console.log("Ha fallado la petición HTTP. "+data.responseText);
+       }
+     });
+}
+
+function logout(){
+  $.ajax({
+       url: 'logout.php',
+       type: 'GET',
+       success: function(data){
+        alert("Logout OK");
+        location.reload();
+},
+       error: function(data){
+          console.log("Ha fallado la petición HTTP. "+data.responseText);
+       }
+     });
+}
+
+function logged(){
+   $.ajax({
+       url: 'autorizacion.php',
+       type: 'GET',
+       success: function(data){
+        actualizarModalLogin();
+},
+       error: function(data){
+        console.log("La sesión no está iniciada.");
+       }
+     });
+}
+
+function mostrarRegistro(){
+  //seguir
 }
 
    $(document).ready(function(){
@@ -206,6 +254,8 @@ function login(){
      $('#verCarritoBT').on('click',mostrarCarrito);
 
      $('#verLoginBT').on('click',mostrarLogin);
-
+     $('#registroBT').on('click',mostrarRegistro);
+     logged();
+     
      
   });
