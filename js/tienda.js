@@ -193,6 +193,9 @@ function actualizarModalLogin(){
           $('.login-modal').html("<p> Has iniciado sesión como "+sesion.email);
           $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
           $('#logoutBT').on('click',logout);
+          if (sesion.empleado == "true") {
+              $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
+          };
        },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -226,6 +229,8 @@ function logged(){
        }
      });
 }
+
+
 
 function mostrarRegistro(){
   //seguir
