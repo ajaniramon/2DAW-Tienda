@@ -156,6 +156,33 @@ function mostrarArticulos(){
      carrito = new Carrito(1);
    }
 
+function mostrarLogin(){
+
+  $('#modalLogin').modal('show');
+  $('#loginBT').on('click',login);
+}
+
+function login(){
+  
+  var email = $('#emailTF').val();
+  var contrasenya = $('#passTF').val();
+  var credencial = new Credencial(email,contrasenya);
+  var credencialJson = credencial.toJson();
+     $.ajax({
+       url: 'login.php',
+       type: 'POST',
+       data: {'credencial':credencialJson},
+       success: function(data){
+          alert("Login OK" + data);
+
+       },
+       error: function(data){
+          alert("Login incorrecto.");
+       }
+     });
+  
+}
+
    $(document).ready(function(){
      carrito = new Carrito(1);
      articulos = new Array();
@@ -177,4 +204,8 @@ function mostrarArticulos(){
      $('#productos').html(null); //mostrar productos top.
 
      $('#verCarritoBT').on('click',mostrarCarrito);
+
+     $('#verLoginBT').on('click',mostrarLogin);
+
+     
   });

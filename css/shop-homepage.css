@@ -1,4 +1,4 @@
-body {
+﻿body {
     padding-top: 0px;
     background-color: #DCCFB5;
 }
@@ -206,7 +206,10 @@ a.social:link{
 #verCarritoBT{
   font-size: 36px;
 }
-
+.cuerpo-modal{
+  position: relative;
+  padding: 15px;
+}
 .botonBorrarCarrito{
   margin-left: 5px;
   margin-right: 5px;

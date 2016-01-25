@@ -26,7 +26,13 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-top sombreado" role="navigation">
+
       <div id="capaCarrito">
+      <button id="verLoginBT" type="button" class="btn btn-default btn-lg button-wrapper">
+      <a>
+      <i class="glyphicon glyphicon-user"> </i>
+      </a>
+      </button>
         <button id="verCarritoBT" type="button" class="btn btn-default btn-lg button-wrapper">
           <a>
             <i class="fa fa-shopping-cart fa-1x"> </i><!--glyphicon glyphicon-shopping-cart-->
@@ -136,6 +142,35 @@
       </div>
       <!-- /.MODAL -->
     <!-- /.container -->
+
+
+<!-- Modal login -->
+       <div id="modalLogin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title"><strong>Login</strong></h3>
+            </div>
+            <div class="cuerpo-modal" id="cuerpoLogin">
+              <p>Dirección de correo electrónico: <input type="text" id="emailTF" class="form-control"/></p>
+              <p>Contraseña: <input type="password" id="passTF" class="form-control"/></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button type="button" id="loginBT" class="login btn btn-success" data-dismiss="modal">Login</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
 
     <div class="container">
 

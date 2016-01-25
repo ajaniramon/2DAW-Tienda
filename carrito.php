@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
   session_start();
   $carrito = $_POST["carrito"];
 
@@ -10,18 +11,18 @@
   echo $fecha_pedido;
   /*meter el carrito a la bd*/
   header("Content-Type: text/html; charset=utf-8");
-  $link = mysql_connect("localhost", "root", "") or die ("No se pudo conectar a la BD" . mysql_error());
+  $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
 
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
   // Cuando haya un sistema de usuarios funcional, hay que pasar el DNI del usuario en el carrito para ponerle el pedido a su nombre.
-  $SQL = 'INSERT INTO pedido(fecha,total,dni) VALUES ("' . $fecha_pedido . '",' . $obj_carrito->total . ',"52365874f");';
+  $SQL = 'INSERT INTO pedido(fecha,total,dni) VALUES ("' . $fecha_pedido . '",' . $obj_carrito->total . ',"' . $_SESSION['dni'] . '");';
 
   mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
 
   // Cuando tengamos un sistema  de gestión de clientes, cambiar el dni por el del usuario.
-  $SQL_idPedido = "SELECT p.idPedido FROM pedido p, cliente c WHERE c.dni = p.dni AND c.dni = '52365874f' ORDER BY p.fecha DESC";
+  $SQL_idPedido = "SELECT p.idPedido FROM pedido p, cliente c WHERE c.dni = p.dni AND c.dni ='" . $_SESSION['dni'] . "' ORDER BY p.fecha DESC";
   $result_idPedido = mysql_query($SQL_idPedido) or die('Consulta fallida: ' . mysql_error());
   $idPedido = mysql_fetch_array($result_idPedido); // Array de un dato (primera fila tiene la idPedido --> $row[0]
 

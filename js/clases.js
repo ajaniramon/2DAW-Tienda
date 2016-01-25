@@ -27,3 +27,12 @@ function Categoria(nombre, id){
 this.nombre = nombre;
 this.id = id;
 }
+
+
+function Credencial(email,contrasenya){
+	this.email = email;
+	this.contrasenya = contrasenya;
+}
+Credencial.prototype.toJson = function(){
+	return JSON.stringify(this);
+}
