@@ -143,17 +143,23 @@ function mostrarArticulos(){
        alert("Por favor, seleccione algún producto para comprar.");
      }
      else {
-       $.ajax({
+      if (typeof sesion === 'undefined') {
+          alert("Por favor, inicia sesión para poder comprar.");
+}else{
+  $.ajax({
        url:'carrito.php',
        type: 'POST',
        data: {'carrito':carritoJson},
        success: function(data) {
          alert("Compra realizada satisfactoriamente.");
+         carrito = new Carrito(1);
+
        }, error: function(data) {
          $("body").html(data.responseText);
        }
      });}
-     carrito = new Carrito(1);
+}
+       
    }
 
 function mostrarLogin(){
@@ -189,7 +195,7 @@ function actualizarModalLogin(){
        url: 'session.php',
        type: 'GET',
        success: function(data){
-          var sesion = JSON.parse(data);
+          sesion = JSON.parse(data);
           $('.login-modal').html("<p> Has iniciado sesión como "+sesion.email);
           $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
           $('#logoutBT').on('click',logout);
