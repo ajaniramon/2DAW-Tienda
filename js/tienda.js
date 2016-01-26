@@ -191,8 +191,9 @@ function login(){
        data: {'credencial':credencialJson},
        success: function(data){
           swal("¡Genial!","Login correcto, la sesión está iniciada.","success");
+          
           actualizarModalLogin();
-          $('#modalLogin').modal('toggle');
+          $('#modalLogin').modal('hide');
 
        },
        error: function(data){
@@ -218,7 +219,7 @@ function actualizarModalLogin(){
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {
               $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
-              $('')
+              
           };
        },
        error: function(data){
@@ -295,7 +296,7 @@ function registro(){
        data: {'cliente':clienteJson},
        success: function(data){
          swal("¡Genial!", data, "success");
-         $('#modalLogin').modal('toggle');
+         $('#modalLogin').modal('hide');
          cambiarLogin();
        },
        error: function(data){
