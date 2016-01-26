@@ -281,6 +281,7 @@ function cambiarLogin(){
 }
 
 function registro(){
+  violations = null;
   var nombre = $('#nombreTF').val();
   var apellidos = $('#apellidoTF').val();
   var dni = $('#dniTF').val();
@@ -288,8 +289,48 @@ function registro(){
   var telefono = $('#telefonoTF').val();
   var correo = $('#correoTF').val();
   var contrasenya = $('#contrasenyaTF').val();
-  var cliente = new Cliente(nombre,apellidos,dni,direccion,telefono,correo,contrasenya);
-  var clienteJson = cliente.toJson();
+  var valid = true;
+  violations = new Array();
+  if (nombre == "") {
+    valid = false;
+    
+  };
+  if (apellidos == "") {
+    valid = false;
+    
+  };
+  if (dni == "") {
+    valid = false;
+    
+  };
+  if (direccion == "") {
+    valid = false;
+    
+  };
+  if (telefono == "") {
+    valid = false;
+    
+  };
+  if (correo == "") {
+    valid = false;
+    
+  };
+  if (contrasenya == "") {
+    valid = false;
+  
+  };
+  if (!isDNI(dni)) {
+    valid = false;
+    violations.push('dni');
+  };
+  if (!validarEmail(correo)) {
+    valid = false;
+    violations.push('email');
+  };
+
+  if (valid) {
+    var cliente = new Cliente(nombre,apellidos,dni,direccion,telefono,correo,contrasenya);
+    var clienteJson = cliente.toJson();
        $.ajax({
        url: 'registro.php',
        type: 'POST',
@@ -303,13 +344,55 @@ function registro(){
         console.log(data);
        }
      });
+  }else{
+    if (violations.length == 0) {
+      swal("¡Rellena todos los campos!");
+    }else{
+      var violationString = "Campos con formato erróneo: ";
+      for (var i = 0; i < violations.length; i++) {
+        violationString += violations[i] + " ";
+      };
+      swal(violationString);
+    }
+    
+  }
+}
+function isDNI(dni) {
+  var numero, let, letra;
+  var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+ 
+  dni = dni.toUpperCase();
+ 
+  if(expresion_regular_dni.test(dni) === true){
+    numero = dni.substr(0,dni.length-1);
+    numero = numero.replace('X', 0);
+    numero = numero.replace('Y', 1);
+    numero = numero.replace('Z', 2);
+    let = dni.substr(dni.length-1, 1);
+    numero = numero % 23;
+    letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    letra = letra.substring(numero, numero+1);
+    if (letra != let) {
+      //alert('Dni erroneo, la letra del NIF no se corresponde');
+      return false;
+    }else{
+      //alert('Dni correcto');
+      return true;
+    }
+  }else{
+    //alert('Dni erroneo, formato no válido');
+    return false;
+  }
+}
 
-
-
-
-
-
-
+function validarEmail( email ) {
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email) ){
+        return false;
+    }else{
+      return true;
+    }
+        
 }
 
    $(document).ready(function(){
