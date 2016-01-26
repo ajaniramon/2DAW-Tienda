@@ -13,7 +13,8 @@
     <title>EcoRecipes</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <link href="css/shop-homepage.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -155,13 +156,13 @@
               <h3 class="modal-title"><strong>Mi cuenta</strong></h3>
             </div>
             <div class="cuerpo-modal login-modal" id="cuerpoLogin">
-              <p>Dirección de correo electrónico: <input type="text" id="emailTF" class="form-control"/></p>
-              <p>Contraseña: <input type="password" id="passTF" class="form-control"/></p>
+              <p>Dirección de correo electrónico: <input type="text" id="emailTF" class="form-control" required/></p>
+              <p>Contraseña: <input type="password" id="passTF" class="form-control" required/></p>
             </div>
             <div class="modal-footer login-modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
               <button type="button" class="btn btn-info" id="registroBT">Registro</button>
-              <button type="button" id="loginBT" class="login btn btn-success" data-dismiss="modal">Login</button>
+              <button type="button" id="loginBT" class="login btn btn-success">Login</button>
             </div>
           </div>
 

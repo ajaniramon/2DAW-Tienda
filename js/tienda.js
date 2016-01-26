@@ -169,24 +169,42 @@ function mostrarLogin(){
 }
 
 function login(){
-  
   var email = $('#emailTF').val();
   var contrasenya = $('#passTF').val();
   var credencial = new Credencial(email,contrasenya);
   var credencialJson = credencial.toJson();
-     $.ajax({
+  var valid = true;
+
+  if (email == "") {
+    
+    valid = false;
+  }
+  if (contrasenya == "") {
+    
+    valid = false;
+  };
+
+    if (valid) {
+       $.ajax({
        url: 'login.php',
        type: 'POST',
        data: {'credencial':credencialJson},
        success: function(data){
-          alert("Login OK" + data);
+          swal("¡Genial!","Login correcto, la sesión está iniciada.","success");
+          
           actualizarModalLogin();
+          $('#modalLogin').modal('hide');
 
        },
        error: function(data){
-          alert("Login incorrecto.");
+          swal("¡Ups!", "Dirección de correo electrónico / contraseña incorrect@s.", "error");
        }
      });
+
+    }else{
+      swal("¡Rellena todos los campos!");
+    }
+   
   
 }
 
@@ -201,6 +219,7 @@ function actualizarModalLogin(){
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {
               $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
+              
           };
        },
        error: function(data){
@@ -214,8 +233,9 @@ function logout(){
        url: 'logout.php',
        type: 'GET',
        success: function(data){
-        alert("Logout OK");
         location.reload();
+        
+        
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -238,8 +258,58 @@ function logged(){
 
 
 
+
+
 function mostrarRegistro(){
-  //seguir
+  var cuerpoHTML = '<form class="form-horizontal"><fieldset><legend>Registro</legend><div class="form-group">  <label class="col-md-4 control-label" for="nombre">Nombre: </label>    <div class="col-md-4">  <input id="nombreTF"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="apellido">Apellidos: </label>  <div class="col-md-4"><input  id="apellidoTF" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div></div><!-- Text input--><div class="form-group"><label class="col-md-4 control-label" for="dni">DNI: </label>  <div class="col-md-4"><input  id="dniTF" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="direccion">Dirección: </label>  <div class="col-md-4"><input  id="direccionTF" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="textinput">Teléfono: </label>  <div class="col-md-4"><input id="telefonoTF" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="correo">Correo: </label>  <div class="col-md-4"><input  id="correoTF" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div></div><div class="form-group"> <label class="col-md-4 control-label" for="contrasenya">Contraseña: </label><div class="col-md-4"><input id="contrasenyaTF" placeholder="Tu contraseña" class="form-control input-md" required="" type="password"></div></div></fieldset></form>';
+$('#cuerpoLogin').html(cuerpoHTML);
+
+$('.login-modal-footer').html("<button class='btn btn-info' id='registrarBT'>Registrar</button> <button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button> <a class='btn btn-warning' id='mostrarLoginBT'>Ya tengo una cuenta </a>");
+$('#registrarBT').on('click',registro);
+$('#mostrarLoginBT').on('click',cambiarLogin);
+}
+
+function cambiarLogin(){
+  var html = '<div class="cuerpo-modal login-modal" id="cuerpoLogin"><p>Dirección de correo electrónico: <input type="text" id="emailTF" class="form-control"/></p><p>Contraseña: <input type="password" id="passTF" class="form-control"/></p></div>';
+  $('#cuerpoLogin').html(html);
+  var htmlFooter = '<div class="modal-footer login-modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-info" id="registroBT">Registro</button><button type="button" id="loginBT" class="login btn btn-success" data-dismiss="modal">Login</button></div>';
+  $('.login-modal-footer').html(htmlFooter);
+  $('#registroBT').on('click',mostrarRegistro);
+  $('#loginBT').on('click',login);
+
+
+}
+
+function registro(){
+  var nombre = $('#nombreTF').val();
+  var apellidos = $('#apellidoTF').val();
+  var dni = $('#dniTF').val();
+  var direccion = $('#direccionTF').val();
+  var telefono = $('#telefonoTF').val();
+  var correo = $('#correoTF').val();
+  var contrasenya = $('#contrasenyaTF').val();
+  var cliente = new Cliente(nombre,apellidos,dni,direccion,telefono,correo,contrasenya);
+  var clienteJson = cliente.toJson();
+       $.ajax({
+       url: 'registro.php',
+       type: 'POST',
+       data: {'cliente':clienteJson},
+       success: function(data){
+         swal("¡Genial!", data, "success");
+         $('#modalLogin').modal('hide');
+         cambiarLogin();
+       },
+       error: function(data){
+        console.log(data);
+       }
+     });
+
+
+
+
+
+
+
 }
 
    $(document).ready(function(){
