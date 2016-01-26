@@ -13,6 +13,9 @@
     <link href="js/morris/morris-0.4.3.min.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="css/backend.css" rel="stylesheet" />
+    <link href="css/ui.jqgrid.css" rel="stylesheet" />
+    <link href="css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+    <link href="css/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -73,14 +76,22 @@
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="js/jquery.js"></script>
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+
+    <!-- AÑADIR JAVASCRIPT
+
+
+
+    -->
+
+
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="js/jquery.metisMenu.js"></script>
      <!-- MORRIS CHART SCRIPTS -->
      <script src="js/morris/raphael-2.1.0.min.js"></script>
-    <script src="js/morris/morris.js"></script>
+     <script src="js/morris/morris.js"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="js/custom.js"></script>
 
