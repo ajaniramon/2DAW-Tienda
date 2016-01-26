@@ -272,7 +272,7 @@ $('#mostrarLoginBT').on('click',cambiarLogin);
 function cambiarLogin(){
   var html = '<div class="cuerpo-modal login-modal" id="cuerpoLogin"><p>Dirección de correo electrónico: <input type="text" id="emailTF" class="form-control"/></p><p>Contraseña: <input type="password" id="passTF" class="form-control"/></p></div>';
   $('#cuerpoLogin').html(html);
-  var htmlFooter = '<div class="modal-footer login-modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-info" id="registroBT">Registro</button><button type="button" id="loginBT" class="login btn btn-success" data-dismiss="modal">Login</button></div>';
+  var htmlFooter = '<div class="modal-footer login-modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-info" id="registroBT">Registro</button><button type="button" id="loginBT" class="login btn btn-success">Login</button></div>';
   $('.login-modal-footer').html(htmlFooter);
   $('#registroBT').on('click',mostrarRegistro);
   $('#loginBT').on('click',login);
@@ -319,11 +319,11 @@ function registro(){
     valid = false;
   
   };
-  if (!isDNI(dni)) {
+  if (dni != "" && !isDNI(dni)) {
     valid = false;
     violations.push('dni');
   };
-  if (!validarEmail(correo)) {
+  if (correo != "" && !validarEmail(correo)) {
     valid = false;
     violations.push('email');
   };
@@ -357,6 +357,7 @@ function registro(){
     
   }
 }
+
 function isDNI(dni) {
   var numero, let, letra;
   var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
