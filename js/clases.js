@@ -36,3 +36,16 @@ function Credencial(email,contrasenya){
 Credencial.prototype.toJson = function(){
 	return JSON.stringify(this);
 }
+
+function Cliente(nombre,apellido,dni,direccion,telefono,correo,contrasenya){
+	this.nombre = nombre;
+	this.apellido = apellido;
+	this.dni = dni;
+	this.direccion = direccion;
+	this.telefono = telefono;
+	this.correo = correo;
+	this.contrasenya = contrasenya;
+}
+Cliente.prototype.toJson = function(){
+	return JSON.stringify(this);
+}
