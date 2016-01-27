@@ -5,7 +5,7 @@ function mostrarArticulos(){
        var categoria = $(this).attr('id');
        var nombreCategoria = $(this).text();
        $.ajax({
-           url:'articulos.php',
+           url:'./server/articulos.php',
            type: 'POST',
            dataType: 'json',
            data: {categoria},
@@ -147,7 +147,7 @@ function mostrarArticulos(){
           alert("Por favor, inicia sesión para poder comprar.");
 }else{
   $.ajax({
-       url:'carrito.php',
+       url:'./server/carrito.php',
        type: 'POST',
        data: {'carrito':carritoJson},
        success: function(data) {
@@ -186,7 +186,7 @@ function login(){
 
     if (valid) {
        $.ajax({
-       url: 'login.php',
+       url: './server/login.php',
        type: 'POST',
        data: {'credencial':credencialJson},
        success: function(data){
@@ -210,7 +210,7 @@ function login(){
 
 function actualizarModalLogin(){
   $.ajax({
-       url: 'session.php',
+       url: './server/session.php',
        type: 'GET',
        success: function(data){
           sesion = JSON.parse(data);
@@ -230,7 +230,7 @@ function actualizarModalLogin(){
 
 function logout(){
   $.ajax({
-       url: 'logout.php',
+       url: './server/logout.php',
        type: 'GET',
        success: function(data){
         location.reload();
@@ -245,7 +245,7 @@ function logout(){
 
 function logged(){
    $.ajax({
-       url: 'autorizacion.php',
+       url: './server/autorizacion.php',
        type: 'GET',
        success: function(data){
         actualizarModalLogin();
@@ -332,7 +332,7 @@ function registro(){
     var cliente = new Cliente(nombre,apellidos,dni,direccion,telefono,correo,contrasenya);
     var clienteJson = cliente.toJson();
        $.ajax({
-       url: 'registro.php',
+       url: './server/registro.php',
        type: 'POST',
        data: {'cliente':clienteJson},
        success: function(data){
@@ -400,7 +400,7 @@ function validarEmail( email ) {
      carrito = new Carrito(1);
      articulos = new Array();
      $.ajax({
-       url: 'categorias.php',
+       url: './server/categorias.php',
        dataType: 'json',
        success: function(data){
          $.each(data, function(){

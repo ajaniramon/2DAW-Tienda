@@ -11,7 +11,7 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
-  $queryLogin = "SELECT * FROM cliente WHERE correo = '". $credencialObjeto->email . "' AND contrasenya = '".$credencialObjeto->contrasenya . "'";
+  $queryLogin = "SELECT * FROM cliente WHERE correo = '". $credencialObjeto->email . "' AND contrasenya = '".md5($credencialObjeto->contrasenya) . "'";
 
   if (!$result = mysql_query($queryLogin)) {
   	die(mysql_error());
