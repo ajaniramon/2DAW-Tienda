@@ -82,22 +82,29 @@
                  <!-- /. ROW  -->
                   <hr />
                   <div id="capaGridCategorias">
+                      <h1 id="hCat">Categorias</h1>
                   	<table id="jqGridCategorias"></table> 
                   	<div id="paginadorCategorias"></div>
                     <a  id="a1Cat">Seleccionar fila</a> <br /> 
                     <a  id="a2Cat">Borrar fila</a> <br />
                   </div>
+                
                    <div id="capaGridArticulos">
+                       <h1 id="hArt">Artículos</h1>
                     <table id="jqGridArticulos"></table> 
                     <div id="paginadorArticulos"></div>
        
                   </div>
                    <div id="capaGridPedidos">
+                       <h1 id="hPed">Pedidos</h1>
                     <table id="jqGridPedidos"></table> 
                     <div id="paginadorPedidos"></div>
-                  
+                  <table id="jqGridPedidos_d"></table>
+                       <div id="paginadorPedidos_d"></div>
                   </div>
+                
                    <div id="capaGridClientes">
+                       <h1 id="hCli">Clientes</h1>
                     <table id="jqGridClientes"></table> 
                     <div id="paginadorClientes"></div>
                 
