@@ -1,14 +1,17 @@
-<<<<<<< HEAD
-<?php
-include("./server/autorizacion.php");
-=======
+<?php include './server/autorizacion.php'; ?>
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <?php include 'autorizacion.php'; ?>
+  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoRecipes Backend</title>
+    <script src="js/jquery.js"></script>
+  	<script src="js/backend.js"></script>
+  	<script src="js/jquery-ui.min.js"></script>
+  	<script src="js/grid.locale-es.js"></script>
+  	<script src="js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="dist/sweetalert.min.js"></script>
 	<!-- BOOTSTRAP STYLES-->
     <link href="css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -16,7 +19,11 @@ include("./server/autorizacion.php");
      <!-- MORRIS CHART STYLES-->
     <link href="js/morris/morris-0.4.3.min.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
+        <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <link href="css/backend.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css">
     <link href="css/ui.jqgrid.css" rel="stylesheet" />
     <link href="css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
     <link href="css/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
@@ -24,6 +31,7 @@ include("./server/autorizacion.php");
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
+
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -33,9 +41,9 @@ include("./server/autorizacion.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="administrator.html">EcoRecipes Admin</a>
+                <a class="navbar-brand">EcoRecipes Admin</a>
             </div>
-            <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="logout btn square-btn-adjust">Logout</a> </div>
+            <div id="cabeceraLogout" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> <a id="logoutBT" class="logout btn square-btn-adjust">Logout</a> </div>
           </nav>
            <!-- /. NAV TOP  -->
           <nav class="navbar-default navbar-side" role="navigation">
@@ -45,19 +53,19 @@ include("./server/autorizacion.php");
                         <img src="img/find_user.png" class="user-image img-responsive"/>
 					            </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarClientes()" href="#"><i class="fa fa-users fa-3x"></i> Clientes</a>
+                        <a class="menu-lateral" id="clientesBT" ><i class="fa fa-users fa-3x"></i> Clientes</a>
                       </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarCategorias()" href="#"><i class="fa fa-list fa-3x"></i> Categorias</a>
+                        <a class="menu-lateral" id="categoriasBT" ><i class="fa fa-list fa-3x"></i> Categorias</a>
                       </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarArticulos()" href="#"><i class="fa fa-book fa-3x"></i> Articulos</a>
+                        <a class="menu-lateral" id="articulosBT" ><i class="fa fa-book fa-3x"></i> Articulos</a>
                       </li>
 						          <li>
-                        <a class="menu-lateral" onclick="mostrarPedidos()" href="#"><i class="fa fa-shopping-cart fa-3x"></i> Pedidos</a>
+                        <a class="menu-lateral" id="pedidosBT" ><i class="fa fa-shopping-cart fa-3x"></i> Pedidos</a>
                       </li>
                 </ul>
->>>>>>> refs/remotes/origin/jaime
+
 
             </div>
           </nav>
@@ -66,39 +74,49 @@ include("./server/autorizacion.php");
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Pantalla del Admin</h2>
-                        <h5>Welcome Puto Pro, Love to see you back. </h5>
+                     <h2>Panel de Administración EcoRecipes</h2>
+                        <h5 id="fraseSesion"> </h5>
                     </div>
                 </div>
+
                  <!-- /. ROW  -->
                   <hr />
+                  <div id="capaGridCategorias">
+                  	<table id="jqGridCategorias"></table> 
+                  	<div id="paginadorCategorias"></div>
+                    <a  id="a1Cat">Seleccionar fila</a> <br /> 
+                    <a  id="a2Cat">Borrar fila</a> <br />
+                  </div>
+                   <div id="capaGridArticulos">
+                    <table id="jqGridArticulos"></table> 
+                    <div id="paginadorArticulos"></div>
+       
+                  </div>
+                   <div id="capaGridPedidos">
+                    <table id="jqGridPedidos"></table> 
+                    <div id="paginadorPedidos"></div>
+                  
+                  </div>
+                   <div id="capaGridClientes">
+                    <table id="jqGridClientes"></table> 
+                    <div id="paginadorClientes"></div>
+                
+                  </div>
     </div>
+
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-     <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-1.10.2.js"></script>
-
-    <!-- AÑADIR JAVASCRIPT
-
-
-
-    -->
+  
 
 
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="js/jquery.metisMenu.js"></script>
-     <!-- MORRIS CHART SCRIPTS -->
-     <script src="js/morris/raphael-2.1.0.min.js"></script>
-     <script src="js/morris/morris.js"></script>
-      <!-- CUSTOM SCRIPTS -->
-    <script src="js/custom.js"></script>
+
+
 
 
 </body>

@@ -59,6 +59,14 @@ p {
     line-height:25px;
     padding-top:20px;
 }
+
+
+#a1{
+display: none;
+}
+#a2{
+display: none;
+}
 /*==============================================
    DASHBOARD STYLES
     =============================================*/
