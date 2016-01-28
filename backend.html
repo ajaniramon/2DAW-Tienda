@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-<?php
-include("./server/autorizacion.php");
-=======
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <?php include 'autorizacion.php'; ?>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoRecipes Backend</title>
@@ -16,10 +11,7 @@ include("./server/autorizacion.php");
      <!-- MORRIS CHART STYLES-->
     <link href="js/morris/morris-0.4.3.min.css" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
-    <link href="css/backend.css" rel="stylesheet" />
-    <link href="css/ui.jqgrid.css" rel="stylesheet" />
-    <link href="css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
-    <link href="css/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
+    <link href="css/administrator.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -45,19 +37,18 @@ include("./server/autorizacion.php");
                         <img src="img/find_user.png" class="user-image img-responsive"/>
 					            </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarClientes()" href="#"><i class="fa fa-users fa-3x"></i> Clientes</a>
+                        <a class="active-menu" onclick="clientes()" href="#"><i class="fa fa-users fa-3x"></i> Clientes</a>
                       </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarCategorias()" href="#"><i class="fa fa-list fa-3x"></i> Categorias</a>
+                        <a onclick="categorias()" href="#"><i class="fa fa-list fa-3x"></i> Categorias</a>
                       </li>
                       <li>
-                        <a class="menu-lateral" onclick="mostrarArticulos()" href="#"><i class="fa fa-book fa-3x"></i> Articulos</a>
+                        <a onclick="articulos()" href="#"><i class="fa fa-book fa-3x"></i> Articulos</a>
                       </li>
 						          <li>
-                        <a class="menu-lateral" onclick="mostrarPedidos()" href="#"><i class="fa fa-shopping-cart fa-3x"></i> Pedidos</a>
+                        <a onclick="pedidos()" href="#"><i class="fa fa-shopping-cart fa-3x"></i> Pedidos</a>
                       </li>
                 </ul>
->>>>>>> refs/remotes/origin/jaime
 
             </div>
           </nav>
@@ -66,8 +57,8 @@ include("./server/autorizacion.php");
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Pantalla del Admin</h2>
-                        <h5>Welcome Puto Pro, Love to see you back. </h5>
+                     <h2>Admin Dashboard</h2>
+                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
                     </div>
                 </div>
                  <!-- /. ROW  -->
@@ -81,22 +72,14 @@ include("./server/autorizacion.php");
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="js/jquery.js"></script>
-    <script src="js/jquery-1.10.2.js"></script>
-
-    <!-- AÑADIR JAVASCRIPT
-
-
-
-    -->
-
-
+    <!--<script src="assets/js/jquery-1.10.2.js"></script>-->
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="js/jquery.metisMenu.js"></script>
      <!-- MORRIS CHART SCRIPTS -->
      <script src="js/morris/raphael-2.1.0.min.js"></script>
-     <script src="js/morris/morris.js"></script>
+    <script src="js/morris/morris.js"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="js/custom.js"></script>
 
