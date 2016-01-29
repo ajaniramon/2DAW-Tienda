@@ -145,8 +145,9 @@ function insertArticulo(){
        }
      });
   }
+}
 
-
-
-
+function abrirFormularioUpdateArticulo(){
+  $('#modalArticuloU').modal('show');
+  $('#actualizarArticuloBT').on('click',updateArticulo);
 }

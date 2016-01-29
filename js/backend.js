@@ -159,7 +159,7 @@ $('#a3Art').show();
     pager: '#paginadorArticulos',
     sortname: 'idArticulo',
     viewrecords: true,
-    sortorder: "desc",
+    sortorder: "asc",
     caption: "Articulos",
     loadonce: true
 });
@@ -171,6 +171,22 @@ $('#a3Art').show();
         ret.accion = "d";
      	var retJson = JSON.stringify(ret);
      	deleteArticulo(retJson);
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
+	jQuery("#a3Art").click(function() {
+    var id = jQuery("#jqGridArticulos").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridArticulos").jqGrid('getRowData', id);
+        ret.accion = "a";
+     	var retJson = JSON.stringify(ret);
+     	$('#nombreCategoriaTFU').val(ret.nombre);
+		$('#actualizarCategoriaBT').attr("idarticulo",ret.idArticulo);
+
+
+     	
+     	abrirFormularioUpdateArticulo();
     } else {
         alert("Por favor selecciona una fila.");
     }
