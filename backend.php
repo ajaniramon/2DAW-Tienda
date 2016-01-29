@@ -12,6 +12,7 @@
   	<script src="js/grid.locale-es.js"></script>
   	<script src="js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/backendservice.js"></script>
 	<!-- BOOTSTRAP STYLES-->
     <link href="css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -85,8 +86,9 @@
                       <h1 id="hCat">Categorias</h1>
                   	<table id="jqGridCategorias"></table> 
                   	<div id="paginadorCategorias"></div>
-                    <a  id="a1Cat">Seleccionar fila</a> <br /> 
-                    <a  id="a2Cat">Borrar fila</a> <br />
+                   <p> <a  id="a1Cat" class="btn btn-success">Insertar fila</a> 
+                    <a  id="a2Cat" class="btn btn-danger">Borrar fila</a> 
+                    <a  id="a3Cat" class="btn btn-success">Modificar fila</a> </p>
                   </div>
                 
                    <div id="capaGridArticulos">
@@ -110,6 +112,54 @@
                 
                   </div>
     </div>
+
+
+    <!-- modales -->
+
+    <div id="modalCategoriaI" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalCategoriaI">Insertar categoría</h4>
+            </div>
+            <div class="modal-body">
+              <p>Nombre de la categoría: <input type="text" class="form-control" id="nombreCategoriaTFI" required/></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="insertarCategoriaBT">Enviar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+<div id="modalCategoriaU" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalCategoriaU">Actualizar categoría</h4>
+            </div>
+            <div class="modal-body">
+              <p>Nombre de la categoría: <input type="text" class="form-control" id="nombreCategoriaTFU" required/></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="actualizarCategoriaBT">Enviar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
 
              <!-- /. PAGE INNER  -->
             </div>

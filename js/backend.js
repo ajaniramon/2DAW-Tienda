@@ -34,6 +34,7 @@ $('#capaGridPedidos').hide();
 $('#capaGridCategorias').show();
 $('#a1Cat').show();
 $('#a2Cat').show();
+$('#a3Cat').show();
 $('#hCat').show();    
 jQuery("#jqGridCategorias").jqGrid({
     url: 'jqgrid/categoria.php',
@@ -61,22 +62,42 @@ jQuery("#jqGridCategorias").jqGrid({
 $('#a1Cat').css("display","initial");
 $('#a2Cat').css("display","initial");
 
-jQuery("#a1Cat").click(function() {
+
+$('#a1Cat').on('click',abrirFormularioInsertCategoria);
+
+
+jQuery("#a2Cat").click(function() {
     var id = jQuery("#jqGridCategorias").jqGrid('getGridParam', 'selrow');
     if (id) {
         var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
-        var html= "<table border='1' align='center'><tr><td>idCategoria</td><td>Nombre</td></tr><tr><td>"+ret.idCategoria +"</td><td>"+ret.nombre +"</td></tr></table>"
-        swal({
-        	title: "Categoria",
-        	text: html,
-        	html: true
-        })
+        ret.accion = "d";
+     	var retJson = JSON.stringify(ret);
+     	deleteCategoria(retJson);
     } else {
         alert("Por favor selecciona una fila.");
     }
 });
 
-//continuar con los siguientes métodos...
+jQuery("#a3Cat").click(function() {
+    var id = jQuery("#jqGridCategorias").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
+        ret.accion = "d";
+     	var retJson = JSON.stringify(ret);
+     	$('#nombreCategoriaTFU').val(ret.nombre);
+     	$('#actualizarCategoriaBT').html("Actualizar");
+		$('#actualizarCategoriaBT').attr("idcategoria",ret.idCategoria);
+
+
+     	
+     	abrirFormularioUpdateCategoria();
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
+
+
+
 }
 
 
@@ -136,7 +157,8 @@ $('#capaGridArticulos').show();
     sortname: 'idArticulo',
     viewrecords: true,
     sortorder: "desc",
-    caption: "Articulos"
+    caption: "Articulos",
+    loadonce: true
 });
 }
 
@@ -289,6 +311,7 @@ jQuery("#a1Ped").click( function() {
 $(document).ready(function(){
 	$('#a1Cat').hide();
 	$('#a2Cat').hide();
+	$('#a3Cat').hide();
     $('#hCli').hide();
     $('#hArt').hide();
     $('#hPed').hide();
