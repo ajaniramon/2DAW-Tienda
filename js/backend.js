@@ -110,6 +110,9 @@ $('#capaGridPedidos').hide();
 $('#capaGridClientes').hide();
 $('#hArt').show();
 $('#capaGridArticulos').show();
+$('#a1Art').show();
+$('#a2Art').show();
+$('#a3Art').show();
 	jQuery("#jqGridArticulos").jqGrid({
     url: 'jqgrid/articulo.php',
     datatype: "json",
@@ -151,7 +154,7 @@ $('#capaGridArticulos').show();
     	index: 'categoria',
     	width: 100
     }],
-    rowNum: 20,
+    rowNum: 30,
     rowList: [10, 20, 30],
     pager: '#paginadorArticulos',
     sortname: 'idArticulo',
@@ -160,21 +163,33 @@ $('#capaGridArticulos').show();
     caption: "Articulos",
     loadonce: true
 });
+	$('#a1Art').on('click',abrirFormularioInsertArticulo);
+	jQuery("#a2Art").click(function() {
+    var id = jQuery("#jqGridArticulos").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridArticulos").jqGrid('getRowData', id);
+        ret.accion = "d";
+     	var retJson = JSON.stringify(ret);
+     	deleteArticulo(retJson);
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
+
+
 }
 
 
 function mostrarClientes(){
-
-
-
-
-
-
 $('#capaGridArticulos').hide();
 $('#capaGridCategorias').hide();
 $('#capaGridPedidos').hide();
 $('#a1Cat').hide();
 $('#a2Cat').hide();
+$('#a3Cat').hide();
+$('#a1Art').hide();
+$('#a2Art').hide();
+$('#a3Art').hide();
 
     $('#hCli').show();
 	$('#capaGridClientes').show();
@@ -312,6 +327,9 @@ $(document).ready(function(){
 	$('#a1Cat').hide();
 	$('#a2Cat').hide();
 	$('#a3Cat').hide();
+	$('#a1Art').hide();
+	$('#a2Art').hide();
+	$('#a3Art').hide();
     $('#hCli').hide();
     $('#hArt').hide();
     $('#hPed').hide();

@@ -95,6 +95,9 @@
                        <h1 id="hArt">Artículos</h1>
                     <table id="jqGridArticulos"></table> 
                     <div id="paginadorArticulos"></div>
+                     <p> <a  id="a1Art" class="btn btn-success">Insertar fila</a> 
+                    <a  id="a2Art" class="btn btn-danger">Borrar fila</a> 
+                    <a  id="a3Art" class="btn btn-success">Modificar fila</a> </p>
        
                   </div>
                    <div id="capaGridPedidos">
@@ -158,6 +161,81 @@
         </div>
       </div>
 
+<div id="modalArticuloI" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalArticuloI">Insertar artículo</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal">
+                          <fieldset>
+                          <legend>Articulo</legend>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="nombreArticuoTF">Nombre</label>  
+                            <div class="col-md-4">
+                            <input id="nombreArticuloTFI" name="nombreArticuoTF" placeholder="Nombre del artículo" class="form-control input-md" type="text">
+                              
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="descripcionArticuloTF">Descripción:</label>  
+                            <div class="col-md-8">
+                            <input id="descripcionArticuloTFI" name="descripcionArticuloTF" placeholder="Descripción del artículo." class="form-control input-md" type="text">
+                              
+                            </div>
+                          </div>
+
+                    
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="precioArticuloTF">Precio</label>  
+                            <div class="col-md-4">
+                            <input id="precioArticuloTFI" name="precioArticuloTF" placeholder="Precio del artículo" class="form-control input-md" type="text">
+                              
+                            </div>
+                          </div>
+
+                        
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="stockArticuloTF">Stock:</label>  
+                            <div class="col-md-4">
+                            <input id="stockArticuloTFI" name="stockArticuloTF" placeholder="Cantidad en stock del artículo" class="form-control input-md" type="text">
+                              
+                            </div>
+                          </div>
+
+                        
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="imagen">Imagen:</label>
+                            <div class="col-md-4">
+                              <input id="imagenI" name="imagen" class="input-file" type="file">
+                            </div>
+                          </div>
+
+                         
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="categoriaSL">Categoría:</label>
+                            <div class="col-md-4">
+                              <select id="categoriaSLI" name="categoriaSL" class="form-control">
+                              </select>
+                            </div>
+                          </div>
+
+                          </fieldset>
+                          </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="insertarArticuloBT">Enviar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
 
