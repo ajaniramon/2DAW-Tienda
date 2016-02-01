@@ -127,12 +127,12 @@ $('#a3Art').show();
     {
         name: 'nombre',
         index: 'nombre',
-        width: 100
+        width: 200
     },
     {
     	name: 'descripcion',
     	index: 'descripcion',
-    	width: 100
+    	width: 400
     },
     {
     	name: 'precio',
@@ -399,7 +399,7 @@ jQuery("#jqGridPedidos_d").jqGrid({
    	colModel:[
    		{name:'idPedido',index:'idPedido', width:55},
    		{name:'idArticulo',index:'idArticulo', width:180},
-   		{name:'nombre',index:'nombre', width:80, align:"right"},
+   		{name:'nombre',index:'nombre', width:200, align:"right"},
    		{name:'unidad',index:'unidad', width:80, align:"right"},		
    		{name:'precioTotal',index:'precioTotal', width:80,align:"right", sortable:false, search:false}
    	],
