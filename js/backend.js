@@ -222,6 +222,7 @@ $('#a3Art').hide();
     $('#a1Cli').show();
     $('#a2Cli').show();
     $('#a3Cli').show();
+    $('#a4Cli').show();
 	$('#capaGridClientes').show();
 	jQuery("#jqGridClientes").jqGrid({
     url: 'jqgrid/cliente.php',
@@ -320,6 +321,31 @@ jQuery("#a2Cli").click(function() {
         alert("Por favor selecciona una fila.");
     }
 });
+
+jQuery("#a4Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+        ret.accion = "c";
+     	var retJson = JSON.stringify(ret);
+     	$('#actualizarPassClienteBT').attr('idCliente',ret.idCliente);
+     	abrirFormularioCambiarContrasenyaCliente();
+
+
+
+
+     	
+     	
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
+
+
+
+
+
+
 }
 
 function mostrarPedidos(){
@@ -402,6 +428,7 @@ $(document).ready(function(){
 	$('#a1Cli').hide();
 	$('#a2Cli').hide();
 	$('#a3Cli').hide();
+	$('#a4Cli').hide();
     $('#hCli').hide();
     $('#hArt').hide();
     $('#hPed').hide();

@@ -19,6 +19,9 @@ if ($metodo == 'GET') {
 	if (strcmp($objeto->accion,"a") == 0) {
 		actualizar($objeto);
 	}
+	if (strcmp($objeto->accion,"c") == 0) {
+		cambiarContrasenya($objeto);	
+	}
 }
 
 function borrar($idCliente){
@@ -45,7 +48,6 @@ function insertar($clienteObjeto){
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
-  //echo "Insertando cliente: " . json_encode($cliente);
    mysql_query("SET NAMES utf8");
 
   $SQL = "INSERT INTO cliente(idCliente,nombre,apellido,dni,direccion,telefono,correo,contrasenya,empleado) VALUES(null," . "'" . $clienteObjeto->nombre . "'," . "'" . $clienteObjeto->apellido . "'," . "'" . $clienteObjeto->dni . "'," ."'" . $clienteObjeto->direccion . "',"."'" . $clienteObjeto->telefono . "'," . "'" . $clienteObjeto->correo . "'," . "'" . md5($clienteObjeto->contrasenya) . "',".  "'". $clienteObjeto->empleado ."'"  .");";
@@ -75,6 +77,24 @@ function actualizar($cliente){
     	echo "Actualizado correctamente.";
     	http_response_code(200);
     }
+}
+
+function cambiarContrasenya($objeto){
+	 $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+  mysql_query("SET NAMES utf8");
+  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
+
+  //echo "Cambiando pass objeto: " . json_encode($objeto);
+
+  $SQL = "UPDATE cliente SET contrasenya ='" . md5($objeto->contrasenya) . "' WHERE idCliente =" . $objeto->idCliente . ";";
+  $resultado = mysql_query($SQL,$link);
+  if (!$resultado) {
+  	echo "Fallo al cambiar la contrasenya. " . mysql_error();
+  	http_response_code(400);
+  }else{
+  	echo "Contraseña cambiada correctamente.";
+  	http_response_code(200);
+  }
 }
 
 

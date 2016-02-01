@@ -115,6 +115,7 @@
                   <p> <a  id="a1Cli" class="btn btn-success">Insertar fila</a> 
                     <a  id="a2Cli" class="btn btn-danger">Borrar fila</a> 
                     <a  id="a3Cli" class="btn btn-success">Modificar fila</a> </p>
+                    <a  id="a4Cli" class="btn btn-success">Modificar contraseña</a> </p>
                   </div>
     </div>
 
@@ -423,7 +424,40 @@
 
 
 
+<div id="modalClienteC" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalClienteU">Cambiar contraseña</h4>
+            </div>
+            <div class="modal-body">
+                  <form class="form-horizontal">
+              <fieldset>
+    
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="passwordinput">Nueva contraseña: </label>
+         <div class="col-md-4">
+            <input id="contrasenyaTFC" name="passwordinput" placeholder="Nueva contraseña" class="form-control input-md" type="password">
+         </div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="passwordinput">Repite contraseña: </label>
+         <div class="col-md-4">
+            <input id="contrasenyaRepetidaTFC" name="passwordinput" placeholder="Repite contraseña:" class="form-control input-md" type="password">
+         </div>
+      </div>
+   </fieldset>
+</form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="actualizarPassClienteBT">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

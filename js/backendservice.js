@@ -438,3 +438,36 @@ function updateCliente(){
     
   }
 }
+
+function abrirFormularioCambiarContrasenyaCliente(){
+$('#modalClienteC').modal("show");
+$('#actualizarPassClienteBT').on("click",cambiarContrasenyaCliente);
+}
+
+function cambiarContrasenyaCliente(){
+  var contrasenya = $('#contrasenyaTFC').val();
+  var contrasenyaRepetida = $('#contrasenyaRepetidaTFC').val();
+  if (contrasenya != contrasenyaRepetida) {
+    swal("Las contraseñas no coinciden.");
+  }else{
+    var cliente = new Object();
+    cliente.accion = "c";
+    cliente.contrasenya = contrasenya;
+    cliente.idCliente = $(this).attr('idCliente');
+    var clienteJson = JSON.stringify(cliente);
+     $.ajax({
+       url: './server/dao/clientedao.php',
+       type: 'POST',
+       data: {'cliente':clienteJson},
+       success: function(data){
+         swal("¡Olé!",data,"success");
+         
+         $('#modalClienteC').modal('hide');
+         
+       },
+       error: function(data){
+        console.log(data);
+       }
+     });
+  }
+}
