@@ -58,7 +58,23 @@ function insertar($articulo){
 }
 
 function actualizar($articulo){
-	echo "Actualizando articulo " . $articulo;
+	//echo "Actualizando articulo " . json_encode($articulo) . "php";
+	$link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+  	mysql_query("SET NAMES utf8");
+  	mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos"); 
+
+  	$SQL = "UPDATE articulo SET nombre = " . "'" . $articulo->nombre . "', descripcion ='" . $articulo->descripcion . "', precio=" . $articulo->precio . ", imagen='" . $articulo->imagen . "', stock=" . $articulo->stock . " WHERE idArticulo = " . $articulo->idArticulo . ";";
+  	$resultado = mysql_query($SQL,$link);
+  	if (!$resultado) {
+  		echo "Hubo un fallo al actualizar: " . mysql_error();
+  		http_response_code(400);
+  	}else{
+  		echo "Actualizado correctamente.";
+  		http_response_code(200);
+
+  	}
+
+
 }
 
 

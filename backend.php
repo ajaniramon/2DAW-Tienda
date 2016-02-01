@@ -112,7 +112,9 @@
                        <h1 id="hCli">Clientes</h1>
                     <table id="jqGridClientes"></table> 
                     <div id="paginadorClientes"></div>
-                
+                  <p> <a  id="a1Cli" class="btn btn-success">Insertar fila</a> 
+                    <a  id="a2Cli" class="btn btn-danger">Borrar fila</a> 
+                    <a  id="a3Cli" class="btn btn-success">Modificar fila</a> </p>
                   </div>
     </div>
 
@@ -294,6 +296,129 @@
 
 
 
+
+
+<div id="modalClienteI" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalClienteI">Insertar cliente</h4>
+            </div>
+            <div class="modal-body">
+           <form class="form-horizontal">
+          <fieldset>
+      
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="nombre">Nombre: </label>    
+         <div class="col-md-4">  <input id="nombreClienteTFI"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>  
+         <div class="col-md-4"><input  id="apellidoClienteTFI" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="dni">DNI: </label>  
+         <div class="col-md-4"><input  id="dniClienteTFI" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="direccion">Dirección: </label>  
+         <div class="col-md-4"><input  id="direccionClienteTFI" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>  
+         <div class="col-md-4"><input id="telefonoClienteTFI" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="correo">Correo: </label>  
+         <div class="col-md-4"><input  id="correoClienteTFI" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="contrasenya">Contraseña: </label>
+         <div class="col-md-4"><input id="contrasenyaClienteTFI" placeholder="Tu contraseña" class="form-control input-md" required="" type="password"></div>
+      </div>
+         <div class="form-group">
+                            <label class="col-md-4 control-label">Empleado:</label>
+                            <div class="col-md-4">
+                              <select id="empleadoSLI"  class="form-control">
+                              <option value="true">Empleado</option>
+                              <option value="false"> No empleado </option>
+                              </select>
+                            </div>
+                          </div>
+     </fieldset>
+          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="insertarClienteBT">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<div id="modalClienteU" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="tituloModalClienteU">Actualizar cliente</h4>
+            </div>
+            <div class="modal-body">
+                       <form class="form-horizontal">
+          <fieldset>
+      
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="nombre">Nombre: </label>    
+         <div class="col-md-4">  <input id="nombreClienteTFU"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>  
+         <div class="col-md-4"><input  id="apellidoClienteTFU" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="dni">DNI: </label>  
+         <div class="col-md-4"><input  id="dniClienteTFU" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="direccion">Dirección: </label>  
+         <div class="col-md-4"><input  id="direccionClienteTFU" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>  
+         <div class="col-md-4"><input id="telefonoClienteTFU" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div>
+      </div>
+      <div class="form-group">
+         <label class="col-md-4 control-label" for="correo">Correo: </label>  
+         <div class="col-md-4"><input  id="correoClienteTFU" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div>
+      </div>
+         <div class="form-group">
+                            <label class="col-md-4 control-label">Empleado:</label>
+                            <div class="col-md-4">
+                              <select id="empleadoSLU"  class="form-control">
+                              <option value="true">Empleado</option>
+                              <option value="false"> No empleado </option>
+                              </select>
+                            </div>
+                          </div>
+     </fieldset>
+          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+              <button type="button" class="btn btn-success" id="actualizarClienteBT">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

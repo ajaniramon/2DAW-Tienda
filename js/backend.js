@@ -181,8 +181,19 @@ $('#a3Art').show();
         var ret = jQuery("#jqGridArticulos").jqGrid('getRowData', id);
         ret.accion = "a";
      	var retJson = JSON.stringify(ret);
-     	$('#nombreCategoriaTFU').val(ret.nombre);
-		$('#actualizarCategoriaBT').attr("idarticulo",ret.idArticulo);
+     	$('#nombreArticuloTFU').val(ret.nombre);
+     	$('#descripcionArticuloTFU').val(ret.descripcion);
+     	$('#precioArticuloTFU').val(ret.precio);
+     	
+     	$('#stockArticuloTFU').val(ret.stock);
+
+     	var categoria = document.createElement("option");
+     	categoria.text = ret.categoria;
+     	categoria.value = ret.categoria;
+     	document.getElementById("categoriaSLU").add(categoria,null);
+
+
+		$('#actualizarArticuloBT').attr("idarticulo",ret.idArticulo);
 
 
      	
@@ -208,6 +219,9 @@ $('#a2Art').hide();
 $('#a3Art').hide();
 
     $('#hCli').show();
+    $('#a1Cli').show();
+    $('#a2Cli').show();
+    $('#a3Cli').show();
 	$('#capaGridClientes').show();
 	jQuery("#jqGridClientes").jqGrid({
     url: 'jqgrid/cliente.php',
@@ -265,8 +279,47 @@ $('#a3Art').hide();
     sortorder: "desc",
     caption: "Clientes"
 });
+$('#a1Cli').on("click",abrirFormularioInsertCliente);
+jQuery("#a2Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+        ret.accion = "d";
+     	var retJson = JSON.stringify(ret);
+     	deleteCliente(retJson);
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
+	jQuery("#a3Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+        ret.accion = "a";
+     	var retJson = JSON.stringify(ret);
+     	
+     	$('#nombreClienteTFU').val(ret.nombre);
+     	$('#apellidoClienteTFU').val(ret.apellido);
+     	$('#dniClienteTFU').val(ret.dni);
+     	$('#direccionClienteTFU').val(ret.direccion);
+     	$('#telefonoClienteTFU').val(ret.telefono);
+     	$('#correoClienteTFU').val(ret.correo);
+
+     	if (ret.empleado == "true") {
+     		document.getElementById("empleadoSLU").selectedIndex = 0;
+     	}else{
+     		document.getElementById("empleadoSLU").selectedIndex = 1;
+     	}
+     	abrirFormularioUpdateCliente();
+		$('#actualizarClienteBT').attr('idCliente',ret.idCliente);
 
 
+     	
+     	
+    } else {
+        alert("Por favor selecciona una fila.");
+    }
+});
 }
 
 function mostrarPedidos(){
@@ -346,6 +399,9 @@ $(document).ready(function(){
 	$('#a1Art').hide();
 	$('#a2Art').hide();
 	$('#a3Art').hide();
+	$('#a1Cli').hide();
+	$('#a2Cli').hide();
+	$('#a3Cli').hide();
     $('#hCli').hide();
     $('#hArt').hide();
     $('#hPed').hide();

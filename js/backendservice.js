@@ -1,3 +1,48 @@
+/* Validaciones */
+function isDNI(dni) {
+  var numero, let, letra;
+  var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+ 
+  dni = dni.toUpperCase();
+ 
+  if(expresion_regular_dni.test(dni) === true){
+    numero = dni.substr(0,dni.length-1);
+    numero = numero.replace('X', 0);
+    numero = numero.replace('Y', 1);
+    numero = numero.replace('Z', 2);
+    let = dni.substr(dni.length-1, 1);
+    numero = numero % 23;
+    letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    letra = letra.substring(numero, numero+1);
+    if (letra != let) {
+      //alert('Dni erroneo, la letra del NIF no se corresponde');
+      return false;
+    }else{
+      //alert('Dni correcto');
+      return true;
+    }
+  }else{
+    //alert('Dni erroneo, formato no válido');
+    return false;
+  }
+}
+
+function validarEmail( email ) {
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email) ){
+        return false;
+    }else{
+      return true;
+    }
+        
+}
+
+
+
+
+
+
+
 /* Categorias */ 
 function deleteCategoria(categoria){
 	
@@ -136,8 +181,9 @@ function insertArticulo(){
        type: 'POST',
        data: {'articulo':articuloJson},
        success: function(data){
-          alert(data);
-          
+           swal("¡Olé!",data,"success");
+          $('#jqGridArticulos').trigger('reloadGrid');
+          $('#modalArticuloI').modal("hide");
           
           },
        error: function(data){
@@ -150,4 +196,245 @@ function insertArticulo(){
 function abrirFormularioUpdateArticulo(){
   $('#modalArticuloU').modal('show');
   $('#actualizarArticuloBT').on('click',updateArticulo);
+}
+
+function updateArticulo(){
+  var valid = true;
+ if ($('#nombreArticuloTFU').val() == "") {valid = false;}; 
+ if ($('#descripcionArticuloTFU').val() == "") {valid = false;};
+ if ($('#precioArticuloTFU').val() == "") {valid = false;};
+ if ($('#stockArticuloTFU').val() == "") {valid = false;};
+ if ($('#imagenU').val() == "") {valid = false;};
+ if (!valid) {
+  swal("Rellena todos los campos.");
+ }else{
+  var articulo = new Object();
+  articulo.accion = "a";
+  articulo.idArticulo =  $(this).attr('idArticulo');
+  articulo.nombre = $('#nombreArticuloTFU').val();
+  articulo.descripcion = $('#descripcionArticuloTFU').val();
+  articulo.precio = $('#precioArticuloTFU').val();
+  articulo.stock = $('#stockArticuloTFU').val();
+  articulo.imagen = $('#imagenU').val();
+  articulo.categoria = document.getElementById('categoriaSLU').options[document.getElementById('categoriaSLU').selectedIndex].value;
+  var articuloJson = JSON.stringify(articulo);
+  $.ajax({
+       url: './server/dao/articulodao.php',
+       type: 'POST',
+       data: {'articulo':articuloJson},
+       success: function(data){
+          swal("¡Olé!",data,"success");
+          $('#jqGridArticulos').trigger('reloadGrid');
+          $('#modalArticuloU').modal("hide");
+         
+          },
+       error: function(data){
+          swal("¡Ups!",data.responseText,"error");
+       }
+     });
+  
+ }
+  
+}
+
+/* Clientes  */ 
+
+function deleteCliente(cliente){
+  $.ajax({
+       url: './server/dao/clientedao.php',
+       type: 'POST',
+       data: {'cliente':cliente},
+       success: function(data){
+          swal("¡Olé!",data,"success");
+
+          $('#jqGridClientes').trigger('reloadGrid');
+          },
+       error: function(data){
+          swal("¡Ups!",data.responseText,"error");
+       }
+     });
+}
+
+function abrirFormularioInsertCliente(){
+  $('#modalClienteI').modal("show");
+  $('#insertarClienteBT').on('click',insertCliente);
+}
+
+function insertCliente(){
+  violations = null;
+  var nombre = $('#nombreClienteTFI').val();
+  var apellidos = $('#apellidoClienteTFI').val();
+  var dni = $('#dniClienteTFI').val();
+  var direccion = $('#direccionClienteTFI').val();
+  var telefono = $('#telefonoClienteTFI').val();
+  var correo = $('#correoClienteTFI').val();
+  var contrasenya = $('#contrasenyaClienteTFI').val();
+  var empleado = document.getElementById('empleadoSLI').options[document.getElementById('empleadoSLI').selectedIndex].value;
+  var valid = true;
+  violations = new Array();
+  if (nombre == "") {
+    valid = false;
+    
+  };
+  if (apellidos == "") {
+    valid = false;
+    
+  };
+  if (dni == "") {
+    valid = false;
+    
+  };
+  if (direccion == "") {
+    valid = false;
+    
+  };
+  if (telefono == "") {
+    valid = false;
+    
+  };
+  if (correo == "") {
+    valid = false;
+    
+  };
+  if (contrasenya == "") {
+    valid = false;
+  
+  };
+  if (dni != "" && !isDNI(dni)) {
+    valid = false;
+    violations.push('dni');
+  };
+  if (correo != "" && !validarEmail(correo)) {
+    valid = false;
+    violations.push('email');
+  };
+
+  if (valid) {
+    var cliente = new Object();
+    cliente.accion = "i";
+    cliente.nombre = nombre;
+    cliente.apellido = apellidos;
+    cliente.dni = dni;
+    cliente.direccion = direccion;
+    cliente.telefono = telefono;
+    cliente.correo = correo;
+    cliente.contrasenya = contrasenya;
+    cliente.empleado = empleado;
+    var clienteJson = JSON.stringify(cliente);
+       $.ajax({
+       url: './server/dao/clientedao.php',
+       type: 'POST',
+       data: {'cliente':clienteJson},
+       success: function(data){
+         swal("¡Olé!",data,"success");
+         $('#jqGridClientes').trigger('reloadGrid');
+         $('#modalClienteI').modal('hide');
+         
+       },
+       error: function(data){
+        console.log(data);
+       }
+     });
+  }else{
+    if (violations.length == 0) {
+      swal("¡Rellena todos los campos!");
+    }else{
+      var violationString = "Campos con formato erróneo: ";
+      for (var i = 0; i < violations.length; i++) {
+        violationString += violations[i] + " ";
+      };
+      swal(violationString);
+    }
+    
+  }
+}
+
+function abrirFormularioUpdateCliente(){
+$('#modalClienteU').modal("show");
+$('#actualizarClienteBT').on("click",updateCliente);
+}
+
+function updateCliente(){
+ violations = null;
+  var nombre = $('#nombreClienteTFU').val();
+  var apellidos = $('#apellidoClienteTFU').val();
+  var dni = $('#dniClienteTFU').val();
+  var direccion = $('#direccionClienteTFU').val();
+  var telefono = $('#telefonoClienteTFU').val();
+  var correo = $('#correoClienteTFU').val();
+  var empleado = document.getElementById('empleadoSLU').options[document.getElementById('empleadoSLU').selectedIndex].value;
+  var valid = true;
+  violations = new Array();
+  if (nombre == "") {
+    valid = false;
+    
+  };
+  if (apellidos == "") {
+    valid = false;
+    
+  };
+  if (dni == "") {
+    valid = false;
+    
+  };
+  if (direccion == "") {
+    valid = false;
+    
+  };
+  if (telefono == "") {
+    valid = false;
+    
+  };
+  if (correo == "") {
+    valid = false;
+    
+  };
+
+  if (dni != "" && !isDNI(dni)) {
+    valid = false;
+    violations.push('dni');
+  };
+  if (correo != "" && !validarEmail(correo)) {
+    valid = false;
+    violations.push('email');
+  };
+
+  if (valid) {
+    var cliente = new Object();
+    cliente.idCliente = $(this).attr('idCliente');
+    cliente.accion = "a";
+    cliente.nombre = nombre;
+    cliente.apellido = apellidos;
+    cliente.dni = dni;
+    cliente.direccion = direccion;
+    cliente.telefono = telefono;
+    cliente.correo = correo;
+    cliente.empleado = empleado;
+    var clienteJson = JSON.stringify(cliente);
+       $.ajax({
+       url: './server/dao/clientedao.php',
+       type: 'POST',
+       data: {'cliente':clienteJson},
+       success: function(data){
+         swal("¡Olé!",data,"success");
+         $('#jqGridClientes').trigger('reloadGrid');
+         $('#modalClienteU').modal('hide');
+         
+       },
+       error: function(data){
+         swal("¡Ups!",data.responseText,"error");
+       }
+     });
+  }else{
+    if (violations.length == 0) {
+      swal("¡Rellena todos los campos!");
+    }else{
+      var violationString = "Campos con formato erróneo: ";
+      for (var i = 0; i < violations.length; i++) {
+        violationString += violations[i] + " ";
+      };
+      swal(violationString);
+    }
+    
+  }
 }
