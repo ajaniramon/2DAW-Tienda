@@ -137,7 +137,8 @@ function deleteArticulo(articulo){
 
 
 function abrirFormularioInsertArticulo(){
-   $.ajax({
+  if (!document.getElementById("categoriaSLI").options.length > 0) {
+      $.ajax({
        url: './server/categorias.php',
        dataType: 'json',
        success: function(data){
@@ -146,6 +147,8 @@ function abrirFormularioInsertArticulo(){
          });
        }
      });
+  };
+ 
   $('#modalArticuloI').modal("show");
   $('#insertarArticuloBT').on('click',insertArticulo);
 }
