@@ -54,13 +54,20 @@ function mostrarArticulos(){
    	total = 0;
    	$.each(carrito.articulos,function(){
       /*    --------->>>  MEJORANDO ASPECTO DEL CARRITO*/
+     
+      var idDrillDown = "capaDrillDown" + this.id;
+      var idDrillDownDiv = "drillDown";
+     
+     
       //<div class='container'><div class='row'><div class='col-sm-12 col-md-10 col-md-offset-1'></div></div></div><div class='media-body'></div>
       carritoHTML += "<tr><td class='col-sm-8 col-md-6'><div class='media'><a class='thumbnail pull-left miniatura'><img class='media-object' src='./img/"+this.imagen+"' ></a>";
-      carritoHTML += "<div><h4 class='media-heading'>"+this.nombre+"</h4></div></div></td>";
+      carritoHTML += "<div><h4 class='media-heading'>"+"<a class='drill' id='"+idDrillDown+"'>"+this.nombre+"</h4>"+"</a>"+"</div></div><div class='"+idDrillDownDiv+"'><p id='"+idDrillDown+"P"+"'>"+this.descripcion+"</p></div></td>";
       carritoHTML += "<td><button class='btn btn-danger botonBorrarCarrito' idarticulo="+this.id +"> - </button>&nbsp;<input readonly class='text-center' type='text' size='3' value='"+this.cantidad+"'>&nbsp;<button class='btn btn-info botonAgregarCarrito' idarticulo="+this.id+"> + </button></td>";
       carritoHTML += "<td class='text-center'>"+this.precio+"€</td>";
       carritoHTML += "<td class='text-center'>"+(this.precio * this.cantidad)+"€</td>";
       carritoHTML += "<td><button class='btn btn-danger botonBorrarArticuloCarrito' idarticulo="+this.id+"><span class='glyphicon glyphicon-remove'></span> Borrar</button></td></tr>";
+      
+    
     });
    	for(var i = 0; i < carrito.articulos.length; i++){
    		total += carrito.articulos[i].precio * carrito.articulos[i].cantidad;
@@ -74,6 +81,9 @@ function mostrarArticulos(){
     $('.botonBorrarCarrito').on('click',borrarFromCarrito);
     $('.botonAgregarCarrito').on('click',sumarFromCarrito);
     $('.botonBorrarArticuloCarrito').on('click',borrarArticuloCarrito);
+    $('.drillDown').hide();
+    $('.drill').on("click",mostrarDescripcion);
+    
   }
 
    function borrarFromCarrito(){
@@ -99,6 +109,14 @@ function mostrarArticulos(){
      mostrarCarrito();
    }
 
+function mostrarDescripcion(){
+	var id = $(this).attr('id');
+	var idParrafo ="#" +  id + "P";
+	
+	var desplegable = $(idParrafo).parent();
+	$('.drillDown').not(desplegable).slideUp('fast');
+	$(desplegable).slideToggle();
+}
 
    function sumarFromCarrito(){
    	var index = $(this).attr('idarticulo');
