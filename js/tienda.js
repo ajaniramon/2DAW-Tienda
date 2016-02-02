@@ -51,7 +51,7 @@ function mostrarArticulos(){
    function mostrarCarrito(){
    	var carritoHTML = "";
     carritoHTML += "<table class='table table-hover'>";
-    carritoHTML += "<thead><tr><th>Producto</th><th>Cantidad</th><th class='text-center'>Precio</th><th class='text-center'>Total</th><th></th></tr></thead>";
+    carritoHTML += "<thead><tr><th>Producto</th><th>Cantidad</th><th class='text-center'>Precio</th><th class='text-center'>Total</th><th><p class='ocultar'>asd</p></th></tr></thead>";
     carritoHTML += "<tbody>"
    	total = 0;
    	$.each(carrito.articulos,function(){
