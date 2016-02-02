@@ -234,7 +234,7 @@ function actualizarModalLogin(){
        type: 'GET',
        success: function(data){
           sesion = JSON.parse(data);
-          $('.login-modal').html("<p> Has iniciado sesión como "+sesion.email);
+          $('.login-modal').html("<div class='alert alert-info'> Has iniciado sesión como "+"<strong>"+sesion.email+"</strong>" + "</div>");
           $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {

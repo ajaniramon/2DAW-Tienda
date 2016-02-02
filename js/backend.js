@@ -18,7 +18,7 @@ function saludar(){
        success: function(data){
        	var sesionObjeto = JSON.parse(data);
         $('#fraseSesion').html('¡Hola, '+sesionObjeto.nombre + '! Bienvenido al panel de administración.');
-        $('#cabeceraLogout').prepend('Has iniciado sesión como '+sesionObjeto.email + ".")
+        $('#cabeceraLogout').prepend('Has iniciado sesión como <strong>'+sesionObjeto.nombre + " " + sesionObjeto.apellido + "</strong>.")
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -28,6 +28,7 @@ function saludar(){
 
 
 function mostrarCategorias(){
+$('#cabeceraOcultar').hide();
 $('#capaGridArticulos').hide();
 $('#capaGridClientes').hide();
 $('#capaGridPedidos').hide();
@@ -102,7 +103,7 @@ jQuery("#a3Cat").click(function() {
 
 
 function mostrarArticulos(){
-
+$('#cabeceraOcultar').hide();
 $('#a1Cat').hide();
 $('#a2Cat').hide();
 $('#capaGridCategorias').hide();
@@ -208,6 +209,7 @@ $('#a3Art').show();
 
 
 function mostrarClientes(){
+    $('#cabeceraOcultar').hide();
 $('#capaGridArticulos').hide();
 $('#capaGridCategorias').hide();
 $('#capaGridPedidos').hide();
@@ -349,6 +351,7 @@ jQuery("#a4Cli").click(function() {
 }
 
 function mostrarPedidos(){
+    $('#cabeceraOcultar').hide();
     $('#capaGridArticulos').hide();
     $('#capaGridCategorias').hide();
     $('#capaGridClientes').hide();
