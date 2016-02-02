@@ -62,7 +62,7 @@ footer {
 /* ---- CARRITO ---- */
 #capaCarrito{
   height: 100px;
-  width: 15%;
+  width: 25%;
   float: right;
   text-align: center;
   padding-top: 20px;
@@ -70,6 +70,8 @@ footer {
 
 .button-wrapper {
 	width: 100px;
+  height: 65px;
+  display: inline-block;
 	background: #FFC96D;
 	padding: 8px;
 	box-shadow: inset 0px 2px 2px #B2B3B5, 0px 1px 0 #EFBD66;
