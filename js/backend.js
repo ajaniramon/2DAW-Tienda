@@ -28,6 +28,7 @@ function saludar(){
 
 
 function mostrarCategorias(){
+$('#hr').hide();
 $('#cabeceraOcultar').hide();
 $('#capaGridArticulos').hide();
 $('#capaGridClientes').hide();
@@ -103,6 +104,7 @@ jQuery("#a3Cat").click(function() {
 
 
 function mostrarArticulos(){
+    $('#hr').hide();
 $('#cabeceraOcultar').hide();
 $('#a1Cat').hide();
 $('#a2Cat').hide();
@@ -209,6 +211,7 @@ $('#a3Art').show();
 
 
 function mostrarClientes(){
+    $('#hr').hide();
     $('#cabeceraOcultar').hide();
 $('#capaGridArticulos').hide();
 $('#capaGridCategorias').hide();
@@ -351,6 +354,7 @@ jQuery("#a4Cli").click(function() {
 }
 
 function mostrarPedidos(){
+    $('#hr').hide();
     $('#cabeceraOcultar').hide();
     $('#capaGridArticulos').hide();
     $('#capaGridCategorias').hide();

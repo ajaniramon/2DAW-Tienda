@@ -81,7 +81,7 @@
                 </div>
 
                  <!-- /. ROW  -->
-                  <hr />
+                  <hr id="hr"/>
                   <div id="capaGridCategorias">
                       <h1 id="hCat">Categorias</h1>
                   	<table id="jqGridCategorias"></table> 
