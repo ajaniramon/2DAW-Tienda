@@ -40,19 +40,31 @@ function validarEmail( email ) {
 
 /* Categorias */
 function deleteCategoria(categoria){
-
+swal({
+  title: "¿Estás seguro de borrar la categoría?",
+  text: "¡No podrás recuperarla!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  cancelButtonText: "No",
+  confirmButtonText: "Sí",
+  closeOnConfirm: false
+},
+function(){
   $.ajax({
        url: './server/dao/categoriadao.php',
        type: 'POST',
        data: {'categoria':categoria},
        success: function(data){
-    	 swal("¡Olé!",data,"success");
+       swal("¡Olé!",data,"success");
       $('#jqGridCategorias').trigger( 'reloadGrid' );
-         	},
+          },
        error: function(data){
           swal("¡Ups!",data.responseText,"error");
        }
      });
+});
+ 
 }
 function abrirFormularioInsertCategoria(){
   $('#modalCategoriaI').modal("show");
@@ -116,7 +128,18 @@ function updateCategoria(){
 /* Articulos */
 
 function deleteArticulo(articulo){
-  $.ajax({
+  swal({
+  title: "¿Estás seguro de borrar el artículo?",
+  text: "¡No podrás recuperarlo!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  cancelButtonText: "No",
+  confirmButtonText: "Sí",
+  closeOnConfirm: false
+},
+function(){
+ $.ajax({
          url: './server/dao/articulodao.php',
        type: 'POST',
        data: {'articulo':articulo},
@@ -128,6 +151,8 @@ function deleteArticulo(articulo){
           swal("¡Ups!",data.responseText,"error");
        }
      });
+});
+  
 }
 
 
@@ -238,6 +263,17 @@ function updateArticulo(){
 /* Clientes  */
 
 function deleteCliente(cliente){
+    swal({
+  title: "¿Estás seguro de borrar el cliente?",
+  text: "¡No podrás recuperarlo!",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  cancelButtonText: "No",
+  confirmButtonText: "Sí",
+  closeOnConfirm: false
+},
+function(){
   $.ajax({
        url: './server/dao/clientedao.php',
        type: 'POST',
@@ -251,6 +287,8 @@ function deleteCliente(cliente){
           swal("¡Ups!",data.responseText,"error");
        }
      });
+});
+
 }
 
 function abrirFormularioInsertCliente(){

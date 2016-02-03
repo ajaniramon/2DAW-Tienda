@@ -32,7 +32,7 @@ function borrar($idCliente){
   $SQL = "DELETE from cliente WHERE idCliente = " . $idCliente . ";";
   $resultado = mysql_query($SQL,$link);
   if (!$resultado) {
-  	echo "Hubo un fallo al borrar.";
+  	echo "Hubo un fallo al borrar. El cliente tiene pedidos asociados.";
   	http_response_code(400);
   }else{
   	echo "Borrado con éxito.";
