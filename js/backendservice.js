@@ -2,9 +2,9 @@
 function isDNI(dni) {
   var numero, let, letra;
   var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
- 
+
   dni = dni.toUpperCase();
- 
+
   if(expresion_regular_dni.test(dni) === true){
     numero = dni.substr(0,dni.length-1);
     numero = numero.replace('X', 0);
@@ -34,18 +34,13 @@ function validarEmail( email ) {
     }else{
       return true;
     }
-        
+
 }
 
 
-
-
-
-
-
-/* Categorias */ 
+/* Categorias */
 function deleteCategoria(categoria){
-	
+
   $.ajax({
        url: './server/dao/categoriadao.php',
        type: 'POST',
@@ -68,11 +63,11 @@ function insertCategoria(){
     swal("Rellena todos los campos.");
   }else{
     var categoria = new Object();
-  
+
     categoria.nombre = $('#nombreCategoriaTFI').val();
     categoria.accion = "i";
     var categoriaJson = JSON.stringify(categoria);
-    
+
 
       $.ajax({
        url: './server/dao/categoriadao.php',
@@ -148,14 +143,14 @@ function abrirFormularioInsertArticulo(){
        }
      });
   };
- 
+
   $('#modalArticuloI').modal("show");
   $('#insertarArticuloBT').on('click',insertArticulo);
 }
 
 function insertArticulo(){
  var valid = true;
- if ($('#nombreArticuloTFI').val() == "") {valid = false;}; 
+ if ($('#nombreArticuloTFI').val() == "") {valid = false;};
  if ($('#descripcionArticuloTFI').val() == "") {valid = false;};
  if ($('#precioArticuloTFI').val() == "") {valid = false;};
  if ($('#stockArticuloTFI').val() == "") {valid = false;};
@@ -187,7 +182,7 @@ function insertArticulo(){
            swal("¡Olé!",data,"success");
           $('#jqGridArticulos').trigger('reloadGrid');
           $('#modalArticuloI').modal("hide");
-          
+
           },
        error: function(data){
           swal("¡Ups!",data.responseText,"error");
@@ -203,7 +198,7 @@ function abrirFormularioUpdateArticulo(){
 
 function updateArticulo(){
   var valid = true;
- if ($('#nombreArticuloTFU').val() == "") {valid = false;}; 
+ if ($('#nombreArticuloTFU').val() == "") {valid = false;};
  if ($('#descripcionArticuloTFU').val() == "") {valid = false;};
  if ($('#precioArticuloTFU').val() == "") {valid = false;};
  if ($('#stockArticuloTFU').val() == "") {valid = false;};
@@ -229,18 +224,18 @@ function updateArticulo(){
           swal("¡Olé!",data,"success");
           $('#jqGridArticulos').trigger('reloadGrid');
           $('#modalArticuloU').modal("hide");
-         
+
           },
        error: function(data){
           swal("¡Ups!",data.responseText,"error");
        }
      });
-  
+
  }
-  
+
 }
 
-/* Clientes  */ 
+/* Clientes  */
 
 function deleteCliente(cliente){
   $.ajax({
@@ -277,31 +272,31 @@ function insertCliente(){
   violations = new Array();
   if (nombre == "") {
     valid = false;
-    
+
   };
   if (apellidos == "") {
     valid = false;
-    
+
   };
   if (dni == "") {
     valid = false;
-    
+
   };
   if (direccion == "") {
     valid = false;
-    
+
   };
   if (telefono == "") {
     valid = false;
-    
+
   };
   if (correo == "") {
     valid = false;
-    
+
   };
   if (contrasenya == "") {
     valid = false;
-  
+
   };
   if (dni != "" && !isDNI(dni)) {
     valid = false;
@@ -332,7 +327,7 @@ function insertCliente(){
          swal("¡Olé!",data,"success");
          $('#jqGridClientes').trigger('reloadGrid');
          $('#modalClienteI').modal('hide');
-         
+
        },
        error: function(data){
         console.log(data);
@@ -348,7 +343,7 @@ function insertCliente(){
       };
       swal(violationString);
     }
-    
+
   }
 }
 
@@ -370,27 +365,27 @@ function updateCliente(){
   violations = new Array();
   if (nombre == "") {
     valid = false;
-    
+
   };
   if (apellidos == "") {
     valid = false;
-    
+
   };
   if (dni == "") {
     valid = false;
-    
+
   };
   if (direccion == "") {
     valid = false;
-    
+
   };
   if (telefono == "") {
     valid = false;
-    
+
   };
   if (correo == "") {
     valid = false;
-    
+
   };
 
   if (dni != "" && !isDNI(dni)) {
@@ -422,7 +417,7 @@ function updateCliente(){
          swal("¡Olé!",data,"success");
          $('#jqGridClientes').trigger('reloadGrid');
          $('#modalClienteU').modal('hide');
-         
+
        },
        error: function(data){
          swal("¡Ups!",data.responseText,"error");
@@ -438,7 +433,7 @@ function updateCliente(){
       };
       swal(violationString);
     }
-    
+
   }
 }
 
@@ -464,9 +459,10 @@ function cambiarContrasenyaCliente(){
        data: {'cliente':clienteJson},
        success: function(data){
          swal("¡Olé!",data,"success");
-         
+         $('#contrasenyaTFC').val(null);
+         $('#contrasenyaRepetidaTFC').val(null);
          $('#modalClienteC').modal('hide');
-         
+
        },
        error: function(data){
         console.log(data);

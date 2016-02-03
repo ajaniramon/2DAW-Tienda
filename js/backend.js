@@ -3,7 +3,7 @@ function logout(){
        url: './server/logout.php',
        type: 'GET',
        success: function(data){
-        location.href = "/tienda";   
+        location.href = "/tienda";
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -37,7 +37,7 @@ $('#capaGridCategorias').show();
 $('#a1Cat').show();
 $('#a2Cat').show();
 $('#a3Cat').show();
-$('#hCat').show();    
+$('#hCat').show();
 jQuery("#jqGridCategorias").jqGrid({
     url: 'jqgrid/categoria.php',
     datatype: "json",
@@ -76,7 +76,7 @@ jQuery("#a2Cat").click(function() {
      	var retJson = JSON.stringify(ret);
      	deleteCategoria(retJson);
     } else {
-        alert("Por favor selecciona una fila.");
+			swal("Por favor, selecciona una fila");
     }
 });
 
@@ -90,14 +90,11 @@ jQuery("#a3Cat").click(function() {
      	$('#actualizarCategoriaBT').html("Actualizar");
 		$('#actualizarCategoriaBT').attr("idcategoria",ret.idCategoria);
 
-
-     	
      	abrirFormularioUpdateCategoria();
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
-
 
 
 }
@@ -126,7 +123,7 @@ $('#a3Art').show();
         name: 'idArticulo',
         index: 'idArticulo',
         width: 100
-    }, 
+    },
     {
         name: 'nombre',
         index: 'nombre',
@@ -175,7 +172,7 @@ $('#a3Art').show();
      	var retJson = JSON.stringify(ret);
      	deleteArticulo(retJson);
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
 	jQuery("#a3Art").click(function() {
@@ -187,7 +184,7 @@ $('#a3Art').show();
      	$('#nombreArticuloTFU').val(ret.nombre);
      	$('#descripcionArticuloTFU').val(ret.descripcion);
      	$('#precioArticuloTFU').val(ret.precio);
-     	
+
      	$('#stockArticuloTFU').val(ret.stock);
 
      	var categoria = document.createElement("option");
@@ -199,10 +196,10 @@ $('#a3Art').show();
 		$('#actualizarArticuloBT').attr("idarticulo",ret.idArticulo);
 
 
-     	
+
      	abrirFormularioUpdateArticulo();
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
 
@@ -239,7 +236,7 @@ $('#a3Art').hide();
         name: 'idCliente',
         index: 'idCliente',
         width: 100
-    }, 
+    },
     {
         name: 'nombre',
         index: 'nombre',
@@ -286,6 +283,7 @@ $('#a3Art').hide();
     caption: "Clientes"
 });
 $('#a1Cli').on("click",abrirFormularioInsertCliente);
+
 jQuery("#a2Cli").click(function() {
     var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
     if (id) {
@@ -294,16 +292,17 @@ jQuery("#a2Cli").click(function() {
      	var retJson = JSON.stringify(ret);
      	deleteCliente(retJson);
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
+
 	jQuery("#a3Cli").click(function() {
     var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
     if (id) {
         var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
         ret.accion = "a";
      	var retJson = JSON.stringify(ret);
-     	
+
      	$('#nombreClienteTFU').val(ret.nombre);
      	$('#apellidoClienteTFU').val(ret.apellido);
      	$('#dniClienteTFU').val(ret.dni);
@@ -319,11 +318,8 @@ jQuery("#a2Cli").click(function() {
      	abrirFormularioUpdateCliente();
 		$('#actualizarClienteBT').attr('idCliente',ret.idCliente);
 
-
-     	
-     	
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
 
@@ -336,19 +332,10 @@ jQuery("#a4Cli").click(function() {
      	$('#actualizarPassClienteBT').attr('idCliente',ret.idCliente);
      	abrirFormularioCambiarContrasenyaCliente();
 
-
-
-
-     	
-     	
     } else {
-        alert("Por favor selecciona una fila.");
+        swal("Por favor, selecciona una fila");
     }
 });
-
-
-
-
 
 
 }
@@ -359,8 +346,8 @@ function mostrarPedidos(){
     $('#capaGridArticulos').hide();
     $('#capaGridCategorias').hide();
     $('#capaGridClientes').hide();
-    
-    
+
+
     $('#capaGridPedidos').show();
     $('#hPed').show();
     jQuery("#jqGridPedidos").jqGrid({
@@ -369,8 +356,8 @@ function mostrarPedidos(){
    	colNames:['idPedido','fecha', 'total', 'dni'],
    	colModel:[
    		{name:'idPedido',index:'idPedido', width:55},
-   		{name:'fecha',index:'fecha', width:90},
-   		{name:'total',index:'total', width:100},
+   		{name:'fecha',index:'fecha', width:130},
+   		{name:'total',index:'total', width:100, align: 'center'},
    		{name:'dni',index:'dni', width:80, align:"right"}
    	],
    	rowNum:10,
@@ -392,8 +379,8 @@ function mostrarPedidos(){
 			}
 		} else {
 			jQuery("#jqGridPedidos_d").jqGrid('setGridParam',{url:"jqgrid/lineapedido.php?q=1&id="+ids,page:1});
-			jQuery("#jqGridPedidos_d").jqGrid('setCaption',"Linea Pedido nº: "+ids)
-			.trigger('reloadGrid');			
+			jQuery("#jqGridPedidos_d").jqGrid('setCaption',"Detalle Pedido nº: "+ids)
+			.trigger('reloadGrid');
 		}
 	}
 });
@@ -402,13 +389,13 @@ jQuery("#jqGridPedidos_d").jqGrid({
 	height: 100,
    	url:'jqgrid/lineapedido.php?q=1&id=0',
 	datatype: "json",
-   	colNames:['idPedido','idArticulo', 'nombre', 'unidades','Precio total'],
+   	colNames:['idPedido','idArticulo', 'nombre', 'unidades','Precio total articulo'],
    	colModel:[
-   		{name:'idPedido',index:'idPedido', width:55},
-   		{name:'idArticulo',index:'idArticulo', width:180},
-   		{name:'nombre',index:'nombre', width:200, align:"right"},
-   		{name:'unidad',index:'unidad', width:80, align:"right"},		
-   		{name:'precioTotal',index:'precioTotal', width:80,align:"right", sortable:false, search:false}
+   		{name:'idPedido',index:'idPedido', width:100},
+   		{name:'idArticulo',index:'idArticulo', width:100},
+   		{name:'nombre',index:'nombre', width:200},
+   		{name:'unidad',index:'unidad', width:80, align:"right"},
+   		{name:'precioTotal',index:'precioTotal', width:150,align:"right", sortable:false, search:false}
    	],
    	rowNum:5,
    	rowList:[5,10,20],
@@ -417,7 +404,7 @@ jQuery("#jqGridPedidos_d").jqGrid({
     viewrecords: true,
     sortorder: "asc",
 	multiselect: true,
-	caption:"Linea Pedido"
+	caption:"Detalle Pedido"
 }).navGrid('#paginadorPedidos_d',{add:false,edit:false,del:false});
 jQuery("#a1Ped").click( function() {
 	var s;

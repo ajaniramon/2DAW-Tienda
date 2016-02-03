@@ -2,7 +2,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoRecipes Backend</title>
@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">EcoRecipes Admin</a>
+                <a href="index.html" class="navbar-brand"><img id="logo" src="img/logo.png" alt="EcoRecipes"></a><!--EcoRecipes Admin-->
             </div>
             <div id="cabeceraLogout" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> <a id="logoutBT" class="logout btn square-btn-adjust">Logout</a> </div>
           </nav>
@@ -75,48 +75,57 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12" id="cabeceraOcultar">
-                     <h2>Panel de Administración EcoRecipes</h2>
+                     <h2>Panel de Administración de EcoRecipes</h2>
                         <h5 id="fraseSesion"> </h5>
                     </div>
                 </div>
 
                  <!-- /. ROW  -->
-                  <hr id="hr"/>
-                  <div id="capaGridCategorias">
-                      <h1 id="hCat">Categorias</h1>
-                  	<table id="jqGridCategorias"></table> 
-                  	<div id="paginadorCategorias"></div>
-                   <p> <a  id="a1Cat" class="btn btn-success">Insertar fila</a> 
-                    <a  id="a2Cat" class="btn btn-danger">Borrar fila</a> 
-                    <a  id="a3Cat" class="btn btn-success">Modificar fila</a> </p>
-                  </div>
-                
-                   <div id="capaGridArticulos">
-                       <h1 id="hArt">Artículos</h1>
-                    <table id="jqGridArticulos"></table> 
-                    <div id="paginadorArticulos"></div>
-                     <p> <a  id="a1Art" class="btn btn-success">Insertar fila</a> 
-                    <a  id="a2Art" class="btn btn-danger">Borrar fila</a> 
-                    <a  id="a3Art" class="btn btn-success">Modificar fila</a> </p>
-       
-                  </div>
-                   <div id="capaGridPedidos">
-                       <h1 id="hPed">Pedidos</h1>
-                    <table id="jqGridPedidos"></table> 
-                    <div id="paginadorPedidos"></div>
-                  <table id="jqGridPedidos_d"></table>
-                       <div id="paginadorPedidos_d"></div>
-                  </div>
-                
-                   <div id="capaGridClientes">
-                       <h1 id="hCli">Clientes</h1>
-                    <table id="jqGridClientes"></table> 
+
+                  <div id="capaGridClientes" align="center">
+                    <h1 id="hCli">Clientes</h1>
+                    <table id="jqGridClientes"></table>
                     <div id="paginadorClientes"></div>
-                  <p> <a  id="a1Cli" class="btn btn-success">Insertar fila</a> 
-                    <a  id="a2Cli" class="btn btn-danger">Borrar fila</a> 
-                    <a  id="a3Cli" class="btn btn-success">Modificar fila</a> </p>
-                    <a  id="a4Cli" class="btn btn-success">Modificar contraseña</a> </p>
+                    <p>
+                       <a  id="a1Cli" class="btn btn-success">Insertar fila</a>
+                       <a  id="a2Cli" class="btn btn-danger">Borrar fila</a>
+                       <a  id="a3Cli" class="btn btn-success">Modificar fila</a>
+                       <a  id="a4Cli" class="btn btn-success">Modificar contraseña</a>
+                     </p>
+                   </div>
+
+                  <div id="capaGridCategorias" align="center">
+                    <h1 id="hCat">Categorias</h1>
+                  	<table id="jqGridCategorias"></table>
+                  	<div id="paginadorCategorias"></div>
+                    <p>
+                      <a  id="a1Cat" class="btn btn-success">Insertar fila</a>
+                      <a  id="a2Cat" class="btn btn-danger">Borrar fila</a>
+                      <a  id="a3Cat" class="btn btn-success">Modificar fila</a>
+                    </p>
                   </div>
+
+                  <div id="capaGridArticulos" align="center">
+                    <h1 id="hArt">Artículos</h1>
+                    <table id="jqGridArticulos"></table>
+                    <div id="paginadorArticulos"></div>
+                    <p>
+                      <a  id="a1Art" class="btn btn-success">Insertar fila</a>
+                      <a  id="a2Art" class="btn btn-danger">Borrar fila</a>
+                      <a  id="a3Art" class="btn btn-success">Modificar fila</a>
+                    </p>
+                  </div>
+
+                  <div id="capaGridPedidos" align="center">
+                    <h1 id="hPed">Pedidos</h1>
+                    <table id="jqGridPedidos"></table>
+                    <div id="paginadorPedidos"></div>
+                    <br />
+                    <table id="jqGridPedidos_d"></table>
+                    <div id="paginadorPedidos_d"></div>
+                  </div>
+
+
     </div>
 
 
@@ -178,30 +187,30 @@
                           <fieldset>
                           <legend>Articulo</legend>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="nombreArticuoTF">Nombre</label>  
+                            <label class="col-md-4 control-label" for="nombreArticuoTF">Nombre</label>
                             <div class="col-md-4">
                             <input id="nombreArticuloTFI" name="nombreArticuoTF" placeholder="Nombre del artículo" class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="descripcionArticuloTF">Descripción:</label>  
+                            <label class="col-md-4 control-label" for="descripcionArticuloTF">Descripción:</label>
                             <div class="col-md-8">
                             <input id="descripcionArticuloTFI" name="descripcionArticuloTF" placeholder="Descripción del artículo." class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="precioArticuloTF">Precio</label>  
+                            <label class="col-md-4 control-label" for="precioArticuloTF">Precio</label>
                             <div class="col-md-4">
                             <input id="precioArticuloTFI" name="precioArticuloTF" placeholder="Precio del artículo" class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="stockArticuloTF">Stock:</label>  
+                            <label class="col-md-4 control-label" for="stockArticuloTF">Stock:</label>
                             <div class="col-md-4">
-                            <input id="stockArticuloTFI" name="stockArticuloTF" placeholder="Cantidad en stock del artículo" class="form-control input-md" type="text">   
+                            <input id="stockArticuloTFI" name="stockArticuloTF" placeholder="Cantidad en stock del artículo" class="form-control input-md" type="text">
                             </div>
                           </div>
                           <div class="form-group">
@@ -243,30 +252,30 @@
                           <fieldset>
                           <legend>Articulo</legend>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="nombreArticuoTF">Nombre</label>  
+                            <label class="col-md-4 control-label" for="nombreArticuoTF">Nombre</label>
                             <div class="col-md-4">
                             <input id="nombreArticuloTFU" name="nombreArticuoTF" placeholder="Nombre del artículo" class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="descripcionArticuloTF">Descripción:</label>  
+                            <label class="col-md-4 control-label" for="descripcionArticuloTF">Descripción:</label>
                             <div class="col-md-8">
                             <input id="descripcionArticuloTFU" name="descripcionArticuloTF" placeholder="Descripción del artículo." class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="precioArticuloTF">Precio</label>  
+                            <label class="col-md-4 control-label" for="precioArticuloTF">Precio</label>
                             <div class="col-md-4">
                             <input id="precioArticuloTFU" name="precioArticuloTF" placeholder="Precio del artículo" class="form-control input-md" type="text">
-                              
+
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-4 control-label" for="stockArticuloTF">Stock:</label>  
+                            <label class="col-md-4 control-label" for="stockArticuloTF">Stock:</label>
                             <div class="col-md-4">
-                            <input id="stockArticuloTFU" name="stockArticuloTF" placeholder="Cantidad en stock del artículo" class="form-control input-md" type="text">   
+                            <input id="stockArticuloTFU" name="stockArticuloTF" placeholder="Cantidad en stock del artículo" class="form-control input-md" type="text">
                             </div>
                           </div>
                           <div class="form-group">
@@ -294,11 +303,6 @@
       </div>
 
 
-
-
-
-
-
 <div id="modalClienteI" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -311,30 +315,30 @@
             <div class="modal-body">
            <form class="form-horizontal">
           <fieldset>
-      
+
       <div class="form-group">
-         <label class="col-md-4 control-label" for="nombre">Nombre: </label>    
+         <label class="col-md-4 control-label" for="nombre">Nombre: </label>
          <div class="col-md-4">  <input id="nombreClienteTFI"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>  
+         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>
          <div class="col-md-4"><input  id="apellidoClienteTFI" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div>
       </div>
       <!-- Text input-->
       <div class="form-group">
-         <label class="col-md-4 control-label" for="dni">DNI: </label>  
+         <label class="col-md-4 control-label" for="dni">DNI: </label>
          <div class="col-md-4"><input  id="dniClienteTFI" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="direccion">Dirección: </label>  
+         <label class="col-md-4 control-label" for="direccion">Dirección: </label>
          <div class="col-md-4"><input  id="direccionClienteTFI" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>  
+         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>
          <div class="col-md-4"><input id="telefonoClienteTFI" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="correo">Correo: </label>  
+         <label class="col-md-4 control-label" for="correo">Correo: </label>
          <div class="col-md-4"><input  id="correoClienteTFI" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
@@ -375,30 +379,30 @@
             <div class="modal-body">
                        <form class="form-horizontal">
           <fieldset>
-      
+
       <div class="form-group">
-         <label class="col-md-4 control-label" for="nombre">Nombre: </label>    
+         <label class="col-md-4 control-label" for="nombre">Nombre: </label>
          <div class="col-md-4">  <input id="nombreClienteTFU"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>  
+         <label class="col-md-4 control-label" for="apellido">Apellidos: </label>
          <div class="col-md-4"><input  id="apellidoClienteTFU" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div>
       </div>
       <!-- Text input-->
       <div class="form-group">
-         <label class="col-md-4 control-label" for="dni">DNI: </label>  
+         <label class="col-md-4 control-label" for="dni">DNI: </label>
          <div class="col-md-4"><input  id="dniClienteTFU" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="direccion">Dirección: </label>  
+         <label class="col-md-4 control-label" for="direccion">Dirección: </label>
          <div class="col-md-4"><input  id="direccionClienteTFU" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>  
+         <label class="col-md-4 control-label" for="textinput">Teléfono: </label>
          <div class="col-md-4"><input id="telefonoClienteTFU" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div>
       </div>
       <div class="form-group">
-         <label class="col-md-4 control-label" for="correo">Correo: </label>  
+         <label class="col-md-4 control-label" for="correo">Correo: </label>
          <div class="col-md-4"><input  id="correoClienteTFU" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div>
       </div>
          <div class="form-group">
@@ -435,7 +439,7 @@
             <div class="modal-body">
                   <form class="form-horizontal">
               <fieldset>
-    
+
       <div class="form-group">
          <label class="col-md-4 control-label" for="passwordinput">Nueva contraseña: </label>
          <div class="col-md-4">
@@ -460,38 +464,15 @@
       </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
         </div>
-  
-
 
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="js/jquery.metisMenu.js"></script>
-
-
-
 
 </body>
 </html>
