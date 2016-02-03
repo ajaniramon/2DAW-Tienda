@@ -247,7 +247,7 @@ function updateArticulo(){
        data: {'articulo':articuloJson},
        success: function(data){
           swal("¡Olé!",data,"success");
-          $('#jqGridArticulos').trigger('reloadGrid');
+          $("#jqGridArticulos").setGridParam({datatype: 'json',page:1}).trigger('reloadGrid');
           $('#modalArticuloU').modal("hide");
 
           },
@@ -368,7 +368,7 @@ function insertCliente(){
 
        },
        error: function(data){
-        console.log(data);
+        swal("¡Ups!",data.responseText,"error");
        }
      });
   }else{
