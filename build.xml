@@ -4,30 +4,35 @@
     <description>Builds, tests, and runs the project tienda.</description>
 
 
-    <target name="deploy-from-jenkins" depends="-enable-produccion">
+    <target name="openshift-deploy">
         
         <taskdef resource="es/logongas/openshift/ant/antlib.xml" />
         <echo>[+] Ejecutando ANT.</echo>
 
-      <!--  <gitcloneapplication     
-            userName="dead421@hotmail.es" 
-            password="dead421" 
-            domainName="vicentedaw2" 
-            applicationName="ecobanco"  
-            privateKeyFile="../../id_rsa.pub"
-            path="../daw_proyecto_banco"
-        /> -->
-        
+        <gitcloneapplication     
+            userName="ra1996@gmail.com" 
+            password="ra1996" 
+            domainName="ajanicorp" 
+            applicationName="tienda"  
+            privateKeyFile="../../id_rsa"
+            path="../2DAW-Tienda"
+        /> 
+        <delete includeemptydirs="true">
+            <fileset dir="2DAW-Tienda" includes="**/*"/>
+        </delete>
 
-        
-     <!--   <gitpushapplication    
-            userName="dead421@hotmail.es"
-            password="dead421"
-            domainName="vicente2daw"
-            applicationName="ecobanco" 
-            privateKeyFile="../../id_rsa.pub"
-            path="../daw_proyecto_banco"
+        <!--<gitpushapplication    
+            userName="ra1996@gmail.com"
+            password="ra1996"
+            domainName="ajanicorp"
+            applicationName="tienda" 
+            privateKeyFile="../../id_rsa"
+            path="../2DAW-Tienda"
         /> -->
+
     </target>
+
+ 
     
+
 </project>
