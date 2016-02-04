@@ -101,7 +101,7 @@ function mostrarClientes(){
     sortorder: "desc",
     caption: "Clientes"
 });
-$('#a1Cli').on("click",abrirFormularioInsertCliente);
+
 
 jQuery("#a2Cli").click(function() {
     var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
@@ -436,6 +436,7 @@ $(document).ready(function(){
 	$('#categoriasBT').on('click',mostrarCategorias);
 	$('#clientesBT').on('click',mostrarClientes);
     $('#pedidosBT').on('click',mostrarPedidos);
+    $('#a1Cli').on("click",abrirFormularioInsertCliente);
 
 	saludar();
   });
