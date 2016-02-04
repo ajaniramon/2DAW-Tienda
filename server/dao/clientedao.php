@@ -25,7 +25,7 @@ if ($metodo == 'GET') {
 }
 
 function borrar($idCliente){
-  $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -41,7 +41,7 @@ function borrar($idCliente){
 }
 
 function insertar($clienteObjeto){
-	$link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -55,7 +55,7 @@ function insertar($clienteObjeto){
   }
 
 function actualizar($cliente){
-  $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -71,7 +71,7 @@ function actualizar($cliente){
 }
 
 function cambiarContrasenya($objeto){
-	 $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 

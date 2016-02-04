@@ -22,7 +22,7 @@ if ($metodo == 'GET') {
 }
 
 function borrar($idCategoria){
-  $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -37,7 +37,7 @@ http_response_code(200);
 }
 
 function insertar($categoria){
-	$link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -49,7 +49,7 @@ function insertar($categoria){
 }
 
 function actualizar($categoria){
-  $link = mysql_connect("localhost", "root", "root") or die ("No se pudo conectar a la BD" . mysql_error());
+  $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
