@@ -38,10 +38,10 @@ function validarEmail( email ) {
 }
 
 function validarTelefono(telefono){
-  var expresion_regular_numero = /^([0-9]+){9}$/;
+  var expresion_regular_numeroTelefono = /^([0-9]+){9}$/;
   var expresion_regular_espacios = /\s/;
 
-  if (expresion_regular_numero.test(telefono)){
+  if (expresion_regular_numeroTelefono.test(telefono)){
     if (!expresion_regular_espacios.test(telefono)){
       return true;
     }else{
@@ -51,6 +51,29 @@ function validarTelefono(telefono){
     return false;
   }
 }
+
+function validarPrecio(precio){
+  var expresion_regular_numeroPrecio = /^[0-9]+([,\.][0-9]*)?$/;
+
+  if (expresion_regular_numeroPrecio.test(precio)){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+function validarStock(stock){
+  var expresion_regular_stock = /^\+?(0|[1-9]\d*)$/;
+
+  if (expresion_regular_stock.test(stock)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+/* /.Validaciones */
 
 
 /* Clientes  */
@@ -347,7 +370,7 @@ function abrirFormularioInsertCategoria(){
   $('#insertarCategoriaBT').on('click',insertCategoria);
 }
 function insertCategoria(){
-  
+
   if ($('#nombreCategoriaTFI').val() == "" || $('#nombreCategoriaTFI').val() == null) {
     swal("Rellena todos los campos.");
   }else{
@@ -453,6 +476,7 @@ function abrirFormularioInsertArticulo(){
 }
 
 function insertArticulo(){
+  violations = null;
  var valid = true;
  if ($('#nombreArticuloTFI').val() == "") {valid = false;};
  if ($('#descripcionArticuloTFI').val() == "") {valid = false;};
@@ -466,9 +490,19 @@ function insertArticulo(){
  var stock = $('#stockArticuloTFI').val();
  var imagen = $('#imagenI').val();
  var categoria = document.getElementById('categoriaSLI').options[document.getElementById('categoriaSLI').selectedIndex].value;
+ violations = new Array();
 
-  if (!valid) {swal("Rellena todos los campos.");}else{
+ if (precio != "" && !validarPrecio(precio)){
+   valid = false;
+   violations.push('precio');
+ }
 
+ if (stock != "" && !validarStock(stock)){
+   valid = false;
+   violations.push('stock');
+ }
+
+  if (valid) {
     var articulo = new Object();
     articulo.nombre = nombre;
     articulo.descripcion = descripcion;
@@ -500,6 +534,17 @@ function insertArticulo(){
           swal("¡Ups!",data.responseText,"error");
        }
      });
+
+  }else{
+    if (violations.length == 0){
+      swal("Rellena todos los campos.");
+    }else{
+      var violationString = "Campos con formato erróneo: ";
+      for (var i = 0; i < violations.length; i++) {
+        violationString += violations[i] + " ";
+      };
+      swal(violationString);
+    }
   }
 }
 

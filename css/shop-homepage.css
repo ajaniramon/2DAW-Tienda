@@ -120,7 +120,8 @@ a.drill{
 }
 
 a.drill:hover{
-  color: #24BA2E;/*707070*/
+  color: #24BA2E;/*56C35D*/
+  cursor: pointer;
 }
 
 /* ./CARRITO */
