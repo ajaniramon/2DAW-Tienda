@@ -24,14 +24,17 @@
         <move todir="../tienda">
             <fileset dir="../2DAW-Tienda" includes="**/*"/>
         </move>
-        <!--<gitpushapplication    
+
+        <git dir="../tienda" command="add" options="--all"/>
+        <git dir="../tienda" command="commit" options="-am 'push'"/>
+        <gitpushapplication    
             userName="ra1996@gmail.com"
             password="ra1996"
             domainName="ajanicorp"
             applicationName="tienda" 
             privateKeyFile="../../id_rsa"
-            path="../2DAW-Tienda"
-        /> -->
+            path="../tienda"
+        /> 
 
     </target>
 
