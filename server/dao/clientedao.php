@@ -52,19 +52,9 @@ function insertar($clienteObjeto){
 
   $SQL = "INSERT INTO cliente(idCliente,nombre,apellido,dni,direccion,telefono,correo,contrasenya,empleado) VALUES(null," . "'" . $clienteObjeto->nombre . "'," . "'" . $clienteObjeto->apellido . "'," . "'" . $clienteObjeto->dni . "'," ."'" . $clienteObjeto->direccion . "',"."'" . $clienteObjeto->telefono . "'," . "'" . $clienteObjeto->correo . "'," . "'" . md5($clienteObjeto->contrasenya) . "',".  "'". $clienteObjeto->empleado ."'"  .");";
  
-  $resultado = mysql_query($SQL,$link);
-  if (!$resultado) {
-    if (mysql_errno() == 1062) {
-      echo "Error al insertar. El DNI introducido ya figura en la base de datos.";
-    }else{
-      echo "Error al insertar: " . mysql_error();
-    }
-    http_response_code(400);
-  }else{
-      echo "Insertado correctamente.";
+  mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
+  echo "Insertado correctamente.";
   http_response_code(200);
-  }
-
   }
 
 
@@ -106,5 +96,13 @@ function cambiarContrasenya($objeto){
   }
 }
 
-
+function muere($error,$codigo){
+  if ($codigo == 1062) {
+    echo "El DNI ya figura en la base de datos.";
+  }else{
+    echo "Consulta fallida: " . $error;
+  }
+  http_response_code(400);
+  exit();
+}
 ?>

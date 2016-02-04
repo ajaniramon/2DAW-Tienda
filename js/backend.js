@@ -161,7 +161,7 @@ $('#a3Art').show();
     viewrecords: true,
     sortorder: "asc",
     caption: "Articulos",
-    loadonce: true
+    
 });
 	$('#a1Art').on('click',abrirFormularioInsertArticulo);
 	jQuery("#a2Art").click(function() {
@@ -280,7 +280,8 @@ $('#a3Art').hide();
     sortname: 'idCliente',
     viewrecords: true,
     sortorder: "desc",
-    caption: "Clientes"
+    caption: "Clientes",
+    
 });
 $('#a1Cli').on("click",abrirFormularioInsertCliente);
 

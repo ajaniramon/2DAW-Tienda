@@ -45,16 +45,11 @@ function insertar($articulo){
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos"); 
 
   $SQL = "INSERT INTO articulo VALUES(null,'" . $articulo->nombre . "','" . $articulo->descripcion . "'," . $articulo->precio . ",'articulos/" . $articulo->imagen . "'," . $articulo->stock ."," . $articulo->categoria . ");";
-
+  mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
+  echo "Insertado correctamente.";
+  http_response_code(200);
  	
-  $resultado = mysql_query($SQL,$link);
-  if (!$resultado) {
-   	echo "Error al insertar.";
-   	http_response_code(400);
-   }else{
-   	echo "Insertado con éxito.";
-   	http_response_code(200);
-   } 
+  
 }
 
 function actualizar($articulo){
@@ -77,6 +72,10 @@ function actualizar($articulo){
 
 }
 
-
+function muere($error,$codigo){
+echo "Consulta fallida: " .$error;
+http_response_code(400);
+exit();
+}
 
 ?>

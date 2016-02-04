@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="tienda" default="default" basedir=".">
+    <description>Builds, tests, and runs the project tienda.</description>
+
+
+    <target name="deploy-from-jenkins" depends="-enable-produccion">
+        
+        <taskdef resource="es/logongas/openshift/ant/antlib.xml" />
+        <echo>[+] Ejecutando ANT.</echo>
+
+      <!--  <gitcloneapplication     
+            userName="dead421@hotmail.es" 
+            password="dead421" 
+            domainName="vicentedaw2" 
+            applicationName="ecobanco"  
+            privateKeyFile="../../id_rsa.pub"
+            path="../daw_proyecto_banco"
+        /> -->
+        
+
+        
+     <!--   <gitpushapplication    
+            userName="dead421@hotmail.es"
+            password="dead421"
+            domainName="vicente2daw"
+            applicationName="ecobanco" 
+            privateKeyFile="../../id_rsa.pub"
+            path="../daw_proyecto_banco"
+        /> -->
+    </target>
+    
+</project>
