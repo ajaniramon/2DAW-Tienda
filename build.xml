@@ -21,6 +21,9 @@
             <fileset dir="../tienda" includes="**/*"/>
         </delete>
 
+        <move todir="../tienda">
+            <fileset dir="../2DAW-Tienda" includes="**/*"/>
+        </move>
         <!--<gitpushapplication    
             userName="ra1996@gmail.com"
             password="ra1996"
