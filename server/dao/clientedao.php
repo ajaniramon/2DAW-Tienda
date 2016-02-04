@@ -89,11 +89,10 @@ function cambiarContrasenya($objeto){
 }
 
 function muere($error,$codigo){
-  if ($codigo == 1062) {
-    echo "El DNI ya figura en la base de datos.";
-  }else{
-    echo "Consulta fallida: " . $error;
-  }
+
+
+echo "Consulta fallida: " . $error;
+
   http_response_code(400);
   exit();
 }
