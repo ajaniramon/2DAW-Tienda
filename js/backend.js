@@ -295,7 +295,7 @@ $('#a3Art').show();
     viewrecords: true,
     sortorder: "asc",
     caption: "Articulos",
-    loadonce: true
+    
 });
 	$('#a1Art').on('click',abrirFormularioInsertArticulo);
 	jQuery("#a2Art").click(function() {
@@ -339,6 +339,7 @@ $('#a3Art').show();
 
 
 }
+
 
 
 

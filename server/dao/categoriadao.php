@@ -46,17 +46,10 @@ function insertar($categoria){
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
-  $selectSql = "SELECT * FROM categoria WHERE nombre = "."'".$categoria->nombre."'";
-  if (!$resultado = mysql_query($selectSql)) {
-  	die(mysql_error());
-  }else if(mysql_num_rows($resultado) == 0){
-  	$insertSql = "INSERT INTO categoria VALUES(null," . "'". $categoria->nombre. "'" . ");";
-  	$resultado = mysql_query($insertSql) or die('Consulta fallida: ' . mysql_error());
-    echo "Categoria insertada con exito.";
-  }else{
-  	http_response_code(400);
-  	echo "La categoría ya existe";
-  }
+  $insertSql = "INSERT INTO categoria VALUES(null," . "'". $categoria->nombre. "'" . ");";
+  mysql_query($insertSql,$link) or muere(mysql_error(),mysql_errno());
+  echo "Insertada correctamente.";
+  http_response_code(200);
 
 }
 
@@ -75,5 +68,11 @@ function actualizar($categoria){
   	echo "Actualizado correctamente.";
   	http_response_code(200);
   }
+}
+
+function muere($error,$codigo){
+echo "Consulta fallida: " .$error;
+http_response_code(400);
+exit();
 }
 ?>
