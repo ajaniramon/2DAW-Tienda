@@ -114,6 +114,15 @@ h4.media-heading{
   height:95px;
 }
 
+a.drill{
+  text-decoration: none;
+  color: black;
+}
+
+a.drill:hover{
+  color: #24BA2E;/*707070*/
+}
+
 /* ./CARRITO */
 
 .centrado{
