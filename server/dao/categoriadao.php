@@ -28,7 +28,7 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
 
   $SQL = "DELETE from categoria WHERE idCategoria = " . $idCategoria;
 
- mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
+ mysql_query($SQL) or muere(mysql_error(),mysql_errno());
 echo "Borrado OK.";
 http_response_code(200);
  
@@ -42,7 +42,7 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
   $insertSql = "INSERT INTO categoria VALUES(null," . "'". $categoria->nombre. "'" . ");";
-  mysql_query($insertSql,$link) or muere(mysql_error(),mysql_errno());
+  mysql_query($insertSql) or muere(mysql_error(),mysql_errno());
   echo "Insertada correctamente.";
   http_response_code(200);
 
