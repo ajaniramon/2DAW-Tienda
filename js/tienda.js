@@ -301,7 +301,20 @@ function cambiarLogin(){
   $('#registroBT').on('click',mostrarRegistro);
   $('#loginBT').on('click',login);
 }
+function validarTelefono(telefono){
+  var expresion_regular_numeroTelefono = /^([0-9]+){9}$/;
+  var expresion_regular_espacios = /\s/;
 
+  if (expresion_regular_numeroTelefono.test(telefono)){
+    if (!expresion_regular_espacios.test(telefono)){
+      return true;
+    }else{
+      return false;
+    }
+  }else{
+    return false;
+  }
+}
 function registro(){
   violations = null;
   var nombre = $('#nombreTF').val();
@@ -330,7 +343,11 @@ function registro(){
 
   };
   if (telefono == "") {
+  	valid = false;
+  };
+  if (telefono != "" && !validarTelefono(telefono)) {
     valid = false;
+    violations.push('telefono');
 
   };
   if (correo == "") {
