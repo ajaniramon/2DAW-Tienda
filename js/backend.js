@@ -297,7 +297,7 @@ $('#a3Art').show();
     caption: "Articulos",
     
 });
-	$('#a1Art').on('click',abrirFormularioInsertArticulo);
+
 	jQuery("#a2Art").click(function() {
     var id = jQuery("#jqGridArticulos").jqGrid('getGridParam', 'selrow');
     if (id) {
@@ -437,6 +437,6 @@ $(document).ready(function(){
 	$('#clientesBT').on('click',mostrarClientes);
     $('#pedidosBT').on('click',mostrarPedidos);
     $('#a1Cli').on("click",abrirFormularioInsertCliente);
-
+  $('#a1Art').on('click',abrirFormularioInsertArticulo);
 	saludar();
   });

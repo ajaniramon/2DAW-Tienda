@@ -460,7 +460,7 @@ function(){
 
 function abrirFormularioInsertArticulo(){
 	$("#categoriaSLI").empty();
-  if (!document.getElementById("categoriaSLI").options.length >= 0) {
+
       $.ajax({
        url: './server/categorias.php',
        dataType: 'json',
@@ -470,9 +470,7 @@ function abrirFormularioInsertArticulo(){
          });
        }
      });
-  }else{
-
-  }
+ 
 
   $('#modalArticuloI').modal("show");
   
