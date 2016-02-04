@@ -26,7 +26,7 @@ switch ($examp) {
 		if ($start<0) $start = 0;
         $SQL = "SELECT d.idPedido ,d.idArticulo ,a.nombre , d.unidad  ,d.precioTotal  FROM linea_pedido d ,articulo a WHERE  d.idPedido=".$id." and d.idArticulo=a.idArticulo ORDER BY $sidx $sord LIMIT $start , $limit";
         
-		$result = mysql_query( $SQL ) or die("Couldnt execute query.".mysql_error());
+		$result = mysql_query( $SQL ) or echo(mysql_error());
         $i=0;
 		while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
 			$responce->rows[$i]['id']=$row['idPedido'];
