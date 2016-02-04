@@ -7,7 +7,7 @@ $sord = $_GET['sord']; // get the direction
 
 if(!$sidx) $sidx =1;
 // connect to the database
-$db = mysql_connect("localhost", "root", "root")
+$db = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")
 or die("Connection Error: " . mysql_error());
 
 mysql_select_db("shop") or die("Error conecting to db.");
