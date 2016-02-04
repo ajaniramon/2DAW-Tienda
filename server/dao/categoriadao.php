@@ -28,15 +28,10 @@ function borrar($idCategoria){
 
   $SQL = "DELETE from categoria WHERE idCategoria = " . $idCategoria;
 
- $success =  mysql_query($SQL,$link);
-
- if (!$success) {
- 	echo "Error al borrar. La categoría tiene productos asociados.";
- 	http_response_code(400);
- }else{
- 	echo "Borrado correctamente.";
- 	http_response_code(200);
- }
+ mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
+echo "Borrado OK.";
+http_response_code(200);
+ 
  mysql_close($link);
 
 }

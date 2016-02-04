@@ -347,6 +347,7 @@ function abrirFormularioInsertCategoria(){
   $('#insertarCategoriaBT').on('click',insertCategoria);
 }
 function insertCategoria(){
+  
   if ($('#nombreCategoriaTFI').val() == "" || $('#nombreCategoriaTFI').val() == null) {
     swal("Rellena todos los campos.");
   }else{
