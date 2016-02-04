@@ -18,7 +18,7 @@ function saludar(){
        success: function(data){
        	var sesionObjeto = JSON.parse(data);
         $('#fraseSesion').html('¡Hola, '+sesionObjeto.nombre + '! Bienvenido al panel de administración.');
-        $('#cabeceraLogout').prepend('Has iniciado sesión como <strong>'+sesionObjeto.nombre + " " + sesionObjeto.apellido + "</strong>.")
+        $('#cabeceraLogout').prepend('Has iniciado sesión como: <strong>'+sesionObjeto.nombre + " " + sesionObjeto.apellido + "</strong>.")
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -26,6 +26,138 @@ function saludar(){
      });
 }
 
+function mostrarClientes(){
+  $('#hr').hide();
+  $('#cabeceraOcultar').hide();
+	$('#capaGridArticulos').hide();
+	$('#capaGridCategorias').hide();
+	$('#capaGridPedidos').hide();
+	$('#a1Cat').hide();
+	$('#a2Cat').hide();
+	$('#a3Cat').hide();
+	$('#a1Art').hide();
+	$('#a2Art').hide();
+	$('#a3Art').hide();
+
+  $('#hCli').show();
+  $('#a1Cli').show();
+  $('#a2Cli').show();
+  $('#a3Cli').show();
+  $('#a4Cli').show();
+	$('#capaGridClientes').show();
+	jQuery("#jqGridClientes").jqGrid({
+    url: 'jqgrid/cliente.php',
+    datatype: "json",
+    height: "auto",
+    colNames: ['idCliente','nombre','apellido','dni','direccion','telefono','correo','empleado'],
+    colModel: [
+    {
+        name: 'idCliente',
+        index: 'idCliente',
+        width: 100
+    },
+    {
+        name: 'nombre',
+        index: 'nombre',
+        width: 100
+    },
+    {
+    	name: 'apellido',
+    	index: 'apellido',
+    	width: 100
+    },
+    {
+    	name: 'dni',
+    	index: 'dni',
+    	width: 100
+    },
+    {
+    	name: 'direccion',
+    	index: 'direccion',
+    	width: 100
+    },
+    {
+    	name: 'telefono',
+    	index: 'telefono',
+    	width: 100
+    },
+    {
+    	name: 'correo',
+    	index: 'correo',
+    	width: 150
+    },
+    {
+    	name: 'empleado',
+    	index: 'empleado',
+    	width: 100
+    }
+
+    ],
+    rowNum: 20,
+    rowList: [10, 20, 30],
+    pager: '#paginadorClientes',
+    sortname: 'idCliente',
+    viewrecords: true,
+    sortorder: "desc",
+    caption: "Clientes"
+});
+$('#a1Cli').on("click",abrirFormularioInsertCliente);
+
+jQuery("#a2Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+      var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+      ret.accion = "d";
+     	var retJson = JSON.stringify(ret);
+     	deleteCliente(retJson);
+    } else {
+        swal("Por favor, selecciona una fila");
+    }
+});
+
+	jQuery("#a3Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+      var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+      ret.accion = "a";
+     	var retJson = JSON.stringify(ret);
+
+     	$('#nombreClienteTFU').val(ret.nombre);
+     	$('#apellidoClienteTFU').val(ret.apellido);
+     	$('#dniClienteTFU').val(ret.dni);
+     	$('#direccionClienteTFU').val(ret.direccion);
+     	$('#telefonoClienteTFU').val(ret.telefono);
+     	$('#correoClienteTFU').val(ret.correo);
+
+     	if (ret.empleado == "true") {
+     		document.getElementById("empleadoSLU").selectedIndex = 0;
+     	}else{
+     		document.getElementById("empleadoSLU").selectedIndex = 1;
+     	}
+     	abrirFormularioUpdateCliente();
+		$('#actualizarClienteBT').attr('idCliente',ret.idCliente);
+
+    } else {
+        swal("Por favor, selecciona una fila");
+    }
+});
+
+jQuery("#a4Cli").click(function() {
+    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
+    if (id) {
+        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
+        ret.accion = "c";
+     	var retJson = JSON.stringify(ret);
+     	$('#actualizarPassClienteBT').attr('idCliente',ret.idCliente);
+     	abrirFormularioCambiarContrasenyaCliente();
+
+    } else {
+        swal("Por favor, selecciona una fila");
+    }
+});
+
+
+}
 
 function mostrarCategorias(){
 $('#hr').hide();
@@ -71,8 +203,8 @@ $('#a1Cat').on('click',abrirFormularioInsertCategoria);
 jQuery("#a2Cat").click(function() {
     var id = jQuery("#jqGridCategorias").jqGrid('getGridParam', 'selrow');
     if (id) {
-        var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
-        ret.accion = "d";
+      var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
+      ret.accion = "d";
      	var retJson = JSON.stringify(ret);
      	deleteCategoria(retJson);
     } else {
@@ -132,12 +264,13 @@ $('#a3Art').show();
     {
     	name: 'descripcion',
     	index: 'descripcion',
-    	width: 400
+    	width: 300
     },
     {
     	name: 'precio',
     	index: 'precio',
-    	width: 100
+    	width: 100,
+			align: 'center'
     },
     {
     	name: 'imagen',
@@ -147,12 +280,14 @@ $('#a3Art').show();
     {
     	name: 'stock',
     	index: 'stock',
-    	width: 100
+    	width: 100,
+			align: 'center'
     },
     {
     	name: 'categoria',
     	index: 'categoria',
-    	width: 100
+    	width: 100,
+			align: 'center'
     }],
     rowNum: 30,
     rowList: [10, 20, 30],
@@ -207,139 +342,8 @@ $('#a3Art').show();
 }
 
 
-function mostrarClientes(){
-    $('#hr').hide();
-    $('#cabeceraOcultar').hide();
-$('#capaGridArticulos').hide();
-$('#capaGridCategorias').hide();
-$('#capaGridPedidos').hide();
-$('#a1Cat').hide();
-$('#a2Cat').hide();
-$('#a3Cat').hide();
-$('#a1Art').hide();
-$('#a2Art').hide();
-$('#a3Art').hide();
-
-    $('#hCli').show();
-    $('#a1Cli').show();
-    $('#a2Cli').show();
-    $('#a3Cli').show();
-    $('#a4Cli').show();
-	$('#capaGridClientes').show();
-	jQuery("#jqGridClientes").jqGrid({
-    url: 'jqgrid/cliente.php',
-    datatype: "json",
-    height: "auto",
-    colNames: ['idCliente','nombre','apellido','dni','direccion','telefono','correo','empleado'],
-    colModel: [
-    {
-        name: 'idCliente',
-        index: 'idCliente',
-        width: 100
-    },
-    {
-        name: 'nombre',
-        index: 'nombre',
-        width: 100
-    },
-    {
-    	name: 'apellido',
-    	index: 'apellido',
-    	width: 100
-    },
-    {
-    	name: 'dni',
-    	index: 'dni',
-    	width: 100
-    },
-    {
-    	name: 'direccion',
-    	index: 'direccion',
-    	width: 100
-    },
-    {
-    	name: 'telefono',
-    	index: 'telefono',
-    	width: 100
-    },
-    {
-    	name: 'correo',
-    	index: 'correo',
-    	width: 100
-    },
-    {
-    	name: 'empleado',
-    	index: 'empleado',
-    	width: 100
-    }
-
-    ],
-    rowNum: 20,
-    rowList: [10, 20, 30],
-    pager: '#paginadorClientes',
-    sortname: 'idCliente',
-    viewrecords: true,
-    sortorder: "desc",
-    caption: "Clientes",
-    
-});
-$('#a1Cli').on("click",abrirFormularioInsertCliente);
-
-jQuery("#a2Cli").click(function() {
-    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
-    if (id) {
-        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
-        ret.accion = "d";
-     	var retJson = JSON.stringify(ret);
-     	deleteCliente(retJson);
-    } else {
-        swal("Por favor, selecciona una fila");
-    }
-});
-
-	jQuery("#a3Cli").click(function() {
-    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
-    if (id) {
-        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
-        ret.accion = "a";
-     	var retJson = JSON.stringify(ret);
-
-     	$('#nombreClienteTFU').val(ret.nombre);
-     	$('#apellidoClienteTFU').val(ret.apellido);
-     	$('#dniClienteTFU').val(ret.dni);
-     	$('#direccionClienteTFU').val(ret.direccion);
-     	$('#telefonoClienteTFU').val(ret.telefono);
-     	$('#correoClienteTFU').val(ret.correo);
-
-     	if (ret.empleado == "true") {
-     		document.getElementById("empleadoSLU").selectedIndex = 0;
-     	}else{
-     		document.getElementById("empleadoSLU").selectedIndex = 1;
-     	}
-     	abrirFormularioUpdateCliente();
-		$('#actualizarClienteBT').attr('idCliente',ret.idCliente);
-
-    } else {
-        swal("Por favor, selecciona una fila");
-    }
-});
-
-jQuery("#a4Cli").click(function() {
-    var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
-    if (id) {
-        var ret = jQuery("#jqGridClientes").jqGrid('getRowData', id);
-        ret.accion = "c";
-     	var retJson = JSON.stringify(ret);
-     	$('#actualizarPassClienteBT').attr('idCliente',ret.idCliente);
-     	abrirFormularioCambiarContrasenyaCliente();
-
-    } else {
-        swal("Por favor, selecciona una fila");
-    }
-});
 
 
-}
 
 function mostrarPedidos(){
     $('#hr').hide();

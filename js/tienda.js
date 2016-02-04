@@ -56,11 +56,11 @@ function mostrarArticulos(){
    	total = 0;
    	$.each(carrito.articulos,function(){
       /*    --------->>>  MEJORANDO ASPECTO DEL CARRITO*/
-     
+
       var idDrillDown = "capaDrillDown" + this.id;
       var idDrillDownDiv = "drillDown";
-     
-     
+
+
       //<div class='container'><div class='row'><div class='col-sm-12 col-md-10 col-md-offset-1'></div></div></div><div class='media-body'></div>
       carritoHTML += "<tr><td class='col-sm-8 col-md-6'><div class='media'><a class='thumbnail pull-left miniatura'><img class='media-object' src='./img/"+this.imagen+"' ></a>";
       carritoHTML += "<div><h4 class='media-heading'>"+"<a class='drill' id='"+idDrillDown+"'>"+this.nombre+"</h4>"+"</a>"+"</div></div><div class='"+idDrillDownDiv+"'><p id='"+idDrillDown+"P"+"'>"+this.descripcion+"</p></div></td>";
@@ -68,8 +68,8 @@ function mostrarArticulos(){
       carritoHTML += "<td class='text-center'>"+this.precio+"€</td>";
       carritoHTML += "<td class='text-center'>"+(this.precio * this.cantidad)+"€</td>";
       carritoHTML += "<td><button class='btn btn-danger botonBorrarArticuloCarrito' idarticulo="+this.id+"><span class='glyphicon glyphicon-remove'></span> Borrar</button></td></tr>";
-      
-    
+
+
     });
    	for(var i = 0; i < carrito.articulos.length; i++){
    		total += carrito.articulos[i].precio * carrito.articulos[i].cantidad;
@@ -85,7 +85,7 @@ function mostrarArticulos(){
     $('.botonBorrarArticuloCarrito').on('click',borrarArticuloCarrito);
     $('.drillDown').hide();
     $('.drill').on("click",mostrarDescripcion);
-    
+
   }
 
    function borrarFromCarrito(){
@@ -114,7 +114,7 @@ function mostrarArticulos(){
 function mostrarDescripcion(){
 	var id = $(this).attr('id');
 	var idParrafo ="#" +  id + "P";
-	
+
 	var desplegable = $(idParrafo).parent();
 	$('.drillDown').not(desplegable).slideUp('fast');
 	$(desplegable).slideToggle();
@@ -160,18 +160,30 @@ function mostrarDescripcion(){
      carrito.total = total;
      var carritoJson = JSON.stringify(carrito);
      if (carrito.articulos.length < 1) {
-       alert("Por favor, seleccione algún producto para comprar.");
+       swal("Por favor, seleccione algún producto para comprar.");
      }
      else {
       if (typeof sesion === 'undefined') {
-          alert("Por favor, inicia sesión para poder comprar.");
+        swal({
+          title: "Debes iniciar sesión para realizar una comprar.",
+          text: "",
+          type: "info",
+          allowOutsideClick: true
+        });
 }else{
   $.ajax({
        url:'./server/carrito.php',
        type: 'POST',
        data: {'carrito':carritoJson},
        success: function(data) {
-         alert("Compra realizada satisfactoriamente.");
+          swal({
+            title: "Compra realizada satisfactoriamente!",
+            text: "",
+            type: "success",
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: true
+          });
          carrito = new Carrito(1);
 
        }, error: function(data) {
@@ -179,7 +191,7 @@ function mostrarDescripcion(){
        }
      });}
 }
-       
+
    }
 
 function mostrarLogin(){
@@ -196,11 +208,11 @@ function login(){
   var valid = true;
 
   if (email == "") {
-    
+
     valid = false;
   }
   if (contrasenya == "") {
-    
+
     valid = false;
   };
 
@@ -211,7 +223,7 @@ function login(){
        data: {'credencial':credencialJson},
        success: function(data){
           swal("¡Genial!","Login correcto, la sesión está iniciada.","success");
-          
+
           actualizarModalLogin();
           $('#modalLogin').modal('hide');
 
@@ -224,8 +236,6 @@ function login(){
     }else{
       swal("¡Rellena todos los campos!");
     }
-   
-  
 }
 
 function actualizarModalLogin(){
@@ -239,7 +249,7 @@ function actualizarModalLogin(){
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {
               $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
-              
+
           };
        },
        error: function(data){
@@ -254,8 +264,6 @@ function logout(){
        type: 'GET',
        success: function(data){
         location.reload();
-        
-        
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
@@ -276,10 +284,6 @@ function logged(){
      });
 }
 
-
-
-
-
 function mostrarRegistro(){
   var cuerpoHTML = '<form class="form-horizontal"><fieldset><legend>Registro</legend><div class="form-group">  <label class="col-md-4 control-label" for="nombre">Nombre: </label>    <div class="col-md-4">  <input id="nombreTF"  placeholder="Tu nombre real" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="apellido">Apellidos: </label>  <div class="col-md-4"><input  id="apellidoTF" placeholder="Tus apellidos" class="form-control input-md" required="" type="text"></div></div><!-- Text input--><div class="form-group"><label class="col-md-4 control-label" for="dni">DNI: </label>  <div class="col-md-4"><input  id="dniTF" placeholder="Tu DNI" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="direccion">Dirección: </label>  <div class="col-md-4"><input  id="direccionTF" placeholder="Tu dirección" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="textinput">Teléfono: </label>  <div class="col-md-4"><input id="telefonoTF" name="textinput" placeholder="Tu teléfono" class="form-control input-md" required="" type="text"></div></div><div class="form-group"><label class="col-md-4 control-label" for="correo">Correo: </label>  <div class="col-md-4"><input  id="correoTF" placeholder="Tu correo" class="form-control input-md" required="" type="text"></div></div><div class="form-group"> <label class="col-md-4 control-label" for="contrasenya">Contraseña: </label><div class="col-md-4"><input id="contrasenyaTF" placeholder="Tu contraseña" class="form-control input-md" required="" type="password"></div></div></fieldset></form>';
 $('#cuerpoLogin').html(cuerpoHTML);
@@ -296,8 +300,6 @@ function cambiarLogin(){
   $('.login-modal-footer').html(htmlFooter);
   $('#registroBT').on('click',mostrarRegistro);
   $('#loginBT').on('click',login);
-
-
 }
 
 function registro(){
@@ -313,31 +315,31 @@ function registro(){
   violations = new Array();
   if (nombre == "") {
     valid = false;
-    
+
   };
   if (apellidos == "") {
     valid = false;
-    
+
   };
   if (dni == "") {
     valid = false;
-    
+
   };
   if (direccion == "") {
     valid = false;
-    
+
   };
   if (telefono == "") {
     valid = false;
-    
+
   };
   if (correo == "") {
     valid = false;
-    
+
   };
   if (contrasenya == "") {
     valid = false;
-  
+
   };
   if (dni != "" && !isDNI(dni)) {
     valid = false;
@@ -374,16 +376,16 @@ function registro(){
       };
       swal(violationString);
     }
-    
+
   }
 }
 
 function isDNI(dni) {
   var numero, let, letra;
   var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
- 
+
   dni = dni.toUpperCase();
- 
+
   if(expresion_regular_dni.test(dni) === true){
     numero = dni.substr(0,dni.length-1);
     numero = numero.replace('X', 0);
@@ -413,7 +415,7 @@ function validarEmail( email ) {
     }else{
       return true;
     }
-        
+
 }
 
    $(document).ready(function(){
@@ -441,6 +443,4 @@ function validarEmail( email ) {
      $('#verLoginBT').on('click',mostrarLogin);
      $('#registroBT').on('click',mostrarRegistro);
      logged();
-     
-     
   });

@@ -44,7 +44,9 @@
                 </button>
                 <a href="index.html" class="navbar-brand"><img id="logo" src="img/logo.png" alt="EcoRecipes"></a><!--EcoRecipes Admin-->
             </div>
-            <div id="cabeceraLogout" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> <a id="logoutBT" class="logout btn square-btn-adjust">Logout</a> </div>
+            <div id="cabeceraLogout" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+              <a id="logoutBT" class="logout btn square-btn-adjust">Logout</a>
+            </div>
           </nav>
            <!-- /. NAV TOP  -->
           <nav class="navbar-default navbar-side" role="navigation">
