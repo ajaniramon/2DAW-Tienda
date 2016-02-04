@@ -15,10 +15,10 @@
             domainName="ajanicorp" 
             applicationName="tienda"  
             privateKeyFile="../../id_rsa"
-            path="../2DAW-Tienda"
+            path="../tienda"
         /> 
         <delete includeemptydirs="true">
-            <fileset dir="2DAW-Tienda" includes="**/*"/>
+            <fileset dir="tienda" includes="**/*"/>
         </delete>
 
         <!--<gitpushapplication    
