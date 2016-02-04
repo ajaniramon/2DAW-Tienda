@@ -45,6 +45,7 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
   mysql_query($insertSql) or muere(mysql_error(),mysql_errno());
   echo "Insertada correctamente.";
   http_response_code(200);
+   mysql_close($link);
 
 }
 
@@ -63,6 +64,7 @@ function actualizar($categoria){
   	echo "Actualizado correctamente.";
   	http_response_code(200);
   }
+   mysql_close($link);
 }
 
 function muere($error,$codigo){

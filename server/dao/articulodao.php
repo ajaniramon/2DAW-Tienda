@@ -48,6 +48,7 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
   mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
   echo "Insertado correctamente.";
   http_response_code(200);
+   mysql_close($link);
  	
   
 }
@@ -69,7 +70,7 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
 
   	}
 
-
+ mysql_close($link);
 }
 
 function muere($error,$codigo){
