@@ -4,11 +4,11 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 $objeto = new StdClass();
 
 if ($metodo == 'GET') {
-	
+
 }else if($metodo == 'POST'){
 
 	$objeto = json_decode($_POST['cliente']);
-	
+
 	if (strcmp($objeto->accion,"d") == 0) {
 		borrar($objeto->idCliente);
 	}
@@ -20,7 +20,7 @@ if ($metodo == 'GET') {
 		actualizar($objeto);
 	}
 	if (strcmp($objeto->accion,"c") == 0) {
-		cambiarContrasenya($objeto);	
+		cambiarContrasenya($objeto);
 	}
 }
 
@@ -39,7 +39,7 @@ function borrar($idCliente){
   	http_response_code(200);
   }
 
-  
+
 
 }
 
@@ -48,7 +48,7 @@ function insertar($clienteObjeto){
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
-   mysql_query("SET NAMES utf8");
+  mysql_query("SET NAMES utf8");
 
   $SQL = "INSERT INTO cliente(idCliente,nombre,apellido,dni,direccion,telefono,correo,contrasenya,empleado) VALUES(null," . "'" . $clienteObjeto->nombre . "'," . "'" . $clienteObjeto->apellido . "'," . "'" . $clienteObjeto->dni . "'," ."'" . $clienteObjeto->direccion . "',"."'" . $clienteObjeto->telefono . "'," . "'" . $clienteObjeto->correo . "'," . "'" . md5($clienteObjeto->contrasenya) . "',".  "'". $clienteObjeto->empleado ."'"  .");";
  
@@ -68,8 +68,8 @@ function insertar($clienteObjeto){
   }
 
 
-  
-   
+
+
 
 
 function actualizar($cliente){

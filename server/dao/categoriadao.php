@@ -4,11 +4,11 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 $objeto = new StdClass();
 
 if ($metodo == 'GET') {
-	
+
 }else if($metodo == 'POST'){
 
 	$objeto = json_decode($_POST['categoria']);
-	
+
 	if (strcmp($objeto->accion,"d") == 0) {
 		borrar($objeto->idCategoria);
 	}
@@ -52,15 +52,12 @@ function insertar($categoria){
   }else if(mysql_num_rows($resultado) == 0){
   	$insertSql = "INSERT INTO categoria VALUES(null," . "'". $categoria->nombre. "'" . ");";
   	$resultado = mysql_query($insertSql) or die('Consulta fallida: ' . mysql_error());
-        echo "Categoria insertada con exito.";
+    echo "Categoria insertada con exito.";
   }else{
   	http_response_code(400);
   	echo "La categoría ya existe";
   }
 
-
-  
-   
 }
 
 function actualizar($categoria){

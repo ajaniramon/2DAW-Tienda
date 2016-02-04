@@ -30,12 +30,28 @@ function isDNI(dni) {
 function validarEmail( email ) {
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if ( !expr.test(email) ){
-        return false;
+      return false;
     }else{
       return true;
     }
 
 }
+
+function validarTelefono(telefono){
+  var expresion_regular_numero = /^([0-9]+){9}$/;
+  var expresion_regular_espacios = /\s/;
+
+  if (expresion_regular_numero.test(telefono)){
+    if (!expresion_regular_espacios.test(telefono)){
+      return true;
+    }else{
+      return false;
+    }
+  }else{
+    return false;
+  }
+}
+
 
 /* Clientes  */
 
@@ -121,6 +137,10 @@ function insertCliente(){
     valid = false;
     violations.push('email');
   };
+  if (telefono != "" && !validarTelefono(telefono)){
+    valid = false;
+    violations.push('telefono');
+  }
 
   if (valid) {
     var cliente = new Object();
@@ -342,10 +362,12 @@ function insertCategoria(){
        type: 'POST',
        data: {'categoria':categoriaJson},
        success: function(data){
-       swal("¡Olé!",data,"success");
-       $('#jqGridCategorias').trigger( 'reloadGrid' );
-       $('#modalCategoriaI').modal("hide");
-          },
+         swal("¡Olé!",data,"success");
+         $('#jqGridCategorias').trigger( 'reloadGrid' );
+         $('#nombreCategoriaTFI').val(null);
+
+         $('#modalCategoriaI').modal("hide");
+        },
        error: function(data){
           swal("¡Ups!",data.responseText,"error");
        }
@@ -443,6 +465,7 @@ function insertArticulo(){
  var stock = $('#stockArticuloTFI').val();
  var imagen = $('#imagenI').val();
  var categoria = document.getElementById('categoriaSLI').options[document.getElementById('categoriaSLI').selectedIndex].value;
+
   if (!valid) {swal("Rellena todos los campos.");}else{
 
     var articulo = new Object();
@@ -460,8 +483,15 @@ function insertArticulo(){
        type: 'POST',
        data: {'articulo':articuloJson},
        success: function(data){
-           swal("¡Olé!",data,"success");
+          swal("¡Olé!",data,"success");
           $('#jqGridArticulos').trigger('reloadGrid');
+
+          $('#nombreArticuloTFI').val(null);
+          $('#descripcionArticuloTFI').val(null);
+          $('#precioArticuloTFI').val(null);
+          $('#stockArticuloTFI').val(null);
+          $('#imagenI').val(null);
+
           $('#modalArticuloI').modal("hide");
 
           },

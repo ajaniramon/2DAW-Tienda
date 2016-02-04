@@ -111,7 +111,7 @@ jQuery("#a2Cli").click(function() {
      	var retJson = JSON.stringify(ret);
      	deleteCliente(retJson);
     } else {
-        swal("Por favor, selecciona una fila");
+      swal("Por favor, selecciona una fila");
     }
 });
 
@@ -138,7 +138,7 @@ jQuery("#a2Cli").click(function() {
 		$('#actualizarClienteBT').attr('idCliente',ret.idCliente);
 
     } else {
-        swal("Por favor, selecciona una fila");
+      swal("Por favor, selecciona una fila");
     }
 });
 
@@ -150,7 +150,6 @@ jQuery("#a4Cli").click(function() {
      	var retJson = JSON.stringify(ret);
      	$('#actualizarPassClienteBT').attr('idCliente',ret.idCliente);
      	abrirFormularioCambiarContrasenyaCliente();
-
     } else {
         swal("Por favor, selecciona una fila");
     }
@@ -215,8 +214,8 @@ jQuery("#a2Cat").click(function() {
 jQuery("#a3Cat").click(function() {
     var id = jQuery("#jqGridCategorias").jqGrid('getGridParam', 'selrow');
     if (id) {
-        var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
-        ret.accion = "d";
+      var ret = jQuery("#jqGridCategorias").jqGrid('getRowData', id);
+      ret.accion = "d";
      	var retJson = JSON.stringify(ret);
      	$('#nombreCategoriaTFU').val(ret.nombre);
      	$('#actualizarCategoriaBT').html("Actualizar");
@@ -224,7 +223,7 @@ jQuery("#a3Cat").click(function() {
 
      	abrirFormularioUpdateCategoria();
     } else {
-        swal("Por favor, selecciona una fila");
+      swal("Por favor, selecciona una fila");
     }
 });
 
