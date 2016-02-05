@@ -322,6 +322,7 @@ $('#a3Art').show();
      	$('#stockArticuloTFU').val(ret.stock);
 
      	var categoria = document.createElement("option");
+     	$("#categoriaSLU").empty();
      	categoria.text = ret.categoria;
      	categoria.value = ret.categoria;
      	document.getElementById("categoriaSLU").add(categoria,null);
