@@ -3,7 +3,7 @@ function logout(){
        url: './server/logout.php',
        type: 'GET',
        success: function(data){
-        location.href = "/tienda";
+        location.href = "/";
 },
        error: function(data){
           console.log("Ha fallado la petición HTTP. "+data.responseText);
