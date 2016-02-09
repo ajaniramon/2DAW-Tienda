@@ -1,20 +1,22 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
-  session_start();
-  $cliente = $_POST['cliente'];
-  $clienteObjeto = new stdClass();
-  $clienteObjeto = json_decode($cliente);
+session_start();
+$cliente = $_POST['cliente'];
+$clienteObjeto = new stdClass();
+$clienteObjeto = json_decode($cliente);
 
-  header("Content-Type: text/html; charset=utf-8");
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
-   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
+header("Content-Type: text/html; charset=utf-8");
 
-  mysql_query("SET NAMES utf8");
+include("connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
-  $SQL = "INSERT INTO cliente(idCliente,nombre,apellido,dni,direccion,telefono,correo,contrasenya,empleado) VALUES(null," . "'" . $clienteObjeto->nombre . "'," . "'" . $clienteObjeto->apellido . "'," . "'" . $clienteObjeto->dni . "'," ."'" . $clienteObjeto->direccion . "',"."'" . $clienteObjeto->telefono . "'," . "'" . $clienteObjeto->correo . "'," . "'" . md5($clienteObjeto->contrasenya) . "','false');";
+mysql_query("SET NAMES utf8");
 
-  mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
+$SQL = "INSERT INTO cliente(idCliente,nombre,apellido,dni,direccion,telefono,correo,contrasenya,empleado) VALUES(null," . "'" . $clienteObjeto->nombre . "'," . "'" . $clienteObjeto->apellido . "'," . "'" . $clienteObjeto->dni . "'," ."'" . $clienteObjeto->direccion . "',"."'" . $clienteObjeto->telefono . "'," . "'" . $clienteObjeto->correo . "'," . "'" . md5($clienteObjeto->contrasenya) . "','false');";
 
-  echo "¡OK! Ahora puedes iniciar sesión. ";
+mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
+
+echo "¡OK! Ahora puedes iniciar sesión. ";
 
 ?>

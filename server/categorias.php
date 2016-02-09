@@ -4,7 +4,8 @@ session_start();
 
 header("Content-Type: text/html;charset=utf-8");
 
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+include("connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password']) or die('No se pudo conectar' . mysql_error());
 
 mysql_query("SET NAMES 'utf8'");
 
