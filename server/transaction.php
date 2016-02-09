@@ -8,11 +8,11 @@ $ccc_client =  $ccc;
 $importe = $obj_carrito->total;
 
 $transaction = new stdClass();
-$transaction->cuentaOrigen => $ccc_client;
-$transaction->cuentaDestino => $ccc_shop;
-$transaction->importe => $importe;
-$transaction->concepto => $concepto;
-$transaction->pin => $pin;
+$transaction->cuentaOrigen = $ccc_client;
+$transaction->cuentaDestino = $ccc_shop;
+$transaction->importe = $importe;
+$transaction->concepto = $concepto;
+$transaction->pin = $pin;
 
 $data = json_encode($transaction);
 
