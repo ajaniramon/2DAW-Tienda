@@ -64,7 +64,7 @@ function validarPrecio(precio){
 }
 
 function validarStock(stock){
-  var expresion_regular_stock = /^\+?(0|[1-9]\d*)$/;
+  var expresion_regular_stock = /^(\+?(0|[1-9]\d*))|(-0)$/;
 
   if (expresion_regular_stock.test(stock)){
     return true;
