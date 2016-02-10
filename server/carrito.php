@@ -22,7 +22,7 @@ mysql_query("SET NAMES utf8");
 mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
 // Cuando haya un sistema de usuarios funcional, hay que pasar el DNI del usuario en el carrito para ponerle el pedido a su nombre.
-$SQL = 'INSERT INTO pedido(fecha,total,dni,ccc) VALUES ("' . $fecha_pedido . '",' . $obj_carrito->total . ',"' . $_SESSION['dni'] . '","' . $ccc . '");';
+$SQL = 'INSERT INTO pedido(fecha,total,dni) VALUES ("' . $fecha_pedido . '",' . $obj_carrito->total . ',"' . $_SESSION['dni'] . '");';
 
 mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
 

@@ -88,7 +88,6 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `fecha` datetime DEFAULT NULL,
   `total` double(7,2) NOT NULL,
   `dni` varchar(9) NOT NULL,
-  `ccc` varchar(20) NOT NULL,
   INDEX `fk_dni` (`dni`),
   CONSTRAINT `fk_dni` FOREIGN KEY (`dni`) REFERENCES `cliente`(`dni`),
   PRIMARY KEY (`idPedido`)

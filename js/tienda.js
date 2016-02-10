@@ -170,32 +170,46 @@ function procesarCarrito() {
                 allowOutsideClick: true
             });
         } else {
-            var ccc = "";
-            while(ccc === null || typeof ccc === typeof undefined || ccc.length != 20 || isNaN(ccc)) {
-                ccc = prompt("Introduzca un Código de Cuenta Corriente").replace(/\s/g, "");
-            }
+            swal({
+                title: "Añade un título, vago!" ,
+                text: "Introduzca su Código de Cuenta Corriente",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                inputPlaceholder: "Código de Cuenta Corriente"
+            },
+            function(inputValue) {
+                if (inputValue === false) return false;
 
-            carrito.ccc = ccc;
+                var ccc = inputValue.replace(/\s/g, "");
+                if(ccc === null || typeof ccc === typeof undefined || ccc.length != 20 || isNaN(ccc)) {
+                    swal.showInputError("Formato inválido");
+                    return false;
+                } else {
+                    carrito.ccc = ccc;
+                    $.ajax({
+                        url: './server/carrito.php',
+                        type: 'POST',
+                        data: { 'carrito': JSON.stringify(carrito) },
+                        success: function (data) {
+                            swal({
+                                title: "Compra realizada satisfactoriamente!",
+                                text: "Gracias por confiar en EcoRecipes",
+                                type: "success",
+                                timer: 2500,
+                                showConfirmButton: false,
+                                allowOutsideClick: true
+                            });
+                            carrito = new Carrito(1);
 
-            $.ajax({
-                url: './server/carrito.php',
-                type: 'POST',
-                data: {'carrito': JSON.stringify(carrito)},
-                success: function (data) {
-                    swal({
-                        title: "Compra realizada satisfactoriamente!",
-                        text: "",
-                        type: "success",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        allowOutsideClick: true
+                        }, error: function (data) {
+                            console.log(data.responseText);
+                        }
                     });
-                    carrito = new Carrito(1);
-
-                }, error: function (data) {
-                    $("body").html(data.responseText);
                 }
             });
+            
         }
     }
 
