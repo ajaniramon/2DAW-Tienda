@@ -2,7 +2,7 @@
 
 $url = "http://ecobanco-juankza.rhcloud.com/api/transaccion";
 $ccc_shop = "";
-$pin = "";
+$pin_shop = "";
 $concepto = "EcoRecipes - Pago de compra";
 $ccc_client =  $ccc;
 $importe = $obj_carrito->total;
@@ -12,7 +12,7 @@ $transaction->cuentaOrigen = $ccc_client;
 $transaction->cuentaDestino = $ccc_shop;
 $transaction->importe = $importe;
 $transaction->concepto = $concepto;
-$transaction->pin = $pin;
+$transaction->pin = $pin_shop;
 
 $data = json_encode($transaction);
 
