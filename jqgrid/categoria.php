@@ -6,7 +6,7 @@ $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
 $sord = $_GET['sord']; // get the direction
 if(!$sidx) $sidx =1;
 // connect to the database
-$db = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")
+$db = mysql_connect("localhost", "root", "root")
 or die("Connection Error: " . mysql_error());
 
 mysql_select_db("shop") or die("Error conecting to db.");
@@ -32,6 +32,6 @@ while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
     $responce->rows[$i]['id']=$row['idCategoria'];
     $responce->rows[$i]['cell']=array($row['idCategoria'],$row['nombre']);
     $i++;
-}        
+}
 echo json_encode($responce);
 ?>

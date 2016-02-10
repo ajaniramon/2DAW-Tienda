@@ -126,6 +126,10 @@ a.drill:hover{
 
 /* ./CARRITO */
 
+#contenedor{
+  min-height: 500px;/*Respetar altura de la pantalla de perfil*/
+}
+
 .centrado{
   margin: 0px auto;
   text-align: center;
@@ -155,11 +159,11 @@ a.drill:hover{
     text-decoration: none;
 }
 
-#categorias{
+#categorias, #categoriasPerfil{
   font-weight: bold;
 }
 
-#categorias a:hover{
+#categorias a:hover, #categoriasPerfil a:hover{
   background-color: #46B546;
   color: white;
 }
@@ -169,6 +173,12 @@ a.drill:hover{
   border-radius: 5px;
   padding-bottom: 5px;
   display: none; /*Para que el fade in funcione (animación de aparecer)*/
+}
+
+.informacionPerfil{
+  background-color: white;
+  border-radius: 5px;
+  padding-bottom: 5px;
 }
 
 #productos h3{

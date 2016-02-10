@@ -238,6 +238,8 @@ function login(){
     }
 }
 
+/*   ------ AQUI ------ */
+/*------------------------*/
 function actualizarModalLogin(){
   $.ajax({
        url: './server/session.php',
@@ -245,7 +247,12 @@ function actualizarModalLogin(){
        success: function(data){
           sesion = JSON.parse(data);
           $('.login-modal').html("<div class='alert alert-info'> Has iniciado sesión como "+"<strong>"+sesion.email+"</strong>" + "</div>");
-          $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
+          $('.login-modal-footer').html("<button type='button' data-dismiss='modal' class='btn btn-info' id='perfilBT'>Cuenta</button> <button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
+
+          /*PERFIL*/
+          $('#perfilBT').on('click',pantallaPerfil);
+          /* ./PERFIL */
+
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {
               $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
@@ -257,6 +264,35 @@ function actualizarModalLogin(){
        }
      });
 }
+
+function pantallaPerfil(){
+
+  $('#contenedor').html("<div class='row'><div class='col-md-12'></div><div class='col-md-3' id='categoriasPerfil'></div><div id='informacionPerfil' class='col-md-9 informacionPerfil'></div></div>");
+  $('<a id="informacionCuenta" class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Información general <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasPerfil');
+  $('<a class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Facturas <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasPerfil');
+
+  mostrarInformacion();
+  /*
+  $.ajax({
+    url: './server/session.php',
+    type: 'GET',
+    success: function(data){
+      sesion = JSON.parse(data);
+      $('#contenedor').html("");
+
+    }, error: function(data){
+      console.log("Ha fallado la petición HTTP. "+data.responseText);
+    }
+  })*/
+}
+
+function mostrarInformacion(){
+  var informacionHTML = "";
+  informacionHTML += "<h3>Informacion de Cuenta</h3><p class='col-md-4'>Nombre: </p><div class='col-md-4'> <input class='form-control input-md' required='' type='text' disabled></div>";
+
+  $('#informacionPerfil').html(informacionHTML);
+}
+
 
 function logout(){
   $.ajax({
@@ -451,7 +487,7 @@ function validarEmail( email ) {
 
      $('.comprar').on("click", procesarCarrito);
 
-     $('#categorias').on("click",'.list-group-item',mostrarArticulos);
+     $('#categorias').on("click",'.categoria',mostrarArticulos);
 
      $('#productos').html(null); //mostrar productos top.
 

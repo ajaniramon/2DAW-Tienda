@@ -4,11 +4,11 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 $objeto = new StdClass();
 
 if ($metodo == 'GET') {
-	
+
 }else if($metodo == 'POST'){
 
 	$objeto = json_decode($_POST['articulo']);
-	
+
 	if (strcmp($objeto->accion,"d") == 0) {
 		borrar($objeto->idArticulo);
 	}
@@ -22,9 +22,9 @@ if ($metodo == 'GET') {
 }
 
 function borrar($idArticulo){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+$link = mysql_connect("localhost", "root", "root")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
-  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos"); 
+  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
   $SQL = "DELETE FROM articulo WHERE idArticulo = " . $idArticulo . ";";
 
   $success =  mysql_query($SQL,$link);
@@ -40,24 +40,24 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
 }
 
 function insertar($articulo){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+$link = mysql_connect("localhost", "root", "root")  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
-  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos"); 
+  mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
   $SQL = "INSERT INTO articulo VALUES(null,'" . $articulo->nombre . "','" . $articulo->descripcion . "'," . $articulo->precio . ",'articulos/" . $articulo->imagen . "'," . $articulo->stock ."," . $articulo->categoria . ");";
   mysql_query($SQL,$link) or muere(mysql_error(),mysql_errno());
   echo "Insertado correctamente.";
   http_response_code(200);
    mysql_close($link);
- 	
-  
+
+
 }
 
 function actualizar($articulo){
 	//echo "Actualizando articulo " . json_encode($articulo) . "php";
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+$link = mysql_connect("localhost", "root", "root")  or die('No se pudo conectar' . mysql_error());
   	mysql_query("SET NAMES utf8");
-  	mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos"); 
+  	mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
   	$SQL = "UPDATE articulo SET nombre = " . "'" . $articulo->nombre . "', descripcion ='" . $articulo->descripcion . "', precio=" . $articulo->precio . ", imagen='" . $articulo->imagen . "', stock=" . $articulo->stock . " WHERE idArticulo = " . $articulo->idArticulo . ";";
   	$resultado = mysql_query($SQL,$link);
