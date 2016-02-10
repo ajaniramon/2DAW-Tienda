@@ -267,11 +267,11 @@ function actualizarModalLogin(){
 
 function pantallaPerfil(){
 
-  $('#contenedor').html("<div class='row'><div class='col-md-12'></div><div class='col-md-3' id='categoriasPerfil'></div><div id='informacionPerfil' class='col-md-9 informacionPerfil'></div></div>");
-  $('<a id="informacionCuenta" class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Información general <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasPerfil');
-  $('<a class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Facturas <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasPerfil');
+  $('#contenedor').html("<div class='row'><div class='col-md-3' id='categoriasCuenta'></div><div id='informacionCuenta' class='col-md-9'></div></div>");
+  $('<a class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Información general <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasCuenta');
+  $('<a class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Facturas <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasCuenta');
 
-  mostrarInformacion();
+  mostrarInformacionCuenta();
   /*
   $.ajax({
     url: './server/session.php',
@@ -286,11 +286,17 @@ function pantallaPerfil(){
   })*/
 }
 
-function mostrarInformacion(){
+function mostrarInformacionCuenta(){
   var informacionHTML = "";
-  informacionHTML += "<h3>Informacion de Cuenta</h3><p class='col-md-4'>Nombre: </p><div class='col-md-4'> <input class='form-control input-md' required='' type='text' disabled></div>";
+  informacionHTML += "<h3><strong>Información de la Cuenta</strong></h3>";
+  informacionHTML += "<div class='row datosCuenta'>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>Nombre: </p><div class='col-md-5'> <input class='form-control input-md' type='text' value="+sesion.nombre+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>Apellidos: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.apellido+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>DNI: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.dni+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>E-mail: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.email+" disabled></div></div>";
+  informacionHTML += "</div><div class='row'><div class='col-md-12 centrado'><button class='btn btn-success'>Modificar Datos</button></div></div>";
 
-  $('#informacionPerfil').html(informacionHTML);
+  $('#informacionCuenta').html(informacionHTML);
 }
 
 
