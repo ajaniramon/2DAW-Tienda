@@ -109,7 +109,7 @@ function(){
 
 function abrirFormularioInsertCliente(){
   $('#modalClienteI').modal("show");
-  $('#insertarClienteBT').on('click',insertCliente);
+
 }
 
 function insertCliente(){
@@ -215,7 +215,7 @@ function insertCliente(){
 
 function abrirFormularioUpdateCliente(){
 $('#modalClienteU').modal("show");
-$('#actualizarClienteBT').on("click",updateCliente);
+
 }
 
 function updateCliente(){
@@ -305,7 +305,7 @@ function updateCliente(){
 
 function abrirFormularioCambiarContrasenyaCliente(){
 $('#modalClienteC').modal("show");
-$('#actualizarPassClienteBT').on("click",cambiarContrasenyaCliente);
+
 }
 
 function cambiarContrasenyaCliente(){
@@ -367,7 +367,7 @@ function(){
 }
 function abrirFormularioInsertCategoria(){
   $('#modalCategoriaI').modal("show");
-  $('#insertarCategoriaBT').on('click',insertCategoria);
+  
 }
 function insertCategoria(){
 
@@ -401,7 +401,7 @@ function insertCategoria(){
 
 function abrirFormularioUpdateCategoria(){
   $('#modalCategoriaU').modal("show");
-  $('#actualizarCategoriaBT').on('click',updateCategoria);
+
 }
 
 function updateCategoria(){
@@ -459,7 +459,8 @@ function(){
 
 
 function abrirFormularioInsertArticulo(){
-  if (!document.getElementById("categoriaSLI").options.length > 0) {
+	$("#categoriaSLI").empty();
+
       $.ajax({
        url: './server/categorias.php',
        dataType: 'json',
@@ -469,10 +470,10 @@ function abrirFormularioInsertArticulo(){
          });
        }
      });
-  };
+ 
 
   $('#modalArticuloI').modal("show");
-  $('#insertarArticuloBT').on('click',insertArticulo);
+  
 }
 
 function insertArticulo(){
@@ -550,7 +551,7 @@ function insertArticulo(){
 
 function abrirFormularioUpdateArticulo(){
   $('#modalArticuloU').modal('show');
-  $('#actualizarArticuloBT').on('click',updateArticulo);
+  
 }
 
 function updateArticulo(){
@@ -591,3 +592,13 @@ function updateArticulo(){
  }
 
 }
+
+$(document).ready(function() {
+$('#insertarArticuloBT').on('click',insertArticulo);
+$('#insertarCategoriaBT').on('click',insertCategoria);
+  $('#insertarClienteBT').on('click',insertCliente);
+$('#actualizarClienteBT').on("click",updateCliente);
+  $('#actualizarArticuloBT').on('click',updateArticulo);
+    $('#actualizarCategoriaBT').on('click',updateCategoria);
+    $('#actualizarPassClienteBT').on("click",cambiarContrasenyaCliente);
+});

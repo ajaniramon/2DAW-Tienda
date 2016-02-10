@@ -101,7 +101,7 @@ function mostrarClientes(){
     sortorder: "desc",
     caption: "Clientes"
 });
-$('#a1Cli').on("click",abrirFormularioInsertCliente);
+
 
 jQuery("#a2Cli").click(function() {
     var id = jQuery("#jqGridClientes").jqGrid('getGridParam', 'selrow');
@@ -297,7 +297,7 @@ $('#a3Art').show();
     caption: "Articulos",
     
 });
-	$('#a1Art').on('click',abrirFormularioInsertArticulo);
+
 	jQuery("#a2Art").click(function() {
     var id = jQuery("#jqGridArticulos").jqGrid('getGridParam', 'selrow');
     if (id) {
@@ -322,6 +322,7 @@ $('#a3Art').show();
      	$('#stockArticuloTFU').val(ret.stock);
 
      	var categoria = document.createElement("option");
+     	$("#categoriaSLU").empty();
      	categoria.text = ret.categoria;
      	categoria.value = ret.categoria;
      	document.getElementById("categoriaSLU").add(categoria,null);
@@ -427,15 +428,16 @@ $(document).ready(function(){
 	$('#a2Cli').hide();
 	$('#a3Cli').hide();
 	$('#a4Cli').hide();
-    $('#hCli').hide();
-    $('#hArt').hide();
-    $('#hPed').hide();
-    $('#hCat').hide();
+  $('#hCli').hide();
+  $('#hArt').hide();
+  $('#hPed').hide();
+  $('#hCat').hide();
 	$('#logoutBT').on('click',logout);
 	$('#articulosBT').on('click',mostrarArticulos);
 	$('#categoriasBT').on('click',mostrarCategorias);
 	$('#clientesBT').on('click',mostrarClientes);
-    $('#pedidosBT').on('click',mostrarPedidos);
-
+  $('#pedidosBT').on('click',mostrarPedidos);
+  $('#a1Cli').on("click",abrirFormularioInsertCliente);
+  $('#a1Art').on('click',abrirFormularioInsertArticulo);
 	saludar();
   });

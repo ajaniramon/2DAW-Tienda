@@ -74,10 +74,14 @@ CREATE TABLE `cliente` (
 );
 
 
-INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`,`empleado`) VALUES
-(1, 'asd', 'aaaaaaa', '12345678a', 'CALLE FALSTA', 961323666, 'admin@domain.com', 'admin','true'),
-(2, 'bsd', 'bbbbbb', '22222222b', 'CALLE FALSTA', 852369852, 'b@a.es', 'asdfdfksdfnkl','false'),
-(3, 'csd', 'ccccc', '52365874f', 'CALLE FALSTA', 145236987, 'cliente@domain.es', 'cliente','false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'asd', 'asd', '88159546V', 'asd', 0, 'asd@domain.com', '7815696ecbf1c96e6894b779456d330e', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'Francisco', 'de Pádua', '52671236V', 'Calle me da igual', 600303356, 'cliente@domain.com', '4983a0ab83ed86e0e7213c8783940193', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'Juan María', 'Luque', '98615907A', 'Calle Barón de Cárcer 13-11', 666807393, 'juanma@domain.com', '65a368f66ad6b9ee45263577713d8a95', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'Marshall', 'Slim Shady', '55456242E', 'Detroit D12', 0, 'emi@domain.com', '26b637ed41273425be243e8d42e5b461', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'pepe', 'de sanchez', '03017416T', 'agh', 0, 'pepe@domain.es', '926e27eecdbc7a18858b3798ba99bddd', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'Ramón', 'Martínez Tarín', '48689633J', 'Calle Azorín 15-1', 625275130, 'ra1996@gmail.com', '938158c8de29463e27216fc7aa2abfca', 'true');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'slim', 'shady', '44115531J', 'lol', 625275130, 'slim@domain.com', '7815696ecbf1c96e6894b779456d330e', 'false');
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `correo`, `contrasenya`, `empleado`) VALUES (null, 'testr', 'test', '22549402H', 'test', 4444, 'test@domain.com', '098f6bcd4621d373cade4e832627b4f6', 'false');
 
 CREATE TABLE IF NOT EXISTS `pedido` (
   `idPedido` int(4) NOT NULL AUTO_INCREMENT,
