@@ -275,18 +275,7 @@ function pantallaPerfil(){
   $('#facturasCuenta').on('click',mostrarFacturas);
 
   mostrarInformacionCuenta();
-  /*
-  $.ajax({
-    url: './server/session.php',
-    type: 'GET',
-    success: function(data){
-      sesion = JSON.parse(data);
-      $('#contenedor').html("");
 
-    }, error: function(data){
-      console.log("Ha fallado la petición HTTP. "+data.responseText);
-    }
-  })*/
 }
 
 function mostrarInformacionCuenta(){
@@ -305,28 +294,46 @@ function mostrarInformacionCuenta(){
 function mostrarFacturas(){
   var facturasHTML = "";
   facturasHTML += "<h3><strong>Facturas de los Pedidos</strong></h3>";
-  facturasHTML += "<div class='row datosFactura'></div>";
+  facturasHTML += "<div id='datosFactura' class='row'></div>";
   $('#contenedorCuenta').html(facturasHTML);
 
   var dni = sesion.dni;
   var numeroFactura=1;
   $.ajax({
     url: './server/pedidos.php',
-    type: 'POST',
+    type: 'GET',
     data: {dni},
     success: function(data){
-      $.each(data, function(){
+      var objetoJson = JSON.parse(data);
+      $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'><strong>Numero de pedido</strong></p><p class='col-md-3 centrado'><strong>Fecha de pedido</strong></p><p class='col-md-3 centrado'><strong>Total</strong></p></div>").appendTo('#datosFactura');
+      $.each(objetoJson, function(){
         var fecha = this.fecha;
         var total = this.total + "€";
-        $("<div class='col-md-12'><p>"+numeroFactura+"</p><p>"+fecha+"</p><p>"+total+"</p></div>").appendTo('#datosFactura');
+        var idPedido = this.idPedido;
+        $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'>"+numeroFactura+"</p><p class='col-md-3 centrado'>"+fecha+"</p><p class='col-md-3 centrado'>"+total+"</p><p class='col-md-3'><img idpedido="+idPedido+" class='pdfImg' src='./img/pdf-icon.png' alt='Ver en pdf'></p></div>").appendTo('#datosFactura');
         numeroFactura++;
       });
+
+      $('.pdfImg').on('click',pedirPdf);
     },
     error: function(data){
       console.log("Ha fallado la petición HTTP. "+data.responseText);
     }
   });
+}
 
+function pedirPdf(){
+  var id = $(this).attr('idpedido');
+  $.ajax({
+    url: './server/factura.php',
+    type: 'GET',
+    data: {id},
+    success: function(data){
+      alert(data);/*<----------===== PREGUNTAR A SALVA*/
+    },error: function(data){
+      console.log("Ha fallado la petición HTTP. "+data.responseText);
+    }
+  });
 
 }
 

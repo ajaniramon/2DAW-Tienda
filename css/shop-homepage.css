@@ -192,6 +192,13 @@ a.drill:hover{
   padding: 20px 40px;
 }
 
+.datosFactura{
+  margin-bottom: 10px;
+}
+
+.pdfImg{
+  cursor: pointer;
+}
 /*----------------*/
 
 .flechas_derecha {
