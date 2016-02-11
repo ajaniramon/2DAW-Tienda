@@ -74,9 +74,9 @@ $link = mysql_connect("localhost", "root", "root")  or die('No se pudo conectar'
 }
 
 function muere($error,$codigo){
-echo "Consulta fallida: " .$error;
-http_response_code(400);
-exit();
+	echo "Consulta fallida: " .$error;
+	http_response_code(400);
+	exit();
 }
 
 ?>

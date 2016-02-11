@@ -175,13 +175,13 @@ a.drill:hover{
   display: none; /*Para que el fade in funcione (animación de aparecer)*/
 }
 
-#informacionCuenta{
+#contenedorCuenta{
   background-color: white;
   border-radius: 5px;
   padding-bottom: 5px;
 }
 
-#productos h3, #informacionCuenta h3{
+#productos h3, #contenedorCuenta h3{
   border-bottom: 1px solid grey;
   padding: 8px 0px 5px 15px;
 }
