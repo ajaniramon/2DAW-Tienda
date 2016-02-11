@@ -16,7 +16,7 @@ $ccc = $obj_carrito->ccc;
 require("transaction.php");
 
 include("connection.php");
-$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+$link = mysql_connect("localhost", $connection['user'], $connection['password']) or die('No se pudo conectar' . mysql_error());
 
 mysql_query("SET NAMES utf8");
 mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");

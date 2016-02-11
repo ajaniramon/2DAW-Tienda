@@ -62,7 +62,7 @@ function mostrarCarrito() {
 
 
         //<div class='container'><div class='row'><div class='col-sm-12 col-md-10 col-md-offset-1'></div></div></div><div class='media-body'></div>
-        carritoHTML += "<tr><td class='col-sm-8 col-md-6'><div class='media'><a class='thumbnail pull-left miniatura'><img class='media-object' src='./img/" + this.imagen + "' ></a>";
+        carritoHTML += "<tr><td class='col-sm-8 col-md-6'><div class='media'><a class='thumbnail pull-left miniatura'><img id='imgC" + this.id + "' class='media-object imgc' src='./img/" + this.imagen + "' ></a>";
         carritoHTML += "<div><h4 class='media-heading'>" + "<a class='drill' id='" + idDrillDown + "'>" + this.nombre + "</h4>" + "</a>" + "</div></div><div class='" + idDrillDownDiv + "'><p id='" + idDrillDown + "P" + "'>" + this.descripcion + "</p></div></td>";
         carritoHTML += "<td><button class='btn btn-danger botonBorrarCarrito' idarticulo=" + this.id + "> - </button>&nbsp;<input readonly class='text-center' type='text' size='3' value='" + this.cantidad + "'>&nbsp;<button class='btn btn-info botonAgregarCarrito' idarticulo=" + this.id + "> + </button></td>";
         carritoHTML += "<td class='text-center'>" + this.precio + "€</td>";
@@ -75,7 +75,7 @@ function mostrarCarrito() {
         total += carrito.articulos[i].precio * carrito.articulos[i].cantidad;
     }
     //carritoHTML += "<strong><p>" + "Total: " + total + "€</p></strong>";
-    carritoHTML += "<tr><td></td><td></td><td><h4>Total:</h4></td><td class='text-center'><h4><strong>" + total + "€</strong></h4></td><td></td></tr>";
+    carritoHTML += "<tr><td><span id='papeleraCarrito' class='glyphicon glyphicon-trash pull-right' aria-hidden='true' style='font-size: 30px;'></span></td><td></td><td><h4>Total:</h4></td><td class='text-center'><h4><strong>" + total + "€</strong></h4></td><td></td></tr>";
     carritoHTML += "</tbody></table>";
 
     $('#modalCarrito').modal('show');
@@ -85,6 +85,36 @@ function mostrarCarrito() {
     $('.botonBorrarArticuloCarrito').on('click', borrarArticuloCarrito);
     $('.drillDown').hide();
     $('.drill').on("click", mostrarDescripcion);
+
+    $(function() {
+        $('#papeleraCarrito').hide();
+        $($('#papeleraCarrito').parent()).droppable({
+            hoverClass : "hover" ,
+            drop : function(event, ui) {
+                var idArticulo = $($(ui.draggable)[0].innerHTML).attr("id").slice(4);
+                for(var i = 0; i < carrito.articulos.length; i++) {
+                    if(carrito.articulos[i].id === idArticulo) {
+                        carrito.articulos.splice(i, 1);
+                    }
+                }
+                mostrarCarrito();
+            }
+        });
+
+        var imgsCarrito = $('.imgc');
+        for(var i = 0; i < imgsCarrito.length; i++) {
+            $($(imgsCarrito[i]).parent()).draggable({
+                helper : "clone" ,
+                revert : true ,
+                start : function() {
+                    $('#papeleraCarrito').show();
+                },
+                stop : function() {
+                    $('#papeleraCarrito').hide();
+                }
+            });
+        }
+    });
 
 }
 
@@ -130,7 +160,6 @@ function sumarFromCarrito() {
     }
     mostrarCarrito();
 }
-
 
 function toCarrito() {
     var articulo;
