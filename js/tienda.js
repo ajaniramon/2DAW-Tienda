@@ -329,7 +329,7 @@ function pedirPdf(){
     type: 'GET',
     data: {id},
     success: function(data){
-      alert(data);/*<----------===== PREGUNTAR A SALVA*/
+      alert(data);/*<----------===== PREGUNTAR A SALVA
     },error: function(data){
       console.log("Ha fallado la petición HTTP. "+data.responseText);
     }
