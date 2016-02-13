@@ -13,7 +13,7 @@ mysql_select_db('shop') or die('No se pudo seleccionar la base de datos');
 
 $id = $_GET['id'];
 
-$SQL = "SELECT d.idPedido ,d.idArticulo ,a.nombre , d.unidad  ,d.precioTotal  FROM linea_pedido d ,articulo a WHERE  d.idPedido=".$id." and d.idArticulo=a.idArticulo";
+$SQL = "SELECT d.idPedido ,d.idArticulo ,a.nombre , d.unidad  ,d.precioTotal  FROM linea_pedido d ,articulo a WHERE  d.idPedido=".$id." and d.idArticulo=a.idArticulo;";
 $result = mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
 $i=0;
 
