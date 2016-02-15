@@ -329,7 +329,8 @@ function pedirPdf(){
     type: 'GET',
     data: {id},
     success: function(data){
-      alert(data);/*<----------===== PREGUNTAR A SALVA
+      console.log("El PDF se esta generando.");
+      /*alert(data);*/
     },error: function(data){
       console.log("Ha fallado la petición HTTP. "+data.responseText);
     }
