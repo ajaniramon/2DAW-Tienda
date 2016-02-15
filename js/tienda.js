@@ -238,8 +238,6 @@ function login(){
     }
 }
 
-/*   ------ AQUI ------ */
-/*------------------------*/
 function actualizarModalLogin(){
   $.ajax({
        url: './server/session.php',
@@ -249,10 +247,8 @@ function actualizarModalLogin(){
           $('.login-modal').html("<div class='alert alert-info'> Has iniciado sesión como "+"<strong>"+sesion.email+"</strong>" + "</div>");
           $('.login-modal-footer').html("<button type='button' data-dismiss='modal' class='btn btn-info' id='perfilBT'>Mi Perfil</button> <button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
 
-          /*PERFIL*/
-          $('#perfilBT').on('click',pantallaPerfil);
-          /* ./PERFIL */
 
+          $('#perfilBT').on('click',pantallaPerfil);
           $('#logoutBT').on('click',logout);
           if (sesion.empleado == "true") {
               $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
@@ -305,7 +301,7 @@ function mostrarFacturas(){
     data: {dni},
     success: function(data){
       var objetoJson = JSON.parse(data);
-      $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'><strong>Numero de pedido</strong></p><p class='col-md-3 centrado'><strong>Fecha de pedido</strong></p><p class='col-md-3 centrado'><strong>Total</strong></p></div>").appendTo('#datosFactura');
+      $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'><strong>Numero de pedido</strong></p><p class='col-md-3 centrado'><strong>Fecha de pedido</strong></p><p class='col-md-3 centrado'><strong>Total</strong></p><p class='col-md-3'><strong>Descargar</strong></p></div>").appendTo('#datosFactura');
       $.each(objetoJson, function(){
         var fecha = this.fecha;
         var total = this.total + "€";
@@ -321,7 +317,8 @@ function mostrarFacturas(){
     }
   });
 }
-
+/*   ------ AQUI ------ */
+/*------------------------*/
 function pedirPdf(){
   var id = $(this).attr('idpedido');
   $.ajax({
@@ -329,8 +326,14 @@ function pedirPdf(){
     type: 'GET',
     data: {id},
     success: function(data){
-      console.log("El PDF se esta generando.");
-      /*alert(data);*/
+      swal({
+        title: "¡PDF descargado con exito!",
+        text: "",
+        type: "success",
+        timer: 2000,
+        showConfirmButton: false,
+        allowOutsideClick: true
+      });
     },error: function(data){
       console.log("Ha fallado la petición HTTP. "+data.responseText);
     }
