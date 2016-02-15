@@ -1,8 +1,8 @@
 <?php
 
-$url = "http://ecobanco-juankza.rhcloud.com/api/transaccion";
-$ccc_shop = "";
-$pin_shop = "";
+$url = "http://ecobanco-vicentedaw2.rhcloud.com/api/transaccion";
+$ccc_shop = "10499400880563987412";
+$pin_shop = "0846";
 $concepto = "EcoRecipes - Pago de compra";
 $ccc_client =  $ccc;
 $importe = $obj_carrito->total;
