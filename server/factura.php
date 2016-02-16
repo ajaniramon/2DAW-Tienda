@@ -77,6 +77,6 @@ $pdf = new PDF();
 $pdf->AddPage();
 $header = array('Articulos', 'Unidades', 'Precio Unidades', 'Total Articulo');
 $pdf->BasicTable($header);
-$pdf->Output('F','./pdf/factura-'.$_GET['id'].'.pdf');
+$pdf->Output('F','./pdf/pedidoNo-'.$_GET['id'].'.pdf');
 
 ?>
