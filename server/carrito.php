@@ -12,9 +12,6 @@ echo $fecha_pedido;
 /*meter el carrito a la bd*/
 header("Content-Type: text/html; charset=utf-8");
 
-$ccc = $obj_carrito->ccc;
-require("transaction.php");
-
 include("connection.php");
 $link = mysql_connect("localhost", $connection['user'], $connection['password']) or die('No se pudo conectar' . mysql_error());
 
@@ -30,6 +27,9 @@ mysql_query($SQL) or die('Consulta fallida: ' . mysql_error());
 $SQL_idPedido = "SELECT p.idPedido FROM pedido p, cliente c WHERE c.dni = p.dni AND c.dni ='" . $_SESSION['dni'] . "' ORDER BY p.fecha DESC";
 $result_idPedido = mysql_query($SQL_idPedido) or die('Consulta fallida: ' . mysql_error());
 $idPedido = mysql_fetch_array($result_idPedido); // Array de un dato (primera fila tiene la idPedido --> $row[0]
+
+$ccc = $obj_carrito->ccc;
+require("transaction.php");
 
 $SQL_linea_pedido = "INSERT INTO linea_pedido(idPedido, idArticulo, unidad, precio, precioTotal) VALUES ";
 $articulos = $obj_carrito->articulos;

@@ -200,7 +200,7 @@ function procesarCarrito() {
             });
         } else {
             swal({
-                title: "Añade un título, vago!" ,
+                title: "" ,
                 text: "Introduzca su Código de Cuenta Corriente",
                 type: "input",
                 showCancelButton: true,
