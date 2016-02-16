@@ -2,7 +2,8 @@
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 header("Content-Type: text/html;charset=utf-8");
 
-$link = mysql_connect("localhost", "root", "root")  or die('No se pudo conectar' . mysql_error());
+include("connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
 
 mysql_query("SET NAMES 'utf8'");
 
