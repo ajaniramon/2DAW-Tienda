@@ -2,22 +2,36 @@
     padding-top: 0px;
     background-color: #DCCFB5;
 }
+
 .ocultar{
   display: none;
 }
+
 .articuloImagen {
     width: 320px;
     height:150px !important;
 }
 
-.slide-image {
-    width: 100%;
+.slide:nth-child(1) { z-index:8 }
+.slide:nth-child(2) { z-index:9 }
+.slide:nth-child(3) { z-index:10 }
+
+.slide {
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+
+	/* this would be vendor prefixed:*/
+	transition: height 0.9s ease-in-out;
 }
 
 .landingpage {
-    margin-bottom: 30px;
+/*    margin-bottom: 30px;
     width: 100%;
     float: left;
+    */
+    	height:100%;
 }
 
 .caption {
@@ -50,7 +64,6 @@
 
 footer {
     margin: 50px 0;
-    /**/
     text-align: center;
   }
 

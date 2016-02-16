@@ -29,13 +29,15 @@ function showSlide() {
 	// reset
 	delta = 0;
     // Mostrar el slide actual y ocultar los hermanos
-    $(".slide").eq(currentSlideIndex).fadeIn().siblings().fadeOut();
+		$(".slide").eq(currentSlideIndex).siblings().fadeOut();
+		setTimeout(function() {$(".slide").eq(currentSlideIndex).fadeIn();}, 400);
+
 }
 
 function prevSlide() {
 	currentSlideIndex--;
 	if (currentSlideIndex < 0) {
-		currentSlideIndex = numSlides;
+		currentSlideIndex = 0;
 	}
 	showSlide();
 }
@@ -43,7 +45,7 @@ function prevSlide() {
 function nextSlide() {
 	currentSlideIndex++;
 	if (currentSlideIndex > numSlides) {
-		currentSlideIndex = 0;
+		currentSlideIndex = numSlides;
 	}
 	showSlide();
 }
