@@ -1,0 +1,32 @@
+.landingpage {
+	height:100%;
+}
+
+.slide {
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+
+	/* this would be vendor prefixed:*/
+	transition: height 0.9s ease-in-out;
+}
+
+/* Muestra solo el slide primero el de mayor z */
+.slide:nth-child(0) { z-index:10; }
+.slide:nth-child(1) { z-index:9; }
+.slide:nth-child(2) { z-index:8; }
+
+#project0 {
+	background-color: #000
+}
+
+#project1 {
+	background-color: #000;
+	display : none;
+}
+
+#project2 {
+	background-color: #000;
+	display : none;
+}

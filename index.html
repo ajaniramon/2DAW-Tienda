@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <link href="css/shop-homepage.css" rel="stylesheet">
 
+  	<link rel="stylesheet" href="css/landingpage.css"/>
+
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <script src="./js/clases.js"></script>
@@ -30,19 +32,17 @@
 
         <div class="container">
             <div class="navbar-header">
-              <a href="index.html">
-                <img src="img/logo.png" alt="EcoRecipes">
-              </a>
+              <img src="img/logo.png" alt="EcoRecipes">
             </div>
             <div id="capaCarrito">
               <button id="verLoginBT" type="button" class="btn btn-default btn-lg button-wrapper">
               <a>
-                <i class="fa fa-user fa-2x"> <p class="ocultar"> a </p></i>
+              <i class="fa fa-user fa-2x"> <p class="ocultar"> a </p></i>
               </a>
               </button>
                 <button id="verCarritoBT" type="button" class="btn btn-default btn-lg button-wrapper">
                   <a>
-                    <i class="fa fa-shopping-cart fa-1x"><p class="ocultar"> a </p> </i>
+                    <i class="fa fa-shopping-cart fa-1x"><p class="ocultar"> a </p> </i><!--glyphicon glyphicon-shopping-cart-->
                   </a>
                 </button>
             </div>
@@ -50,39 +50,26 @@
     </nav>
 
     <!-- Page Content -->
-      <div id="contenedor" class="container">
+      <div class="container">
           <div class="row">
               <div class="col-md-12">
-                  <div class="row carousel-padre carousel-holder">
-                      <div class="col-md-12">
-                          <div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
-                              <ol class="carousel-indicators">
-                                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                              </ol>
-                              <div class="carousel-inner">
-                                  <div class="item active">
-                                      <img class="slide-image" src="img/carrusel1.jpg" alt="">
-                                  </div>
-                                  <div class="item">
-                                      <img class="slide-image" src="img/carrusel2.jpg" alt="">
-                                  </div>
-                                  <div class="item">
-                                      <img class="slide-image" src="img/carrusel3.jpg" alt="">
-                                  </div>
-                              </div>
-                              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-
-                                  <span class="glyphicon glyphicon-chevron-left"><p class="ocultar">a</p></span>
-                              </a>
-                              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"><p class="ocultar">a</p></span>
-                              </a>
-                          </div>
+                  <div class="landingpage">
+                		<section id="project0" class="slide active">
+                			<div>
+                        <img src="img/carrusel1.jpg" alt="">
                       </div>
-
-                  </div>
+                		</section>
+                		<section id="project1" class="slide">
+                      <div>
+                        <img src="img/carrusel2.jpg" alt="">
+                      </div>
+                		</section>
+                		<section id="project2" class="slide">
+                      <div>
+                        <img src="img/carrusel3.jpg" alt="">
+                      </div>
+                		</section>
+                </div>
               </div>
 
               <div class="col-md-3">
@@ -172,11 +159,6 @@
         </div>
       </div>
 
-
-
-
-
-
     <div class="container">
 
         <hr>
@@ -208,5 +190,7 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Scroll.js"></script>
+
 </body>
 </html>

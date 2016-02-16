@@ -14,14 +14,10 @@
     width: 100%;
 }
 
-.carousel-holder {
+.landingpage {
     margin-bottom: 30px;
     width: 100%;
-}
-
-.carousel-control,
-.item {
-    border-radius: 4px;
+    float: left;
 }
 
 .caption {
@@ -126,10 +122,6 @@ a.drill:hover{
 
 /* ./CARRITO */
 
-#contenedor{
-  min-height: 500px;/*Respetar altura de la pantalla de perfil*/
-}
-
 .centrado{
   margin: 0px auto;
   text-align: center;
@@ -159,11 +151,11 @@ a.drill:hover{
     text-decoration: none;
 }
 
-#categorias, #categoriasCuenta{
+#categorias{
   font-weight: bold;
 }
 
-#categorias a:hover, #categoriasCuenta a:hover{
+#categorias a:hover{
   background-color: #46B546;
   color: white;
 }
@@ -175,31 +167,10 @@ a.drill:hover{
   display: none; /*Para que el fade in funcione (animación de aparecer)*/
 }
 
-#contenedorCuenta{
-  background-color: white;
-  border-radius: 5px;
-  padding-bottom: 5px;
-}
-
-#productos h3, #contenedorCuenta h3{
+#productos h3{
   border-bottom: 1px solid grey;
   padding: 8px 0px 5px 15px;
 }
-
-/*----- AQUI -----*/
-
-.datosCuenta{
-  padding: 20px 40px;
-}
-
-.datosFactura{
-  margin-bottom: 10px;
-}
-
-.pdfImg{
-  cursor: pointer;
-}
-/*----------------*/
 
 .flechas_derecha {
   float: right;
@@ -251,7 +222,7 @@ a.social:link{
 /* Media Querys
 ------------------------------------------------------------------------------*/
 @media all and (max-width: 991px) {
-  .carousel-padre{
+  .landingpage-padre{
     display: none;
   }
 
