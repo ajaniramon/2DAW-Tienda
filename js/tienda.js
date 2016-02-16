@@ -2,7 +2,7 @@ var articulos, carrito, total;
 
 function mostrarArticulos() {
     $("#productos").fadeIn(1000);
-    $(".carousel").fadeOut(500);
+    $(".landingpage").fadeOut(500);
     var contador = 0;
     var categoria = $(this).attr('id');
     var nombreCategoria = $(this).text();
@@ -238,7 +238,7 @@ function procesarCarrito() {
                     });
                 }
             });
-            
+
         }
     }
 
@@ -499,6 +499,8 @@ function validarEmail(email) {
 }
 
 $(document).ready(function () {
+    $(".landingpage").children(".slide:nth-child(2)").hide();
+    $(".landingpage").children(".slide:nth-child(3)").hide();
     carrito = new Carrito(1);
     articulos = new Array();
     $.ajax({

@@ -10,16 +10,22 @@
     height:150px !important;
 }
 
-.slide-image {
-    width: 100%;
+/*-- Landing page --*/
+.slide {
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+
+	transition: height 0.9s ease-in-out;
 }
 
-.carousel-holder {
-    margin-bottom: 30px;
-    width: 100%;
+.landingpage img {
+  width: 100%;
 }
 
-.carousel-control,
+/*-- Fin Landing Page --*/
+
 .item {
     border-radius: 4px;
 }
