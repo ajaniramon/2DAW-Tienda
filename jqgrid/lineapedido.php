@@ -8,8 +8,10 @@ $sord = $_GET['sord']; // get the direction
 $id = $_GET['id'];
 if(!$sidx) $sidx =1;
 // connect to the database
+
 include("../server/connection.php");
 $conn = mysql_connect("localhost", $connection['user'], $connection['password']);
+
 mysql_select_db("shop") or die("Error connecting to db.");
 mysql_set_charset('utf8');
 switch ($examp) {
@@ -26,7 +28,7 @@ switch ($examp) {
 		$start = $limit*$page - $limit; // do not put $limit*($page - 1)
 		if ($start<0) $start = 0;
         $SQL = "SELECT d.idPedido ,d.idArticulo ,a.nombre , d.unidad  ,d.precioTotal  FROM linea_pedido d ,articulo a WHERE  d.idPedido=".$id." and d.idArticulo=a.idArticulo ORDER BY $sidx $sord LIMIT $start , $limit";
-    	    
+
 		$result = mysql_query( $SQL ) or die("Couldnt execute query.".mysql_error());
         $i=0;
 		while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {

@@ -7,8 +7,10 @@ $sord = $_GET['sord']; // get the direction
 
 if(!$sidx) $sidx =1;
 // connect to the database
+
 include("../server/connection.php");
 $db = mysql_connect("localhost", $connection['user'], $connection['password'])
+
 or die("Connection Error: " . mysql_error());
 
 mysql_select_db("shop") or die("Error conecting to db.");
@@ -35,6 +37,6 @@ while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
     $responce->rows[$i]['id']=$row['idPedido'];
     $responce->rows[$i]['cell']=array($row['idPedido'],$row['fecha'],$row['total'],$row['dni']);
     $i++;
-}      
+}
 echo json_encode($responce);
 ?>

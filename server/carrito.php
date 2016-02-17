@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
+
 session_start();
 $carrito = $_POST["carrito"];
 
@@ -40,6 +41,7 @@ for ($i = 0; $i < $num_articulos;$i++) {
   ," . ($articulos[$i]->cantidad * $articulos[$i]->precio) . ")";
   if($i != $num_articulos - 1){
     $SQL_linea_pedido .= ","; // Si no es la última línea, le ponemos una coma al final del values
+
   }
 }
 $SQL_linea_pedido .= ";";// Cerramos la consulta

@@ -25,8 +25,10 @@ if ($metodo == 'GET') {
 }
 
 function borrar($idCliente){
+
 include("../connection.php");
 $link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -43,8 +45,10 @@ $link = mysql_connect("localhost", $connection['user'], $connection['password'])
 }
 
 function insertar($clienteObjeto){
+
 include("../connection.php");
 $link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -59,8 +63,10 @@ $link = mysql_connect("localhost", $connection['user'], $connection['password'])
   }
 
 function actualizar($cliente){
+
 include("../connection.php");
 $link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -77,8 +83,10 @@ $link = mysql_connect("localhost", $connection['user'], $connection['password'])
 }
 
 function cambiarContrasenya($objeto){
+
 include("../connection.php");
 $link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
+
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 

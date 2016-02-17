@@ -289,38 +289,120 @@ function login() {
     }
 }
 
-function actualizarModalLogin() {
-    $.ajax({
-        url: './server/session.php',
-        type: 'GET',
-        success: function (data) {
-            sesion = JSON.parse(data);
-            $('.login-modal').html("<div class='alert alert-info'> Has iniciado sesión como " + "<strong>" + sesion.email + "</strong>" + "</div>");
-            $('.login-modal-footer').html("<button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
-            $('#logoutBT').on('click', logout);
-            if (sesion.empleado == "true") {
-                $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
+function actualizarModalLogin(){
+  $.ajax({
+       url: './server/session.php',
+       type: 'GET',
+       success: function(data){
+          sesion = JSON.parse(data);
+          $('.login-modal').html("<div class='alert alert-info'> Has iniciado sesión como "+"<strong>"+sesion.email+"</strong>" + "</div>");
+          $('.login-modal-footer').html("<button type='button' data-dismiss='modal' class='btn btn-info' id='perfilBT'>Mi Perfil</button> <button type='button' class='btn btn-info' data-dismiss='modal'>Vale</button> <button class='btn btn-success' id='logoutBT'> Logout </button>");
 
-            }
-            ;
-        },
-        error: function (data) {
-            console.log("Ha fallado la petición HTTP. " + data.responseText);
-        }
-    });
+
+          $('#perfilBT').on('click',pantallaPerfil);
+          $('#logoutBT').on('click',logout);
+          if (sesion.empleado == "true") {
+              $('.login-modal-footer').append("<a class='btn btn-warning' href='backend.php'>Panel de Administración</a>");
+
+          };
+       },
+       error: function(data){
+          console.log("Ha fallado la petición HTTP. "+data.responseText);
+       }
+     });
 }
 
-function logout() {
-    $.ajax({
-        url: './server/logout.php',
-        type: 'GET',
-        success: function (data) {
-            location.reload();
-        },
-        error: function (data) {
-            console.log("Ha fallado la petición HTTP. " + data.responseText);
-        }
-    });
+function pantallaPerfil(){
+
+  $('#contenedor').html("<div class='row'><div class='col-md-3' id='categoriasCuenta'></div><div id='contenedorCuenta' class='col-md-9'></div></div>");
+  $('<a id="informacionCuenta" class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Información general <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasCuenta');
+  $('<a id="facturasCuenta" class="list-group-item categoria sombreado"><i class="glyphicon glyphicon-arrow-down pull-left"></i> Facturas <i class="glyphicon glyphicon-arrow-down pull-right"></i><i class="glyphicon glyphicon-forward flechas_derecha"></i></a>').appendTo('#categoriasCuenta');
+
+  $('#informacionCuenta').on('click',mostrarInformacionCuenta);
+  $('#facturasCuenta').on('click',mostrarFacturas);
+
+  mostrarInformacionCuenta();
+
+}
+
+function mostrarInformacionCuenta(){
+  var informacionHTML = "";
+  informacionHTML += "<h3><strong>Información de la Cuenta</strong></h3>";
+  informacionHTML += "<div class='row datosCuenta'>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>Nombre: </p><div class='col-md-5'> <input class='form-control input-md' type='text' value="+sesion.nombre+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>Apellidos: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.apellido+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>DNI: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.dni+" disabled></div></div>";
+  informacionHTML += "<div class='datosCuenta col-md-12'><p class='col-md-5 centrado'>E-mail: </p><div class='col-md-5'><input class='form-control input-md' type='text' value="+sesion.email+" disabled></div></div>";
+  informacionHTML += "</div><div class='row'><div class='col-md-12 centrado'><button class='btn btn-success'>Modificar Datos</button></div></div>";
+
+  $('#contenedorCuenta').html(informacionHTML);
+}
+
+function mostrarFacturas(){
+  var facturasHTML = "";
+  facturasHTML += "<h3><strong>Facturas de los Pedidos</strong></h3>";
+  facturasHTML += "<div id='datosFactura' class='row'></div>";
+  $('#contenedorCuenta').html(facturasHTML);
+
+  var dni = sesion.dni;
+  var numeroFactura=1;
+  $.ajax({
+    url: './server/pedidos.php',
+    type: 'GET',
+    data: {dni},
+    success: function(data){
+      var objetoJson = JSON.parse(data);
+      $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'><strong>Numero de pedido</strong></p><p class='col-md-3 centrado'><strong>Fecha de pedido</strong></p><p class='col-md-3 centrado'><strong>Total</strong></p><p class='col-md-3'><strong>Descargar</strong></p></div>").appendTo('#datosFactura');
+      $.each(objetoJson, function(){
+        var fecha = this.fecha;
+        var total = this.total + "€";
+        var idPedido = this.idPedido;
+        $("<div class='col-md-12 datosFactura'><p class='col-md-3 centrado'>"+numeroFactura+"</p><p class='col-md-3 centrado'>"+fecha+"</p><p class='col-md-3 centrado'>"+total+"</p><p class='col-md-3'><img idpedido="+idPedido+" class='pdfImg' src='./img/pdf-icon.png' alt='Ver en pdf'></p></div>").appendTo('#datosFactura');
+        numeroFactura++;
+      });
+
+      $('.pdfImg').on('click',pedirPdf);
+    },
+    error: function(data){
+      console.log("Ha fallado la petición HTTP. "+data.responseText);
+    }
+  });
+}
+
+function pedirPdf(){
+  var id = $(this).attr('idpedido');
+  $.ajax({
+    url: './server/factura.php',
+    type: 'GET',
+    data: {id},
+    success: function(data){
+      swal({
+        title: "¡PDF descargado con exito!",
+        text: "",
+        type: "success",
+        timer: 2000,
+        showConfirmButton: false,
+        allowOutsideClick: true
+      });
+    },error: function(data){
+      console.log("Ha fallado la petición HTTP. "+data.responseText);
+    }
+  });
+
+}
+
+function logout(){
+  $.ajax({
+       url: './server/logout.php',
+       type: 'GET',
+       success: function(data){
+        location.reload();
+},
+       error: function(data){
+          console.log("Ha fallado la petición HTTP. "+data.responseText);
+       }
+     });
+
 }
 
 function logged() {
@@ -516,7 +598,7 @@ $(document).ready(function () {
 
     $('.comprar').on("click", procesarCarrito);
 
-    $('#categorias').on("click", '.list-group-item', mostrarArticulos);
+    $('#categorias').on("click",'.categoria',mostrarArticulos);
 
     $('#productos').html(null); //mostrar productos top.
 
