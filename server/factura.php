@@ -53,7 +53,7 @@ class PDF extends FPDF
 
     $total = 0.0;
     while ($line = mysql_fetch_array($result, MYSQL_ASSOC)){
-      $this->Cell($width[0],10,$line['nombre'],0,'LR','L',$zebreado);
+      $this->Cell($width[0],10,utf8_decode($line['nombre']),0,'LR','L',$zebreado);//utf8_decode -> Solucionar problemas con Ñ
       $this->Cell($width[1],10,number_format($line['unidad']),0,'LR','C',$zebreado);
       $this->Cell($width[2],10,$line['precio'] . EURO,0,'LR','C',$zebreado);
       $this->Cell($width[3],10,$line['precioTotal'] . EURO,0,'LR','C',$zebreado);
