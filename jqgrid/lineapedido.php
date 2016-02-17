@@ -8,7 +8,8 @@ $sord = $_GET['sord']; // get the direction
 $id = $_GET['id'];
 if(!$sidx) $sidx =1;
 // connect to the database
-$conn = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5");
+include("../server/connection.php");
+$conn = mysql_connect("localhost", $connection['user'], $connection['password']);
 mysql_select_db("shop") or die("Error connecting to db.");
 mysql_set_charset('utf8');
 switch ($examp) {

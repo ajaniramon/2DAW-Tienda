@@ -25,7 +25,8 @@ if ($metodo == 'GET') {
 }
 
 function borrar($idCliente){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+include("../connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -42,7 +43,8 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
 }
 
 function insertar($clienteObjeto){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+include("../connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -57,7 +59,8 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
   }
 
 function actualizar($cliente){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+include("../connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
@@ -74,7 +77,8 @@ $link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No s
 }
 
 function cambiarContrasenya($objeto){
-$link = mysql_connect("localhost", "adminUYVurbA", "Q8S-b_PNHTP5")  or die('No se pudo conectar' . mysql_error());
+include("../connection.php");
+$link = mysql_connect("localhost", $connection['user'], $connection['password'])  or die('No se pudo conectar' . mysql_error());
   mysql_query("SET NAMES utf8");
   mysql_select_db("shop") or die ("No se pudo seleccionar la base de datos");
 
