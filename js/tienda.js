@@ -3,6 +3,7 @@ var articulos, carrito, total;
 function mostrarArticulos() {
     $("#productos").fadeIn(1000);
     $(".landingpage").fadeOut(500);
+    $(window).off('DOMMouseScroll mousewheel');
     var contador = 0;
     var categoria = $(this).attr('id');
     var nombreCategoria = $(this).text();
