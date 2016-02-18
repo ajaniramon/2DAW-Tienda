@@ -394,9 +394,8 @@ jQuery("#jqGridPedidos_d").jqGrid({
 	height: 100,
    	url:'jqgrid/lineapedido.php?q=1&id=0',
 	datatype: "json",
-   	colNames:['idPedido','idArticulo', 'nombre', 'unidades','Precio total articulo'],
+   	colNames:['idArticulo', 'nombre', 'unidades','Precio total articulo'],
    	colModel:[
-   		{name:'idPedido',index:'idPedido', width:100},
    		{name:'idArticulo',index:'idArticulo', width:100},
    		{name:'nombre',index:'nombre', width:200},
    		{name:'unidad',index:'unidad', width:80, align:"right"},
@@ -408,7 +407,7 @@ jQuery("#jqGridPedidos_d").jqGrid({
    	sortname: 'idPedido',
     viewrecords: true,
     sortorder: "asc",
-	multiselect: true,
+	multiselect: false,
 	caption:"Detalle Pedido"
 }).navGrid('#paginadorPedidos_d',{add:false,edit:false,del:false});
 jQuery("#a1Ped").click( function() {

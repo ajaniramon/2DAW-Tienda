@@ -33,7 +33,7 @@ switch ($examp) {
         $i=0;
 		while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
 			$responce->rows[$i]['id']=$row['idPedido'];
-            $responce->rows[$i]['cell']=array($row['idPedido'],$row['idArticulo'],$row['nombre'],$row['unidad'],$row['precioTotal']);
+            $responce->rows[$i]['cell']=array($row['idArticulo'],$row['nombre'],$row['unidad'],$row['precioTotal']);
             $i++;
 		}
         echo json_encode($responce);
