@@ -27,14 +27,19 @@ $result = curl_exec($ch);
 
 if(!curl_errno($ch)) {
 	$info = curl_getinfo($ch);
-
-	echo "TIME: " . $info["total_time"] . "<br>";
+	if ($info["http_code"]!=200) {
+		http_response_code(400);
+		$resultado =  "Hubo un problema al procesar el pago. Consulte con su banco.";
+	}else{
+		$resultado = "La compra se ha realizado satisfactoriamente.";
+	}
+	/*echo "TIME: " . $info["total_time"] . "<br>";
 	echo "STATUS: " . $info["http_code"] . "";
-	echo "<br><br>";
+	echo "<br><br>";*/
 }
 
 curl_close($ch);
 
-echo $result;
+echo $resultado;
 
 ?>

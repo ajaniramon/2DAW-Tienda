@@ -234,7 +234,7 @@ function procesarCarrito() {
                             carrito = new Carrito(1);
 
                         }, error: function (data) {
-                            console.log(data.responseText);
+                            sweetAlert("¡Ups!", data.responseText, "error");
                         }
                     });
                 }
